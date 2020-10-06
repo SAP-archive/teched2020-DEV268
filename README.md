@@ -40,7 +40,7 @@ Provide the exercise content here directly in README.md using [markdown](https:/
     - [Behavior Definition](exercises/ex1#exercise-12-sub-exercise-2-description)
     - [Behavior Implementation - Determination](exercises/ex1#exercise-12-sub-exercise-2-description)
     
-- [Exercise 2 - Consume an OData service](exercises/ex2/)
+- [Exercise 2 - Consume an OData service](exercises/ex2/README.md)
     - [Create the service consumption model](exercises/ex2#Create-the-service-consumption-model)
     - [Create a custom entity](exercises/ex2#Create-a-custom-entity)
 
