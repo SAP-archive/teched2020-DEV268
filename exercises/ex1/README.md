@@ -293,7 +293,7 @@ Behavior Defintion
 
 13. Select the entity **Inventory** and press the **Preview** button to start the *Fiori Elements Preview*.
 
-![Start Fiori Elements Preview](images/0440.png)
+![Start Fiori Elements Preview](images/0460.png)
 
 14. Check the Fiori Elements Preview App. You will notice that we got a nearly full fledged UI with capabilities for 
 
