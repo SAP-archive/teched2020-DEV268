@@ -308,81 +308,85 @@ Behavior Defintion
 The interface view was generated such that based on the ABAP field names aliases have been created such that the ABAP field name was converted into camelCase notation.
 
 <pre>
-define ROOT view ZJRP_I_INVENTORY_JRP4
-  as select from ZRAP_INVEN_JRP3
+define root view entity ZI_RAP_INVENTORY_1234
+  as select from zrap_inven_1234
 {
-  key UUID as Uuid,
-  
-  INVENTORY_ID as InventoryId,
-  
-  PRODUCT_ID as ProductId,
+  key UUID as UUID,  
+  INVENTORY_ID as InventoryID,  
+  PRODUCT_ID as ProductID,  
+  @Semantics.quantity.unitOfMeasure: 'QuantityUnit'
+  QUANTITY as Quantity,  
+  QUANTITY_UNIT as QuantityUnit,
 </pre>
 
-The behavior impelemenation was generated such that the semantic key was marked as readonly.
+The behavior impelemenation was generated such that the object id which acts as a semantic key was marked as readonly.
 
 <pre>
-field ( readonly ) InventoryId;
+field ( readonly ) InventoryID;
 </pre>
 
 also a mapping was added that maps the ABAP field names to the field names of the CDS views.
 
 <pre>
-mapping for ZRAP_INVEN_JRP3
-{
-Uuid = UUID;
-InventoryId = INVENTORY_ID;
-ProductId = PRODUCT_ID;
+  mapping for zrap_inven_1234
+  {
+    UUID = UUID;
+    InventoryID = INVENTORY_ID;
+    ProductID = PRODUCT_ID;
+    Quantity = QUANTITY;
+    QuantityUnit = QUANTITY_UNIT;
+    Remark = REMARK;
+    NotAvailable = NOT_AVAILABLE;
+    CreatedBy = CREATED_BY;
+    CreatedAt = CREATED_AT;
+    LastChangedBy = LAST_CHANGED_BY;
+    LastChangedAt = LAST_CHANGED_AT;
+  }
 </pre>
 
 And we find a determination that was generated for the semantic key field (that has to be implemented though).
 
 <pre>
-determination CalculateSemanticKey on modify
-{ create; }
+determination CalculateInventoryID on modify { create; }
 </pre> 
  
-The behavior implementation contains already the definition of the method that needs to be implemented to calculate the semantic key.
-
-<pre>
-CLASS LHC_INVENTORY DEFINITION INHERITING FROM CL_ABAP_BEHAVIOR_HANDLER.
-  PRIVATE SECTION.
-    METHODS:
-      CALCULATE_SEMANTIC_KEY FOR DETERMINATION Inventory~CalculateSemanticKey
-        IMPORTING
-          IT_KEYS FOR Inventory.
-ENDCLASS.
-CLASS LHC_INVENTORY IMPLEMENTATION.
-  METHOD CALCULATE_SEMANTIC_KEY.
-  " Determination implementation goes here
-  ENDMETHOD.
-ENDCLASS.
-<pre>
-
 Last not least you will find it handy that also a Metdata Extension View has been generated that automatically publishes all field on the list page as well as on the object page by setting appropriate @UI annotations. Also the administrative fields such as the UUID based key and fields like created_at are hidden by setting @UI.hidden to true.
  
  <pre>
-  @UI.hidden: true
-  CreatedAt;
-  
-  @UI.hidden: true
-  CreatedBy;
+   @UI.hidden: true
+  UUID;
   
   @UI.lineItem: [ {
     position: 20 , 
     importance: #HIGH, 
-    label: 'InventoryId'
+    label: 'InventoryID'
   } ]
   @UI.identification: [ {
     position: 20 , 
-    label: 'InventoryId'
+    label: 'InventoryID'
   } ]
-  InventoryId;
+  @UI.selectionField: [ {
+    position: 20 
+  } ]
+  InventoryID;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #HIGH, 
+    label: 'ProductID'
+  } ]
+  @UI.identification: [ {
+    position: 30 , 
+    label: 'ProductID'
+  } ]
+  ProductID;
 </pre> 
+
 Feel free to check out more of the generated code.
 
 
-
 ## Summary
+
 You've now ...
 
 Continue to - [Exercise 2 - Exercise 2 Description](../ex2/README.md)
