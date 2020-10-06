@@ -6,7 +6,11 @@ This repository contains the material for the SAP TechEd 2020 session called Ses
 
 ## Overview
 
-This session introduces attendees to...
+In this session we will show you how you can use SAP Cloud Platform, ABAP environment for side-by-side extension scenarios with SAP S/4 HANA using the ABAP RESTful Application Programming Model 
+
+Our scenario is an inventory application that runs on SAP Cloud Platform, ABAP environment. This application will use product master data from an on premise S/4 HANA system that will be retrieved via calling an OData service and via calling a SOAP web service. 
+
+To speed up the development we will use a tool called the RAP Generator that generates the complete stack of a RAP application based on a table that has to be created beforehand. This allows us to skip writing lots of boiler plate coding that you otherwise would have to write yourself. And we can start much faster with the implementation of our side-by-side integration scenario.
 
 ## Requirements
 
@@ -28,13 +32,21 @@ For a detailed step-by-step description check out our [Onboarding Tutorial](http
 Provide the exercise content here directly in README.md using [markdown](https://guides.github.com/features/mastering-markdown/) and linking to the specific exercise pages, below is an example.
 
 - [Getting Started](exercises/ex0/)
-- [Exercise 1 - First Exercise Description](exercises/ex1/)
-    - [Exercise 1.1 - Exercise 1 Sub Exercise 1 Description](exercises/ex1#exercise-11-sub-exercise-1-description)
-    - [Exercise 1.2 - Exercise 1 Sub Exercise 2 Description](exercises/ex1#exercise-12-sub-exercise-2-description)
-- [Exercise 2 - Second Exercise Description](exercises/ex2/)
+- [Exercise 1 - Geenrate a starter application](exercises/ex1/)
+    - [Exercise 1.1 - Connect to the system](exercises/ex1#exercise-11-sub-exercise-1-description)
+    - [Exercise 1.2 - Create a package](exercises/ex1#exercise-12-sub-exercise-2-description)
+    - [Exercise 1.3 - Create a table](exercises/ex1#exercise-12-sub-exercise-2-description)
+    - [Exercise 1.4 - Run the RAP Generator](exercises/ex1#exercise-12-sub-exercise-2-description)
+    - [Exercise 1.5 - Behavior Definition](exercises/ex1#exercise-12-sub-exercise-2-description)
+    - [Exercise 1.6 - Behavior Implementation - Determination](exercises/ex1#exercise-12-sub-exercise-2-description)
+    
+- [Exercise 2 - Consume an OData service](exercises/ex2/)
     - [Exercise 2.1 - Exercise 2 Sub Exercise 1 Description](exercises/ex2#exercise-21-sub-exercise-1-description)
     - [Exercise 2.2 - Exercise 2 Sub Exercise 2 Description](exercises/ex2#exercise-22-sub-exercise-2-description)
 
+- [Exercise 3 - Consume a SOAP Web service](exercises/ex2/)
+    - [Exercise 2.1 - Exercise 2 Sub Exercise 1 Description](exercises/ex2#exercise-21-sub-exercise-1-description)
+    - [Exercise 2.2 - Exercise 2 Sub Exercise 2 Description](exercises/ex2#exercise-22-sub-exercise-2-description)
 
 **OR** Link to the PDF document stored in your github repo for example...
 
