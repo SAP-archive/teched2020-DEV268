@@ -41,7 +41,7 @@ Provide the exercise content here directly in README.md using [markdown](https:/
     - [Exercise 1.6 - Behavior Implementation - Determination](exercises/ex1#exercise-12-sub-exercise-2-description)
     
 - [Exercise 2 - Consume an OData service](exercises/ex2/)
-    - [Exercise 2.1 - Exercise 2 Sub Exercise 1 Description](exercises/ex2#exercise-21-sub-exercise-1-description)
+    - [Exercise 2.1 - Exercise 2 Create the Service Consumption Model](exercises/ex2#exercise-21-sub-exercise-1-description)
     - [Exercise 2.2 - Exercise 2 Sub Exercise 2 Description](exercises/ex2#exercise-22-sub-exercise-2-description)
 
 - [Exercise 3 - Consume a SOAP Web service](exercises/ex2/)
