@@ -121,20 +121,84 @@ This application will then be enhanced such that it leverages OData service call
 
 1. Right click on your package. Click **New > Other ABAP Repository Object**.
 
+![New Database Table](images/0270.png)
+
 2. Click **Database Table > Next**.
+
+![New Database Table](images/0280.png)
 
 3. In the Createa a database table dialgue enter the following values:
 
    - Name: Enter **`zrap_inven_####`** .
    - Description: Enter **`Inventory data`**.
+   
+   Press **Next**.
+   
+   ![New Database Table](images/0290.png)
+   
+4. Select a transport request and click **Finish**.
 
+![Select transport request](images/0300.png)
 
-6. Click  Next.
+6. Check the code template.
 
+![Code template Inventory Table](images/0110.png)
 
+6. Copy and paste the coding and replace the placeholder **`####`** with your group number.
 
+<pre>
+@EndUserText.label : 'Inventory data'
+@AbapCatalog.enhancementCategory : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zrap_inven_#### {
+  key client      : abap.clnt not null;
+  key uuid        : sysuuid_x16 not null;
+  inventory_id    : abap.numc(6) not null;
+  product_id      : abap.char(10);
+  @Semantics.quantity.unitOfMeasure : 'zrap_inven_####.quantity_unit'
+  quantity        : abap.quan(13,3);
+  quantity_unit   : abap.unit(3);
+  remark          : abap.char(256);
+  not_available   : abap_boolean;
+  created_by      : syuname;
+  created_at      : timestampl;
+  last_changed_by : syuname;
+  last_changed_at : timestampl;
+}
+</pre>
+
+![Inventory Table](images/0110.png)
+
+The table that will be used by our inventory application has the following structure.
+
+The key field **`uuid`** is a *Universally Unique Identifier (UUID)*. This mandatory for a managed scenario where early numbering is used. That means where the ABAP framework automatically generates values for the key field when creating the data.
+ 
+The last four fields
+ 
+**`created_by`**   
+**`created_at`**
+**`last_changed_by`**
+**`last_changed_at`**
+ 
+are also mandatory in a managed scenario. The framework expects these type of fields so that it is able to check when data has been created and changed.
+ 
+The usual process of development would be that you as a developer would now start to manually create the following repository objects
+ 
+·	CDS interface view
+·	CDS projection view
+·	Metadata Extension view
+·	Behavior definition(s)
+·	Behavior implementation(s)
+ 
+before you can start with the implementation of the business logic.
+ 
+To speed up the process we will use the RAP Generator that will generate a starter project for us containing all these objects. This way you can concentrate on developing the business logic of this extension scenario without the need to type lots of boilerplate coding beforehand.
 
 ## Generate a starter application
+
+
 
 ## Summary
 You've now ...
