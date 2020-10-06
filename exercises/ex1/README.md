@@ -65,12 +65,48 @@ For this we will use the RAP Generator.
 
 ![Service instance connection](images/0090.png)
 
-8. You leave the project name, e.g. **TRL_EN** unchanged and click **Finish**
+8. You can keep the default project name, e.g. **TRL_EN** unchanged and click **Finish**
 
 ![Project name](images/0100.png)
 
 
+## Create a package
+
+1. Richt-click on **`ZLOCAL`** and from the context menu choose **New > ABAP Package**.
+
+![New package_1](images/0200.png)
+
+2. In the Create new ABAP package dialogue enter the following values
+
+   - Name: Enter **`ZRAP_INVENTORY_####`** in the field Name.
+   - Description: Enter a meaningful description for your package, e.g. **Inventory demo ####**. 
+
+![New package_2](images/0210.png)
+
+3. Select or create a new transport request
+
+![New transport request](images/0220.png)
+
+4. Result
+
+You have created a package in the super package ZLOCAL. The package ZLOCAL has a similar role as the package $TMP has in on premise systems.
+
+You can see now an entry in the **Transport Organizer** view
+ 
+> **Caution:**
+> If you start developing in a non-trial system you should use sub-packages in ZLOCAL **ONLY** for tests but **NOT** for real development.
+> For real development you have to create your own software components and own development packages.
+
+
+![New transport request](images/0230.png)
+
+5. Click  Next.
+
+
+
 ## Create a table
+
+
 
 ## Generate a starter application
 
