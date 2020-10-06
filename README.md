@@ -16,10 +16,10 @@ The requirements to follow the exercises in this repository are...
 - You have installed the ABAP Development Tools (ADT). [Get the ABAP Development Tools (ADT)](https://tools.hana.ondemand.com/#abap), section „Procedure“.
 - You have prepared your ABAP Trial which can be easily be done via the [SAP Cloud Platform cockpit](https://cockpit.hanatrial.ondemand.com) in just 3 steps.
   - Click on Enter **Your Trial Account**.
-  ![](/images/intro_0000.png)
+  ![Enter Trial](images/intro_0000.png)
   - Click on **Boosters** in the menu on the left hand side
   - Choose the tile **Prepare an Account for ABAP Trial** and follow the wizard
-  ![](/images/intro_0010.png)
+  ![Start booster](images/intro_0010.png)
 
 For a detailed step-by-step description check out our [Onboarding Tutorial](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/720c423ef1a8498ab690cf0e5512ba50.html#loio720c423ef1a8498ab690cf0e5512ba50__Create_ABAP_Trial_Instance).
 
