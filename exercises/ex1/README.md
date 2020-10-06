@@ -83,7 +83,7 @@ For this we will use the RAP Generator.
 
 ![New package_2](images/0210.png)
 
-3. Select or create a new transport request
+3. Select or create a new transport request and click **Finish**.
 
 ![New transport request](images/0220.png)
 
@@ -100,11 +100,25 @@ You can see now an entry in the **Transport Organizer** view
 
 ![New transport request](images/0230.png)
 
-5. Click  Next.
-
-
 
 ## Create a table
+
+Now after you have created a package we can start developing an application. We will start with the development of a table that will be used to store inventory data. Since this is a green field scenario the application will be implemented using a **managed business object** that is based on the **ABAP RESTful Application Programming Model (RAP)**.
+ 
+This application will then be enhanced such that it leverages OData service calls and SOAP calls to retrieve data from a SAP S/4HANA backend. These services are either called as a value help or to perform a determination for the price of a product whenthe inventory data is created or updated.
+
+1. Right click on your package. Click **New > Other ABAP Repository Object**.
+
+2. Click **Database Table > Next**.
+
+3. In the Createa a database table dialgue enter the following values:
+
+   - Name: Enter zrap_inven_#### in the field Name.
+      - Description: Enter **`Inventory data in the field Description.
+
+
+6. Click  Next.
+
 
 
 
