@@ -23,6 +23,10 @@ For this we will use the RAP Generator.
 
 5. Open ABAP perspective (if needed)
 
+  - Click on the **Open perspective** button
+  - Select **ABAP**
+  - Click **Open**
+
  ![OpenABAP perspective](images/0040.png)
 
 5. Click **File > New > ABAP Cloud Project** to open a new ABAP Cloud project.
