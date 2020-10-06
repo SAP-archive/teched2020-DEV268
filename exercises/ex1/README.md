@@ -1,22 +1,17 @@
 # Exercise 1
 
-In this exercise, we will create...
+In this exercise, we will create a starter application to collect inventory data. Since we want to concentrate on developing an extension scenario we will try to speed up the process to built the basic inventory application.
+ 
+For this we will use the RAP Generator.
 
-## Create the Service Consumption Model
 
-After completing these steps you will have created...
+## Connect to the system
 
-## Create a console application to test the OData service
+1. 
 
-## Create a custom entity
+## Create a table
 
-## Create a query implementation class
-
-## Add the custom entity to your service definition
-
-## Add the custom entity as a value help
-
-## Test the service 
+## Generate a starter application
 
 ## Summary
 You've now ...
