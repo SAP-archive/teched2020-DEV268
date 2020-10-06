@@ -1,8 +1,8 @@
-# Exercise 1 - Exercise 1 Description
+# Exercise 1
 
 In this exercise, we will create...
 
-## Exercise 1.1 Sub Exercise 1 Description
+## Create the Service Consumption Model
 
 After completing these steps you will have created...
 
@@ -16,7 +16,7 @@ response->set_text( |Hello World! | ).
 
 
 
-## Exercise 1.2 Sub Exercise 2 Description
+## Create a console application to test the OData service
 
 After completing these steps you will have...
 
@@ -35,9 +35,17 @@ READ TABLE lt_params REFERENCE INTO DATA(lr_params) WITH KEY name = 'cmd'.
 2.	Click here.
 <br>![](/exercises/ex1/images/01_02_0010.png)
 
+## Create a custom entity
+
+## Create a query implementation class
+
+## Add the custom entity to your service definition
+
+## Add the custom entity as a value help
+
+## Test the service 
 
 ## Summary
-
 You've now ...
 
 Continue to - [Exercise 2 - Exercise 2 Description](../ex2/README.md)
