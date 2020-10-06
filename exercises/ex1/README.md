@@ -260,24 +260,48 @@ To speed up the process we will use the RAP Generator that will generate a start
 
 9. When you check the content of your package you will notice that it now contains 12 repository objects.
 
-![Genrated objects](images/0430.png)
+![RAP BO generated](images/0430.png)
+
+10. The RAP Genertor has generated the following repository objects for your convenience
 
 Business Services
 - ZUI_RAP_INVENTORY_####_02 - Service Binding
 - ZUI_RAP_INVENTORY_#### - Service Definition
 
 CDS views
-·	ZC_RAP_INVENTORY_#### - Projection view
-·	ZI_RAP_INVENTORY_#### - Interface view
- 
+- ZC_RAP_INVENTORY_#### - Projection view
+- ZI_RAP_INVENTORY_#### - Interface view
+
 Metadata Extension
-·	ZC_RAP_INVENTORY_#### - MDE for the projection view
- 
+- ZC_RAP_INVENTORY_#### - MDE for the projection view
+
 Behavior Defintion
-·	ZC_RAP_INVENTORY_#### - for the projection view
-·	ZI_RAP_INVENTORY_#### - for the interface view
+- ZC_RAP_INVENTORY_#### - for the projection view
+- ZI_RAP_INVENTORY_#### - for the interface view
  
 
+> What is now left is to publish the service binding since this cannot be automated (yet).
+
+
+11. Open the service binding and double click on **´ZUI_RAP_INVENTORY_####_02´**
+
+![Open Service Binding](images/0435.png)
+
+12. Click on **Activate** to activate the Service Binding. 
+
+![Activate Service Binding](images/0440.png)
+
+13. Select the entity **Inventory** and press the **Preview** button to start the *Fiori Elements Preview*.
+
+![Start Fiori Elements Preview](images/0440.png)
+
+14. Check the Fiori Elements Preview App. You will notice that we got a nearly full fledged UI with capabilities for 
+
+   - Searching
+   - Filtering
+   - Create, Update and Delete inventory data
+   
+  ![Fiori Elements Preview](images/0470.png)
 
 ## Check the generated repository objects
 
