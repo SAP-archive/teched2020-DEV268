@@ -142,9 +142,9 @@ This application will then be enhanced such that it leverages OData service call
 
 6. Check the code template.
 
-![Code template Inventory Table](images/0110.png)
+![Code template Inventory Table](images/0310.png)
 
-6. Copy and paste the coding and replace the placeholder **`####`** with your group number.
+6. Copy and paste the following coding .
 
 <pre>
 @EndUserText.label : 'Inventory data'
@@ -169,11 +169,17 @@ define table zrap_inven_#### {
 }
 </pre>
 
-![Inventory Table](images/0110.png)
+7. and replace the placeholder **`####`** with your group number.
+
+![Inventory Table](images/0320.png)
+
+8. Click here to activate your changes.
 
 The table that will be used by our inventory application has the following structure.
 
-The key field **`uuid`** is a *Universally Unique Identifier (UUID)*. This mandatory for a managed scenario where early numbering is used. That means where the ABAP framework automatically generates values for the key field when creating the data.
+The key field **`uuid`** is a *Universally Unique Identifier (UUID)*. 
+
+This mandatory for a managed scenario where early numbering is used. That means where the ABAP framework automatically generates values for the key field when creating the data.
  
 The last four fields
  
@@ -197,6 +203,158 @@ before you can start with the implementation of the business logic.
 To speed up the process we will use the RAP Generator that will generate a starter project for us containing all these objects. This way you can concentrate on developing the business logic of this extension scenario without the need to type lots of boilerplate coding beforehand.
 
 ## Generate a starter application
+
+1. Create a JSON file **`inventory.json`** with the following content locally on your desktop. 
+
+<pre>
+{
+  "implementationType": "managed_uuid",
+  "namespace": "Z",
+  "suffix": "_1234",
+  "prefix": "RAP_",
+  "package": "ZRAP_INVENTORY_1234",
+  "datasourcetype": "table",
+  "hierarchy": {
+    "entityName": "Inventory",
+    "dataSource": "zrap_inven_1234",
+    "objectId": "inventory_id"    
+    }
+}
+</pre>
+
+1. Add the package ZRAP_GENERATOR to your favorites packages
+   - Click on **Favorite Packages** with the right mouse button.
+   - Click **Add Package ...**  
+
+![Add package to Favorites_1](images/0350.png)
+
+2. Start to type ZRAP_GENERATOR and double-click on it. 
+
+![Add package to Favorites_2](images/0360.png)
+
+3. Expand the folders **Connectivity > HTTP Services** and double-click on **Z_RAP_GENERATOR**.
+
+![Open RAP Generator](images/0370.png)
+
+4. Click on **URL**
+
+![Open UI of the RAP Generator](images/0380.png)
+
+5. Enter your credentials
+
+![Authenticate at ABAP Environment](images/0390.png)
+
+6. Start the generation of the RAP business object.
+   - Browse for your JSON File **Inventory.json** and then
+   - Press the button **Upload File and generate BO**
+
+![Start generation](images/0400.png)
+
+7. Wait a short time
+
+![Start generation](images/0410.png)
+
+8. Success message
+
+![RAP BO generated](images/0420.png)
+
+9. When you check the content of your package you will notice that it now contains 12 repository objects.
+
+![Genrated objects](images/0430.png)
+
+Business Services
+- ZUI_RAP_INVENTORY_####_02 - Service Binding
+- ZUI_RAP_INVENTORY_#### - Service Definition
+
+CDS views
+·	ZC_RAP_INVENTORY_#### - Projection view
+·	ZI_RAP_INVENTORY_#### - Interface view
+ 
+Metadata Extension
+·	ZC_RAP_INVENTORY_#### - MDE for the projection view
+ 
+Behavior Defintion
+·	ZC_RAP_INVENTORY_#### - for the projection view
+·	ZI_RAP_INVENTORY_#### - for the interface view
+ 
+
+
+## Check the generated repository objects
+
+The interface view was generated such that based on the ABAP field names aliases have been created such that the ABAP field name was converted into camelCase notation.
+
+<pre>
+define ROOT view ZJRP_I_INVENTORY_JRP4
+  as select from ZRAP_INVEN_JRP3
+{
+  key UUID as Uuid,
+  
+  INVENTORY_ID as InventoryId,
+  
+  PRODUCT_ID as ProductId,
+</pre>
+
+The behavior impelemenation was generated such that the semantic key was marked as readonly.
+
+<pre>
+field ( readonly ) InventoryId;
+</pre>
+
+also a mapping was added that maps the ABAP field names to the field names of the CDS views.
+
+<pre>
+mapping for ZRAP_INVEN_JRP3
+{
+Uuid = UUID;
+InventoryId = INVENTORY_ID;
+ProductId = PRODUCT_ID;
+</pre>
+
+And we find a determination that was generated for the semantic key field (that has to be implemented though).
+
+<pre>
+determination CalculateSemanticKey on modify
+{ create; }
+</pre> 
+ 
+The behavior implementation contains already the definition of the method that needs to be implemented to calculate the semantic key.
+
+<pre>
+CLASS LHC_INVENTORY DEFINITION INHERITING FROM CL_ABAP_BEHAVIOR_HANDLER.
+  PRIVATE SECTION.
+    METHODS:
+      CALCULATE_SEMANTIC_KEY FOR DETERMINATION Inventory~CalculateSemanticKey
+        IMPORTING
+          IT_KEYS FOR Inventory.
+ENDCLASS.
+CLASS LHC_INVENTORY IMPLEMENTATION.
+  METHOD CALCULATE_SEMANTIC_KEY.
+  " Determination implementation goes here
+  ENDMETHOD.
+ENDCLASS.
+<pre>
+
+Last not least you will find it handy that also a Metdata Extension View has been generated that automatically publishes all field on the list page as well as on the object page by setting appropriate @UI annotations. Also the administrative fields such as the UUID based key and fields like created_at are hidden by setting @UI.hidden to true.
+ 
+ <pre>
+  @UI.hidden: true
+  CreatedAt;
+  
+  @UI.hidden: true
+  CreatedBy;
+  
+  @UI.lineItem: [ {
+    position: 20 , 
+    importance: #HIGH, 
+    label: 'InventoryId'
+  } ]
+  @UI.identification: [ {
+    position: 20 , 
+    label: 'InventoryId'
+  } ]
+  InventoryId;
+</pre> 
+Feel free to check out more of the generated code.
 
 
 
