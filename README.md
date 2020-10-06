@@ -8,6 +8,8 @@ This repository contains the material for the SAP TechEd 2020 session called Ses
 
 In this session we will show you how you can use SAP Cloud Platform, ABAP environment for side-by-side extension scenarios with SAP S/4 HANA using the ABAP RESTful Application Programming Model 
 
+ ![Side-by-side extension](images/intro_0030.jpg)
+
 Our scenario is an inventory application that runs on SAP Cloud Platform, ABAP environment. This application will use product master data from an on premise S/4 HANA system that will be retrieved via calling an OData service and via calling a SOAP web service. 
 
 To speed up the development we will use a tool called the RAP Generator that generates the complete stack of a RAP application based on a table that has to be created beforehand. This allows us to skip writing lots of boiler plate coding that you otherwise would have to write yourself. And we can start much faster with the implementation of our side-by-side integration scenario.
