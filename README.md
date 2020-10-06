@@ -32,15 +32,15 @@ For a detailed step-by-step description check out our [Onboarding Tutorial](http
 Provide the exercise content here directly in README.md using [markdown](https://guides.github.com/features/mastering-markdown/) and linking to the specific exercise pages, below is an example.
 
 - [Getting Started](exercises/ex0/)
-- [Exercise 1 - Geenrate a starter application](exercises/ex1/)
-    - [Connect to the system](exercises/ex1#exercise-11-sub-exercise-1-description)
-    - [Create a package](exercises/ex1#exercise-12-sub-exercise-2-description)
-    - [Create a table](exercises/ex1#exercise-12-sub-exercise-2-description)
-    - [Run the RAP Generator](exercises/ex1#exercise-12-sub-exercise-2-description)
-    - [Behavior Definition](exercises/ex1#exercise-12-sub-exercise-2-description)
-    - [Behavior Implementation - Determination](exercises/ex1#exercise-12-sub-exercise-2-description)
+- [Exercise 1 - Geenrate a starter application](exercises/ex1#exercise-1)
+    - [Connect to the system](exercises/ex1#Connect-to-the-system)
+    - [Create a package](exercises/ex1#Create-a-package)
+    - [Create a table](exercises/ex1#Create-a-table)
+    - [Run the RAP Generator](exercises/ex1#Run-the-RAP-Generator)
+    - [Behavior Definition](exercises/ex1#Behavior-Definition)
+    - [Behavior Implementation](exercises/ex1#Behavior-Implementation)
     
-- [Exercise 2 - Consume an OData service](exercises/ex2/README.md)
+- [Exercise 2 - Consume an OData service](exercises/ex2/exercise-2)
     - [Create the service consumption model](exercises/ex2#Create-the-service-consumption-model)
     - [Create a custom entity](exercises/ex2#Create-a-custom-entity)
 
