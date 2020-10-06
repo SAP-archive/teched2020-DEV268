@@ -11,11 +11,27 @@ For this we will use the RAP Generator.
 
 2. Select a directory as workspace. Click **Launch**
 
-3. Open ABAP Perspective
+ ![Select directory](images/0010.png)
 
-4. Click **File > New > ABAP Cloud Project** .
+3. Close the Welcome screen
+
+ ![Close Welcome screen](images/0020.png)
+
+4. Check Perspective. If the perspective is still the Java perspective
+
+ ![Java perspective](images/0030.png)
+
+5. Open ABAP perspective (if needed)
+
+ ![OpenABAP perspective](images/0040.png)
+
+5. Click **File > New > ABAP Cloud Project** to open a new ABAP Cloud project.
+
+ ![OpenABAP perspective](images/0050.png)
 
 5. Choose the option **SAP Cloud Platform Cloud Foundry Environment** and then click **Next** .
+
+ ![System connection options](images/0060.png)
 
 > Here you have to two options how to connect to your SAP Cloud Platform ABAP environment system. We suggest to logon to the SAP Cloud Platform Cloud Foundry Environment and navigate to your ABAP instance. The other option would be to connect directly to the ABAP environment. For this you would have to provide the service key that you have downloaded when setting up your ABAP instance. 
 
@@ -25,30 +41,29 @@ For this we will use the RAP Generator.
   - Username: Enter **<your email adress>**
   - Password: Enter **<your password>** you use to log on to SAP Cloud platform
  
-> The API endpoint will be selected according to the region you have chosen.
- 
+  ![CF connection options](images/0070.png)
+
   Click **Next**.
-  
+
+> The API endpoint will be selected according to the region you have chosen.
+   
 7. Select service instance details
 
- - Organization: Select your organization e.g. **Pxxxxxtrial**
- - Space: Select the space in your CF sub account e.g. **Dev**
- - Service instance: Click on the name of your ABAP trial instance  **<ABAP trial instance>**.
+ - Organization: Select your organization e.g. **xxxxxxtrial**
+ - Space: Select the space in your CF sub account e.g. **dev**
+ - Service instance: Click on the name of your ABAP trial instance e.g. **default_abap-trial**.
  
  Click **Next**.
 
-8. You have again to provide your credentials 
+![CF connection settings](images/0080.png)
 
-  - Enter your email adress
-  - Enter your password that you use to log on to SAP Cloud Platform
+8. Check service connection settings and press **Next**.
 
-9. Click  Next.
- 
+![Service instance connection](images/0090.png)
 
+8. You leave the project name, e.g. **TRL_EN** unchanged and click **Finish**
 
-9. Leave the project name, e.g. **TRL_EN** and click **Finish**
-
-
+![Project name](images/0100.png)
 
 
 ## Create a table
