@@ -87,7 +87,19 @@ For this we will use the RAP Generator.
 
 ![New transport request](images/0220.png)
 
-4. Result
+6. Add your package to your **Favorites Packages** folder.
+
+  - Right click on the folder **Favorites Packages**
+
+![New transport request](images/0105.png)
+
+  - and start to type **`ZRAP`**
+  - choose your package **`ZRAP_INVENTORY_####`** from the list of machting items
+  - Press **Ok**
+
+![New transport request](images/0110.png)
+
+5. Result
 
 You have created a package in the super package ZLOCAL. The package ZLOCAL has a similar role as the package $TMP has in on premise systems.
 
@@ -113,8 +125,8 @@ This application will then be enhanced such that it leverages OData service call
 
 3. In the Createa a database table dialgue enter the following values:
 
-   - Name: Enter zrap_inven_#### in the field Name.
-      - Description: Enter **`Inventory data in the field Description.
+   - Name: Enter **`zrap_inven_####`** .
+   - Description: Enter **`Inventory data`**.
 
 
 6. Click  Next.
