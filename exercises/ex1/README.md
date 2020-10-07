@@ -410,44 +410,78 @@ Feel free to check out more of the generated code.
   
    ![Quick Fix Behavior Implemenation](images/0510.png)
   
-  3. Double click on **`Create behavior implementation class zbp_i_rap_inventory_####`**
+  - Double click on **`Create behavior implementation class zbp_i_rap_inventory_####`**
+  
+
   
   4. The **New Behavior Definition** dialogue opens
     - Leave the default settings and press **Next**
 
-  5. Select a transport request#
-  
-  6. Implement the determination for the field ObjectId
-  
- The code of the behavior implementation contains already an (empty) implementation for the determiniation that shall calculate the semantic key ObjectId. 
+  ![Open behavior defintion class](images/0520.png)
 
-The implementation of the behavior defintion must (for technical reasons) take place in local classes.
-When you check the code template you will see that implementation takes place in a local handler class LHC_Inventory.
-The implementation of the behavior of a business object alwaystakes place in a local handler class that follows the naming convention LHC_<EntityName> (here lhc_Inventory).
- 
+  5. Select a transport request
+  
+    ![Open behavior defintion class](images/0530.png)
+  
+  6. Implement the determination for the field InventoryID
+  
+The code of the behavior implementation contains already an (empty) implementation for the determiniation that shall calculate the semantic key InventoryID. 
+
+The implementation of the behavior defintion must (for technical reasons) take place in local classes that follow the naming convention lhc_<EntityName> (here lhc_Inventory).
 We suggest to use the source code shown below to implement the calculation of the semantic key of our managed business object for inventory data. In a productive application you would rather use a number range.
-But since there is no SAP Fiori UI available in Steampunk to easily maintain number ranges we will use the approach to simply count the number of objects that are available. 
-By simple increment of this number we get a semantic key which is readable by the users of our application.
+But since there is (yet) no SAP Fiori UI available in Steampunk to easily maintain number ranges we will use the approach to simply count the number of objects that are available. 
+By a simple increment of this number we get a semantic key which is readable by the users of our application.
 
- <pre>
- METHOD calculate_semantic_key.
-  SELECT FROM zrap_inven_####
+ <pre> 
+ METHOD CalculateInventoryID.
+ 
+ "Ensure idempotence
+    READ ENTITIES OF zi_rap_inventory_#### IN LOCAL MODE
+      ENTITY Inventory
+        FIELDS ( InventoryID )
+        WITH CORRESPONDING #( keys )
+      RESULT DATA(lt_inventory).
+
+    DELETE lt_inventory WHERE InventoryID IS NOT INITIAL.
+    CHECK lt_inventory IS NOT INITIAL.
+
+    SELECT FROM zrap_inven_####
       FIELDS MAX( inventory_id ) INTO @DATA(lv_max_inventory_id).
-    LOOP AT it_keys INTO DATA(ls_key).
+
+    LOOP AT keys INTO DATA(ls_key).
       lv_max_inventory_id = lv_max_inventory_id + 1.
-      MODIFY ENTITIES OF zrap_i_inventory_#### IN LOCAL MODE
+
+      "update involved instances
+      MODIFY ENTITIES OF zi_rap_inventory_#### IN LOCAL MODE
         ENTITY Inventory
-          UPDATE SET FIELDS WITH VALUE #( ( Uuid     = ls_key-Uuid
-                                            InventoryId = lv_max_inventory_id ) )
-          REPORTED DATA(ls_reported).
-      APPEND LINES OF ls_reported-inventory TO reported-inventory.
+          UPDATE FIELDS ( InventoryID )
+          WITH VALUE #( FOR ls_travel IN lt_inventory INDEX INTO i (
+                             %tky      = ls_travel-%tky
+                             InventoryID  = lv_max_inventory_id + i ) )
+      REPORTED DATA(lt_reported).
+
+      "fill reported
+      reported = CORRESPONDING #( DEEP lt_reported ).
+
     ENDLOOP.
-ENDMETHOD.
+
+ ENDMETHOD.
 
  </pre>
- 
- 
+   
+ 7. Replace the placeholders #### with your group number and activate your changes (Ctrl+F3)
 
+ ![Replace the placeholders](images/0540.png)
+
+8. Test the implementation. 
+
+  - Start the Fiori Elements preview and press the Create button.
+  - Enter an arbritray product name
+  - Press Save
+  
+  
+  
+9. Check the numbering for your semantic key
 
 ## Summary
 
