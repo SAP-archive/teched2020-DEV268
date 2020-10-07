@@ -301,6 +301,18 @@ Behavior Defintion
    - Filtering
    - Create, Update and Delete inventory data
    
+This is because all possible behaviors (create, update and delete) have been enabled by default in our generated code.
+You will see that all CRUD operations are working out of the box (beside the calculation of the inventory id which will do in a second).
+In addition all columns of the table are displayed by default as well since we have generated appropriate UI annoations. 
+If you do not want to see all columns (either on the list- or the object page) you can comment out these annotations.
+This is however much simpler than having to write all these annotations from scratch.
+
+15. You can try and start entering values for your first inventory item.
+However not checks have been implemented yet. 
+Especially not for the determination of the semantic key "InventoryId".
+This we will do in the next step.
+
+   
   ![Fiori Elements Preview](images/0470.png)
 
 ## Check the generated repository objects
@@ -383,6 +395,39 @@ Last not least you will find it handy that also a Metdata Extension View has bee
 </pre> 
 
 Feel free to check out more of the generated code.
+
+## Behavior Impelmentation
+
+1. In the **Project Explorer** navigate to **Core Data Services > Behavior Definitions** and double click on  **ZI_RAP_INVENTORY_####**
+
+ ![Open Behavior Definition](images/0500.png)
+
+2. In the source code you will see the warning *Class "ZBP_I_RAP_INVENTORY_1234" does not exist.*. 
+  - Click on the name of the behavior implementation class **`ZBP_I_RAP_Inventory_####`**
+  - Press **Ctrl+1** to open the *quick fix / quick assist* dialog which offers to pen quick fix / quick assist dialog
+  
+  The quick fix offers you to create a global behavior implementation class **`zbp_i_rap_inventory_####`** for the behavior definition **`zi_rap_inventory_####`**.
+  
+   ![Quick Fix Behavior Implemenation](images/0510.png)
+  
+  3. Double click on **`Create behavior implementation class zbp_i_rap_inventory_####`**
+  
+  4. The **New Behavior Definition** dialogue opens
+    - Leave the default settings and press **Next**
+
+  5. Select a transport request#
+  
+  6. Implement the determination for the field ObjectId
+  
+ The code of the behavior implementation contains already an (empty) implementation for the determiniation that shall calculate the semantic key ObjectId. 
+
+The implementation of the behavior defintion must (for technical reasons) take place in local classes.
+When you check the code template you will see that implementation takes place in a local handler class LHC_Inventory.
+The implementation of the behavior of a business object alwaystakes place in a local handler class that follows the naming convention LHC_<EntityName> (here lhc_Inventory).
+ 
+ 
+ 
+ 
 
 
 ## Summary
