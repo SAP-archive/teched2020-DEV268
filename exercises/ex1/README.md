@@ -425,7 +425,26 @@ The implementation of the behavior defintion must (for technical reasons) take p
 When you check the code template you will see that implementation takes place in a local handler class LHC_Inventory.
 The implementation of the behavior of a business object alwaystakes place in a local handler class that follows the naming convention LHC_<EntityName> (here lhc_Inventory).
  
- 
+We suggest to use the source code shown below to implement the calculation of the semantic key of our managed business object for inventory data. In a productive application you would rather use a number range.
+But since there is no SAP Fiori UI available in Steampunk to easily maintain number ranges we will use the approach to simply count the number of objects that are available. 
+By simple increment of this number we get a semantic key which is readable by the users of our application.
+
+ <pre>
+ METHOD calculate_semantic_key.
+  SELECT FROM zrap_inven_####
+      FIELDS MAX( inventory_id ) INTO @DATA(lv_max_inventory_id).
+    LOOP AT it_keys INTO DATA(ls_key).
+      lv_max_inventory_id = lv_max_inventory_id + 1.
+      MODIFY ENTITIES OF zrap_i_inventory_#### IN LOCAL MODE
+        ENTITY Inventory
+          UPDATE SET FIELDS WITH VALUE #( ( Uuid     = ls_key-Uuid
+                                            InventoryId = lv_max_inventory_id ) )
+          REPORTED DATA(ls_reported).
+      APPEND LINES OF ls_reported-inventory TO reported-inventory.
+    ENDLOOP.
+ENDMETHOD.
+
+ </pre>
  
  
 
@@ -433,6 +452,13 @@ The implementation of the behavior of a business object alwaystakes place in a l
 ## Summary
 
 You've now ...
+
+You have completed the exercise!
+ 
+You are now able to:
+-	Implement Behavior Definitions to enable create, update and delete operations and make fields read-only	Implement Behavior Implementations so that ABAP code in determinations is run when an object is created.
+-	Use the Fiori Elements preview to test your service
+
 
 Continue to - [Exercise 2 - Exercise 2 Description](../ex2/README.md)
 
