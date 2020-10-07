@@ -421,7 +421,7 @@ Feel free to check out more of the generated code.
 
   5. Select a transport request
   
-    ![Open behavior defintion class](images/0530.png)
+  ![Select Transport request](images/0530.png)
   
   6. Implement the determination for the field InventoryID
   
@@ -431,6 +431,8 @@ The implementation of the behavior defintion must (for technical reasons) take p
 We suggest to use the source code shown below to implement the calculation of the semantic key of our managed business object for inventory data. In a productive application you would rather use a number range.
 But since there is (yet) no SAP Fiori UI available in Steampunk to easily maintain number ranges we will use the approach to simply count the number of objects that are available. 
 By a simple increment of this number we get a semantic key which is readable by the users of our application.
+
+
 
  <pre> 
  METHOD CalculateInventoryID.
@@ -479,9 +481,14 @@ By a simple increment of this number we get a semantic key which is readable by 
   - Enter an arbritray product name
   - Press Save
   
-  
+   ![Open behavior defintion class](images/0550.png)
   
 9. Check the numbering for your semantic key
+
+ 
+   ![Open behavior defintion class](images/0570.png)
+
+
 
 ## Summary
 
