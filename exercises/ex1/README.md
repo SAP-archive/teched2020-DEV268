@@ -435,40 +435,37 @@ By a simple increment of this number we get a semantic key which is readable by 
 
 
  <pre> 
- METHOD CalculateInventoryID.
  
- "Ensure idempotence
+   METHOD CalculateInventoryID.
+
+  "Ensure idempotence
     READ ENTITIES OF zi_rap_inventory_#### IN LOCAL MODE
       ENTITY Inventory
         FIELDS ( InventoryID )
         WITH CORRESPONDING #( keys )
-      RESULT DATA(lt_inventory).
+      RESULT DATA(inventories).
 
-    DELETE lt_inventory WHERE InventoryID IS NOT INITIAL.
-    CHECK lt_inventory IS NOT INITIAL.
+    DELETE inventories WHERE InventoryID IS NOT INITIAL.
+    CHECK inventories IS NOT INITIAL.
 
-    SELECT FROM zrap_inven_####
-      FIELDS MAX( inventory_id ) INTO @DATA(lv_max_inventory_id).
+    "Get max travelID
+    SELECT SINGLE FROM zrap_inven_#### FIELDS MAX( inventory_id ) INTO @DATA(max_inventory).
 
-    LOOP AT keys INTO DATA(ls_key).
-      lv_max_inventory_id = lv_max_inventory_id + 1.
+    "update involved instances
+    MODIFY ENTITIES OF zi_rap_inventory_#### IN LOCAL MODE
+      ENTITY Inventory
+        UPDATE FIELDS ( InventoryID )
+        WITH VALUE #( FOR inventory IN inventories INDEX INTO i (
+                           %tky      = inventory-%tky
+                           inventoryID  = max_inventory + i ) )
+    REPORTED DATA(lt_reported).
 
-      "update involved instances
-      MODIFY ENTITIES OF zi_rap_inventory_#### IN LOCAL MODE
-        ENTITY Inventory
-          UPDATE FIELDS ( InventoryID )
-          WITH VALUE #( FOR ls_travel IN lt_inventory INDEX INTO i (
-                             %tky      = ls_travel-%tky
-                             InventoryID  = lv_max_inventory_id + i ) )
-      REPORTED DATA(lt_reported).
+    "fill reported
+    reported = CORRESPONDING #( DEEP lt_reported ).
 
-      "fill reported
-      reported = CORRESPONDING #( DEEP lt_reported ).
+  ENDMETHOD.
 
-    ENDLOOP.
-
- ENDMETHOD.
-
+ 
  </pre>
    
  7. Replace the placeholders #### with your group number and activate your changes (Ctrl+F3)
