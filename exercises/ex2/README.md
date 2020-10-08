@@ -93,7 +93,9 @@ Click **Next**.
 
 ![ABAP Artifact Genertion List](images/1070.png)
 
-8. Select or create a transport request
+8. Selection of transport request
+  - Select or create a transport request
+  - Press **Finish**
 
 ![ABAP Artifact Genertion List](images/1080.png)
 
@@ -101,7 +103,7 @@ Click **Next**.
   - Operation: Choose the operation **`Read List`**.
   - You can now use the button **Copy to Clipboard** button to copy the sample code for a query. We will use this code in the following step where we create a console application to test the call to the remote OData service. We will later in this exercise then use this code to retrieve a list of ProductIds for your value help.
   
- ![Code sample for entity access](images/1080.png) 
+ ![Code sample for entity access](images/1090.png) 
 
 ## Create a console application to test the OData service
 
