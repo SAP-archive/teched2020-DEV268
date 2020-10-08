@@ -469,8 +469,42 @@ This will add the custom entity **ZRAP_CE_PRODUCTS_####** as a value help for th
 
 ## Test the service 
 
+1. Open the service binding **ZUI_RAP_INVENTORY_####_02** 
+
+   - You will notice that now two entities are visible. **Products** and **Inventory**
+   
+     ![Service binding with custom entity](images/1340.png)
+ 
+2. Start the Fiori Elements preview
+
+   - Create a new inventory
+   - Click on the value help icon
+   
+    ![Field ProductID with value help](images/1350.png)
+   
+   
+3. The search results are on the buttom of the window. So you have to scroll down using the scroll bar on the right hand side.
+
+ ![Navigate in the value help](images/1360.png)
+
+4. Select a product e.g. HT-1000
+
+ ![Select a product](images/1370.png)
+ 
+
+5. Check the result on the object page 
+ 
+  ![Product selected in object page](images/1380.png)
+
+
 ## Summary
 
-You've now ...
+You are now able to:
+·	Explore an existing application with the Fiori Elements preview
+·	Consume external OData Service using the Service Consumption Model
+·	Create and expose Custom Entites
+·	Implement Custom Queries for Custom Entities
+·	Define value helps for OData entities
+
 
 Continue to - [Exercise 3 - Excercise 3 ](../ex3/README.md)
