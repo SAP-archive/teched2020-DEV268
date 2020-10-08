@@ -85,7 +85,7 @@ We start by creating a service consumption model for an OData service that provi
 
 ![Define Entity Set](images/1060.png)
 
-7. In the screen ABAP Artifact Generation List the repository objects that will be generated are shown. This will be
+7. The wizard will now list the repository objects that will be generated, namely a service definition and an abstract entity in addition to the service consumption model.
   - The Service Definition: **ZSC_RAP_PRODUCTS_####**
   - The abstract entity: **ZRAP_####_SEPMRA_I_PRODUCT_E**
 
@@ -99,14 +99,58 @@ Click **Next**.
 
 ![ABAP Artifact Genertion List](images/1080.png)
 
-9. Check out the sample code that is provided for you by the service consumption model. 
-  - Operation: Choose the operation **`Read List`**.
-  - You can now use the button **Copy to Clipboard** button to copy the sample code for a query. We will use this code in the following step where we create a console application to test the call to the remote OData service. We will later in this exercise then use this code to retrieve a list of ProductIds for your value help.
+9. Let us shortly investigate the service consumption model. 
+
+For each operation (**Read List**, **Read**, **Create**, **Update** and **Delete**) some sample code has been created that you can use when you want to call the OData Service with one of these operations. Since we want to retrieve a list of Product-IDs, we will select the operation **Read List** and click on the button **Copy to Clipboard**. We will use this code in the following step where we create a console application to test the call to the remote OData service. 
+  
+  > We will later in this exercise use this code also to retrieve a list of ProductIds for your value help.
   
  ![Code sample for entity access](images/1090.png) 
 
 ## Create a console application to test the OData service
 
+We can now test the service consumption model by creating a small console application **ZCL_CE_RAP_PRODUCTS_####** that implements the interface **if_oo_adt_classrun**.
+This is a useful additional step since this way it is easier to check whether the OData consumption works and debugging a console application is much easier than trying out your coding in the full fledged RAP business object.
+
+> **Please note**
+
+> We will use this class at a later stage also as an implementation for our custom query and we hence choose a name that already contains the name of the to be created custom entity.
+
+1. Right click on the folder **Source Code Library** and select **New > ABAP Class**.
+   
+   ![New ABAP class](images/1100.png)
+
+2. The **New ABAP class** dialogue opens. Here you have to enter the following:
+
+   - Name: ZCL_CE_RAP_PRODUCTS_1234
+   - Description: Query implementation custom entity 
+   - Click **Add**
+   
+   The **Add ABAP Interface** dialogue opens.
+   
+   - Start to type **`if_oo`**
+   - Select **`IF_OO_ADT_CLASSRUN`** from the list of matching items
+   - Press **OK** or double-click on **IF_OO_ADT_CLASSRUN**
+   
+   ![New ABAP class](images/1110.png)
+   
+   
+3. Check the input and press **Next**
+
+![New ABAP class](images/1120.png)
+
+4. Selection of transport request
+
+   - Select or create a transport request
+   - Click **Finish**
+
+![Selection of transport request](images/1130.png)
+
+   
+
+Navigating back to the service consumption model we use the copy to clipboard button to copy the sample code for the ReadList operation into the main method of our newly created class.
+Since it is not possible to leverage the destination service in the trial systems, we will use the method create_by_http_destination which allows to create a http client object based on the target URL.
+Here we take the root URL https://sapes5.sapdevcenter.com of the ES5 system since the relative URL will be added when creating the OData client proxy.
 
 
 ## Create a custom entity
