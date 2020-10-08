@@ -55,13 +55,15 @@ We start by creating a service consumption model for an OData service that provi
 
 4. The **New Service Consumption Model** dialogue opens. Here enter the following data:
 
-   Name: **ZRAP_SC_PRODUCTS_#### ``**
+   Name: **ZSC_RAP_PRODUCTS_#### ``**
    Description: **'Products from ES5`##
-   Remote Consumption Model: **`OData`**
+   Remote Consumption Model: **`OData`** (to be selected from the drop down box)
    
-   >Caution
+   > Caution
    
-   > 
+   > Be sure to have selected **`OData`** as the **Remote Consumption Mode** from the drop down box. We will create a service consumption model for a SOAP web service in the following exercise.
+   
+    ![New Service Consumption Model](images/1040.png)
 
 
 ## Create a console application to test the OData service
