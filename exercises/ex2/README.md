@@ -77,10 +77,31 @@ We start by creating a service consumption model for an OData service that provi
 
  ![OData consumption proxy](images/1050.png)
 
+6. Check the **ABAP Artifact Name** and click **Next**.
 
+> You will notice that the name of the ABAP artifact has been set to **`ZRAP_####_SEPMRA_I_PRODUCT_E`** since we have provided the prefix **RAP_#### _** 
 
+> If you have not provided a prefix the ABAP Artifact Name might contain several arbritray characters that have been added to the name ZSEPMRA_I_PRODUCT. This can happen if other users in the same system have already imported the same $metadata file. In order to avoid name clashes the wizard then adds arbritrary characters so that a unique name for the ABAP artifact is ensured.
 
+![Define Entity Set](images/1060.png)
 
+7. In the screen ABAP Artifact Generation List the repository objects that will be generated are shown. This will be
+  - The Service Definition: **ZSC_RAP_PRODUCTS_####**
+  - The abstract entity: **ZRAP_####_SEPMRA_I_PRODUCT_E**
+
+Click **Next**.
+
+![ABAP Artifact Genertion List](images/1070.png)
+
+8. Select or create a transport request
+
+![ABAP Artifact Genertion List](images/1080.png)
+
+9. Check out the sample code that is provided for you by the service consumption model. 
+  - Operation: Choose the operation **`Read List`**.
+  - You can now use the button **Copy to Clipboard** button to copy the sample code for a query. We will use this code in the following step where we create a console application to test the call to the remote OData service. We will later in this exercise then use this code to retrieve a list of ProductIds for your value help.
+  
+ ![Code sample for entity access](images/1080.png) 
 
 ## Create a console application to test the OData service
 
