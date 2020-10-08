@@ -147,18 +147,25 @@ This is a useful additional step since this way it is easier to check whether th
 ![Selection of transport request](images/1130.png)
 
    
+5. Add an implementation for the method main
+
+  You will see the warning **Implementation missing for method "IF_OO_ADT_CLASSRUN~MAIN". "IF_OO_ADT_CLASSRUN~MAIN"**. 
+
+![Selection of transport request](images/1135.png)
+
+6. Implementation
 
 Navigating back to the service consumption model we use the copy to clipboard button to copy the sample code for the ReadList operation into the main method of our newly created class.
 Since it is not possible to leverage the destination service in the trial systems, we will use the method create_by_http_destination which allows to create a http client object based on the target URL.
 Here we take the root URL https://sapes5.sapdevcenter.com of the ES5 system since the relative URL will be added when creating the OData client proxy.
 
-5. Add an implementation for the method main
-
-  You will see the warning **Implementation missing for method "IF_OO_ADT_CLASSRUN~MAIN". "IF_OO_ADT_CLASSRUN~MAIN"**. 
-
-6. Add a types and method definition
-
 In the public section of the definition section of your class add the following code
+
+## CLASS zcl_ce_rap_products_#### DEFINITION
+
+Let's have a look at the implementation of our test class. In the public section we find to TYPES definitions. **t_product_range** is used to provide filter conditions for ProductIDS in form of SELECT-OPTIONS to the method get_products. The second type **t_business_data** to retrieve the business data returned by our remote OData service.
+
+The  **get_products( )** method takes filter conditions in form of select options via the importing parameter **it_filter_cond**. In addition it is possible to provide values for **top** and **skip** to leverage client side paging.
 
 <pre>
 CLASS zcl_ce_rap_products_#### DEFINITION
@@ -194,6 +201,9 @@ ENDCLASS.
 
 7. Add the following code into the implementation of your main method
 
+The main method creates a simple filter for products with a name greater or equal 'HT-100'. At the same time we use client side paging to skip the first result and limit the response to 3 products.
+
+
 <pre>
   METHOD if_oo_adt_classrun~main.
 
@@ -221,6 +231,12 @@ ENDCLASS.
 </pre>
 
 8. and finally add an implementation for the method **get_products**. 
+
+The public method **get_products( )** finally is used to retrieve the data from the remote OData service. Since it is not possible to leverage the destination service in the trial systems, we will use the method **cl_http_destination_provider=>create_by_url** which allows to create a http destination object based on the target URL. As the target URL we choose the root URL https://sapes5.sapdevcenter.com of the ES5 system since the relative URL that points to the OData service will be added when creating the OData client proxy.
+
+> Please note
+
+> In a normal SAP Cloud Platform, ABAP Environment system one would leverage the destination service of the underlying Cloud Foundry Environmenta and one would use the statement **cl_http_destination_provider=>create_by_cloud_destination** to generate a http destination in the ABAP Environment system based on these settings.
 
 <pre>
 METHOD get_products.
@@ -275,13 +291,181 @@ METHOD get_products.
   ENDMETHOD.
 </pre>
 
-## Create a custom entity
+9. The code should now look as follows
 
-## Create a query implementation class
+
+10. You can now run the console application by pressing F9.
+
+
+![Selection of transport request](images/1170.png)
+
+
+## Create a custom entity and implement the query implementation class
+
+Since we want to use the results of the remote OData service in our managed inventory app we will create a custom entity. 
+The syntax of a custom entity differs from the one used in normal CDS views but is very similar to the syntax of an abstract entity and we can thus reuse most of the DDL source code of the abstract entity that has been generated when the service consumption model was created.
+
+In order to leverage the remote OData service in our application we have to perform two steps.
+
+1.	We have to create a custom entity. 
+2.	We have to create a class that implements the query for the custom entity. (Here we will reuse the class that we have created earlier and that we have used to test the remote OData service).
+
+### Create a custom entity
+ 
+In constrast to "normal" CDS views that read data from the database from tables or other CDS views the so called custom entities act as a wrapper for a code based implementation that provides the data instead of a database table or a CDS view. 
+
+The custom entity has to be created manually and it uses a similar syntax as the abstract entity that has been created when we have created our service consumption model.
+
+In order to be able to retrieve the data from the remote OData service we have to built a class that implements the interface if_rap_query_provider. We will reuse the class that we have created earlier and add this interface to it.
+
+This **if_rap_query_provider interface** only offers one method which is called **select**. Within this select method will call the **get_products( )** method. The select method also expects that the incoming requests provides certain OData specific query parameters. These we will set in our coding as well.
+
+1. Right-click on the folder **Data Definition** and select **New Data Definition.**
+
+![New data definition 1](images/1200.png)
+
+
+1. Let’s start with creating a new data definition zce_rap_agency_#### using the template for a custom entity. 
+
+2. The **New Data Defintion** dialogue opens
+   - Name: ZRAP_CE_PRODUCTS_#### 
+   - Description: Custom entity for products from ES5
+   
+   Press **Next**
+   
+   ![New data definition 2](images/1210.png)
+   
+3. Selection of a transport request
+   - Select or create a transport request00
+   - **!!!** Press Next. **NOT** **FINSH**
+
+> Caution
+
+> If you press **Finisch** instead of **Next** the wizard will use the template that was used the last time when this wizard was used by the developer. In order to be sure which template will be selected we **MUST** press **Next** and not **Finish** which would skipt this step.
+
+![New data definition 2](images/1220.png)
+
+4. Select Template
+
+  - Use the scroll bar to navigate down the list
+  - Select the template **Define custom entity with parameters"
+  - Press **Finish**
+
+> Please note
+
+> There is only a template for a custom entity with parameters. But this doesn’t matter. We use this template and remove the statement “…”.
+
+![New data definition 2](images/1230.png)
+
+5. Edit the source code of the custom entity
+
+  - Remove the statement <pre>with parameters parameter_name : parameter_type</pre>
+
+![New data definition 2](images/1240.png)
+
+  - Copy the field list from the abstract entity
+  
+  ![Copy field list from the abstract entity](images/1250.png)
+  
+  
+- and paste it between the curly brackets as the new field list of our custom entity.
+
+  ![Copy field list into the custom entity](images/1260.png)
+
+6. You will notice the error message **Custom entity requires annotation @ObjectModel.Query.ImplementedBy defining a query provider class**.
+
+  ![Error message annotation required](images/1270.png)
+
+7. So we now add the annoation `@ObjectModel.query.implementedBy: 'ABAP:ZCL_CE_RAP_PRODUCTS_####'`
+
+  ![Error message annotation required](images/1280.png)
+
+8. Activate your changes
+
+When trying to activate the DDL source code we get the error message **Class ZCL_CE_RAP_PRODUCTS_#### must implement interface IF_RAP_QUERY_PROVIDER [SAP Cloud Platform ABAP Environment]**
+
+ ![Error message class must implement IF_RAP_QUERY_PROVIDER](images/1290.png)
+
+### Implement the query implemenation class
+
+After having created the custom entity `ZRAP_CE_PRODUCTS_####` we now have to enhance the query implementation class `ZCL_CE_RAP_PRODUCTS_####`that we have created earlier in this exercise.
+
+
+ !. Add interface **`IF_RAP_QUERY_PROVIDER`** to the query implementation class **ZCL_CE_RAP_PRODUCTS_####**
+ 
+   - You can use the quick fix **Ctrl+1** to add the implementation for the method **`if_rap_query_provider~select`**
+  
+    ![Add interface IF_RAP_QUERY_PROVIDER](images/1300.png)
+  
+2. Implement the method  `if_rap_query_provider~select`  
+  
+Within the `select()` method we can retrieve the details of the incoming OData call using the object `io_request`. Using the method `get_paging()` we can find out whether client side paging was requested with the incoming OData call. Using the method `get_filter()` we can retrieve the filter that was used by the incoming OData request as ranges. This comes in handy so we can provide this data when calling the method `get_products()`.
+
+**Please note:**
+It is mandatory that the response not only contains the retrieved data via the method `set_data()` but also the number of entities being returned via the method `set_total_number_of_records()`.
+
+ <pre>
+
+  METHOD if_rap_query_provider~select.
+    DATA business_data TYPE TABLE OF zrap_####_sepmra_i_product_e.
+    DATA(top)     = io_request->get_paging( )->get_page_size( ).
+    DATA(skip)    = io_request->get_paging( )->get_offset( ).
+    DATA(requested_fields)  = io_request->get_requested_elements( ).
+    DATA(sort_order)    = io_request->get_sort_elements( ).
+
+    TRY.
+        DATA(filter_condition) = io_request->get_filter( )->get_as_ranges( ).
+
+        get_products(
+                 EXPORTING
+                   it_filter_cond    = filter_condition
+                   top               = CONV i( top )
+                   skip              = CONV i( skip )
+                 IMPORTING
+                   et_business_data  = business_data
+                 ) .
+
+        io_response->set_total_number_of_records( lines( business_data ) ).
+        io_response->set_data( business_data ).
+
+      CATCH cx_root INTO DATA(exception).
+        DATA(exception_message) = cl_message_helper=>get_latest_t100_exception( exception )->if_message~get_longtext( ).
+    ENDTRY.
+  ENDMETHOD.
+
+ 
+ </pre>
+
+3. Activate your changes 
 
 ## Add the custom entity to your service definition
 
+1. Open the Service Definition **ZRAP_UI_Inventory_M_####** and add the statement 
+
+  <pre>expose ZCE_RAP_PRODUCTS_#### as Products;</pre>
+
+  so that the custom entity is added to the OData service.
+ 
+ 
+2. and activate your changes 
+ 
+  ![Add custom entity to service definition](images/1320.png)
+
 ## Add the custom entity as a value help
+
+1. Open the projection view for your inventory data ZC_RAP_INVENTORY_#### 
+
+  -  Add the annotation `@Consumption.valueHelpDefinition` to the field ProductID
+  
+  <pre>
+  @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCE_RAP_PRODUCTS_1234', element: 'Product'  } }]
+  ProductID,
+  </pre>
+
+This will add the custom entity **ZRAP_CE_PRODUCTS_####** as a value help for the field **ProductId**.
+
+
+ ![Error message class must implement IF_RAP_QUERY_PROVIDER](images/1290.png)
 
 ## Test the service 
 
