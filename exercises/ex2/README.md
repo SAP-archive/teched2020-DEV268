@@ -35,6 +35,35 @@ We start by creating a service consumption model for an OData service that provi
 > Please note:
 > Since it must be possible to run this demo on the trial systems where no destination service is available we have to use services that are publically available in the Internet. In our demo we will thus use an OData Service that is available in the SAP Gateway Demo System ES5 and that does not require any authentication.
 
+
+1. The $metadata file of the OData service that we want to consume must be uploaded in file format. You have hence to download it first.
+ 
+ - Click on the following URL https://sapes5.sapdevcenter.com/sap/opu/odata/sap/ZPDCDS_SRV/$metadata
+ - Download the $metadata file to your computer, you will need it later in this exercise.
+
+2. Switch to ADT and right click on your package . Select **New > Other ABAP Repository Object**.
+
+ ![New ABAP Repository Object 1](images/1020.png)
+
+2. In the New ABAP Repository Object dialogue do the following
+
+  -  Start to type **`Service`**
+  -  In the list of objects select **Service Conumption Model**
+  -  Click **Next**
+ 
+  ![New ABAP Repository Object 2](images/1030.png)
+
+4. The **New Service Consumption Model** dialogue opens. Here enter the following data:
+
+   Name: **ZRAP_SC_PRODUCTS_#### ``**
+   Description: **'Products from ES5`##
+   Remote Consumption Model: **`OData`**
+   
+   >Caution
+   
+   > 
+
+
 ## Create a console application to test the OData service
 
 
