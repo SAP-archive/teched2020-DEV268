@@ -55,15 +55,31 @@ We start by creating a service consumption model for an OData service that provi
 
 4. The **New Service Consumption Model** dialogue opens. Here enter the following data:
 
-   Name: **ZSC_RAP_PRODUCTS_#### ``**
-   Description: **'Products from ES5`##
-   Remote Consumption Model: **`OData`** (to be selected from the drop down box)
+   - Name: **ZSC_RAP_PRODUCTS_#### ``**
+   - Description: **'Products from ES5`##
+   - Remote Consumption Model: **`OData`** (to be selected from the drop down box)
    
-   > Caution
+   > **Caution**
    
-   > Be sure to have selected **`OData`** as the **Remote Consumption Mode** from the drop down box. We will create a service consumption model for a SOAP web service in the following exercise.
+   > Be sure that you have selected **`OData`** as the **Remote Consumption Mode** from the drop down box. We will create a service consumption model for a SOAP web service in the following exercise.
    
     ![New Service Consumption Model](images/1040.png)
+
+5. The $metadata file of the OData service that you want to consume must be uploaded in file format. If you have not yet downloaded the $metadata file you have to do this now.
+
+   - Click **Browse** to select the $metadata file that you have downloaded earlier in this exercise
+   - Prefix: **`RAP_#### _`** 
+
+> **Please note**
+
+> The prefix that you have entered will be added to the names of the repository objects that are generated, namely the **Service Consumption Model** and the (one or more) **abstract entity**. 
+> If you don't select a prefix and if the wizard finds out that there would be name clashes the wizard will propse unique names by adding arbritrary characters to the repository object names. In any case you will be able to change the values that will be proposed by this wizard.
+
+ ![OData consumption proxy](images/1050.png)
+
+
+
+
 
 
 ## Create a console application to test the OData service
