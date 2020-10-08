@@ -4,7 +4,7 @@ In the following exercise you will learn how to call a SOAP web service and how 
 
 ## Download the WSDL
 
-1. 
+1. [Link to WSDL](exercises/ex3/sources/EPM_PRODUCT_SOAP.xml)
 
 
 In this step we will create a service consumption model based on the WSDL file of the number to word conversion SOAP web service that you have downloaded in the previous step.
