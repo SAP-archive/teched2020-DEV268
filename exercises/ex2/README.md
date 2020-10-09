@@ -76,7 +76,7 @@ We start by creating a service consumption model for an OData service that provi
 
 6. Check the **ABAP Artifact Name** and click **Next**.
 
-   You will notice that the name of the ABAP artifact has been set to **`ZRAP_####_SEPMRA_I_PRODUCT_E`** since we have provided the prefix **RAP_#### _** 
+   You will notice that the name of the ABAP artifact has been set to **`ZRAP_####_SEPMRA_I_PRODUCT_E`** since we have provided the prefix **`RAP_#### _`** 
 
    Press **Next**.
 
@@ -87,24 +87,23 @@ We start by creating a service consumption model for an OData service that provi
 ![Define Entity Set](images/1060.png)
 
 7. The wizard will now list the repository objects that will be generated, namely a service definition and an abstract entity in addition to the service consumption model.
-  - Service Definition: **ZSC_RAP_PRODUCTS_####**
-  - Abstract Entity: **ZRAP_####_SEPMRA_I_PRODUCT_E**
+
+   - Service Definition: **ZSC_RAP_PRODUCTS_####**
+   - Abstract Entity: **ZRAP_####_SEPMRA_I_PRODUCT_E**
 
 Click **Next**.
 
 ![ABAP Artifact Genertion List](images/1070.png)
 
 8. Selection of transport request
-  - Select or create a transport request
-  - Press **Finish**
+   - Select or create a transport request
+   - Press **Finish**
 
 ![ABAP Artifact Genertion List](images/1080.png)
 
 9. Let us shortly investigate the service consumption model. 
 
-For each operation (**Read List**, **Read**, **Create**, **Update** and **Delete**) some sample code has been created that you can use when you want to call the OData Service with one of these operations. Since we want to retrieve a list of Product-IDs, we will select the operation **Read List** and click on the button **Copy to Clipboard**. We will use this code in the following step where we create a console application to test the call to the remote OData service. 
-  
-  > We will later in this exercise use this code also to retrieve a list of ProductIds for your value help.
+   For each operation (**Read List**, **Read**, **Create**, **Update** and **Delete**) some sample code has been created that you can use when you want to call the OData Service with one of these operations. Since we want to retrieve a list of Product-IDs, we will select the operation **Read List** and click on the button **Copy to Clipboard**. We will use this code in the following step where we create a console application to test the call to the remote OData service. 
   
  ![Code sample for entity access](images/1090.png) 
 
@@ -115,7 +114,7 @@ This is a useful additional step since this way it is easier to check whether th
 
 > **Please note**
 
-> We will use this class at a later stage also as an implementation for our custom query and we hence choose a name that already contains the name of the to be created custom entity.
+> We will use this class at a later stage also as an implementation for our custom query and we hence choose a name **ZCL_CE_RAP_PRODUCTS_####** that already contains the name of the to be created custom entity. **CE** denotes that this class will act as a query implementation for a *Custom Entity*.
 
 1. Right click on the folder **Source Code Library** and select **New > ABAP Class**.
    
@@ -123,8 +122,8 @@ This is a useful additional step since this way it is easier to check whether th
 
 2. The **New ABAP class** dialogue opens. Here you have to enter the following:
 
-   - Name: ZCL_CE_RAP_PRODUCTS_1234
-   - Description: Query implementation custom entity 
+   - Name: **`ZCL_CE_RAP_PRODUCTS_####`**
+   - Description: **`Query implementation custom entity`** 
    - Click **Add**
    
    The **Add ABAP Interface** dialogue opens.
@@ -150,7 +149,7 @@ This is a useful additional step since this way it is easier to check whether th
    
 5. Add an implementation for the method main
 
-  You will see the warning **Implementation missing for method "IF_OO_ADT_CLASSRUN~MAIN". "IF_OO_ADT_CLASSRUN~MAIN"**. 
+  You will see the warning **Implementation missing for method "IF_OO_ADT_CLASSRUN~MAIN" "IF_OO_ADT_CLASSRUN~MAIN"**. 
 
 ![Selection of transport request](images/1135.png)
 
