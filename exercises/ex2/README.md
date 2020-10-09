@@ -291,6 +291,7 @@ METHOD get_products.
 
 9. The code should now look as follows
 
+[Source code zcl_ce_rap_products_####](sources/zcl_ce_rap_products_%23%23%23%23)
 
 10. You can now run the console application by pressing F9.
 
