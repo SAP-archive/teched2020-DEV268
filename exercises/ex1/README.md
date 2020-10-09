@@ -37,17 +37,17 @@ For this we will use the RAP Generator.
 
  ![System connection options](images/0060.png)
 
->Please note
+>**Please note**
 
-> You have to two options how to connect to your SAP Cloud Platform ABAP environment system. We suggest to use the first option. Logon to the **SAP Cloud Platform Cloud Foundry Environment** and navigate to your ABAP instance. The other option would be to connect directly to the ABAP environment. For this you however would have to provide the service key that you have downloaded when setting up your ABAP instance. 
+> You have two options how to connect to your SAP Cloud Platform ABAP environment system. We suggest to use the first option. Logon to the **SAP Cloud Platform Cloud Foundry Environment** and navigate to your ABAP instance. The other option would be to connect directly to the ABAP environment. For this you however would have to provide the service key that you have downloaded when setting up your ABAP instance. 
 
 6. Provide the SAP Cloud Foundry connection settings. 
 
    In this dialogue select the following values
 
-  - Region: Select the region e.g. **Europe (Frankfurt)** or **US East (VA)**.
-  - Username: Enter **<your email adress>**
-  - Password: Enter **<your password>** you use to log on to SAP Cloud platform
+   - Region: Select the region e.g. **Europe (Frankfurt)** or **US East (VA)**.
+   - Username: Enter **<your email adress>**
+   - Password: Enter **<your password>** you use to log on to SAP Cloud platform
  
   ![CF connection options](images/0070.png)
 
