@@ -1,6 +1,6 @@
 # Exercise 1
 
-In this exercise, we will create a starter application to collect inventory data. Since we want to concentrate on developing an extension scenario we will try to speed up the process to built the basic inventory application.
+In this exercise, we will create a starter application to collect inventory data. Since we want to concentrate on developing an extension scenario we will try to speed up the process to build the basic inventory application.
  
 For this we will use the RAP Generator.
 
@@ -17,7 +17,7 @@ For this we will use the RAP Generator.
 
  ![Close Welcome screen](images/0020.png)
 
-4. Check Perspective. If the perspective is still the Java perspective
+4. Check the perspective. If the perspective is still the *Java perspective*, then ...
 
  ![Java perspective](images/0030.png)
 
@@ -37,9 +37,13 @@ For this we will use the RAP Generator.
 
  ![System connection options](images/0060.png)
 
-> Here you have to two options how to connect to your SAP Cloud Platform ABAP environment system. We suggest to logon to the SAP Cloud Platform Cloud Foundry Environment and navigate to your ABAP instance. The other option would be to connect directly to the ABAP environment. For this you would have to provide the service key that you have downloaded when setting up your ABAP instance. 
+>Please note
 
-6. Provide the SAP Cloud Foundry connection settings. In this dialogue select the following values
+> You have to two options how to connect to your SAP Cloud Platform ABAP environment system. We suggest to use the first option. Logon to the **SAP Cloud Platform Cloud Foundry Environment** and navigate to your ABAP instance. The other option would be to connect directly to the ABAP environment. For this you however would have to provide the service key that you have downloaded when setting up your ABAP instance. 
+
+6. Provide the SAP Cloud Foundry connection settings. 
+
+   In this dialogue select the following values
 
   - Region: Select the region e.g. **Europe (Frankfurt)** or **US East (VA)**.
   - Username: Enter **<your email adress>**
