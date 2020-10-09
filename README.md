@@ -34,7 +34,7 @@ For a detailed step-by-step description check out our [Onboarding Tutorial](http
 These are the steps of our hands-ons session:
 
 - [Getting Started](exercises/ex0/)
-- [Exercise 1 - Geenrate a starter application](exercises/ex1#exercise-1)
+- [Exercise 1 - Generate a starter application](exercises/ex1#exercise-1)
     - [Connect to the system](exercises/ex1#connect-to-the-system)
     - [Create a package](exercises/ex1#create-a-package)
     - [Create a table](exercises/ex1#create-a-table)
