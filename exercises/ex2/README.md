@@ -315,9 +315,9 @@ In constrast to "normal" CDS views that read data from the database from tables 
 
 The custom entity has to be created manually and it uses a similar syntax as the abstract entity that has been created when we have created our service consumption model.
 
-In order to be able to retrieve the data from the remote OData service we have to built a class that implements the interface if_rap_query_provider. We will reuse the class that we have created earlier and add this interface to it.
+In order to be able to retrieve the data from the remote OData service we have to built a class that implements the interface **if_rap_query_provider**. We will reuse the class that we have created earlier and add this interface to it.
 
-This **if_rap_query_provider interface** only offers one method which is called **select**. Within this select method will call the **get_products( )** method. The select method also expects that the incoming requests provides certain OData specific query parameters. These we will set in our coding as well.
+The interface **if_rap_query_provider interface** only offers one method which is called **select**. Within this select method we will call the public **get_products( )** method. The select method also expects that the incoming requests provide certain OData specific query parameters. These we will set in our coding as well.
 
 1. Right-click on the folder **Data Definition** and select **New Data Definition.**
 
@@ -336,33 +336,35 @@ This **if_rap_query_provider interface** only offers one method which is called 
    
 3. Selection of a transport request
    - Select or create a transport request00
-   - **!!!** Press Next. **NOT** **FINSH**
+   - **!!! ONLY!!!** Press *Next*. Do **NOT** press *Finish*.
 
 > Caution
 
-> If you press **Finisch** instead of **Next** the wizard will use the template that was used the last time when this wizard was used by the developer. In order to be sure which template will be selected we **MUST** press **Next** and not **Finish** which would skipt this step.
+> If you would press **Finish** instead of **Next** the wizard will use the template that was used the last time when this wizard was used by the developer. 
+
+> In order to be sure which template will be selected we **MUST** press **Next** and not **Finish** which would skip the step of template selection.
 
 ![New data definition 2](images/1220.png)
 
 4. Select Template
 
-  - Use the scroll bar to navigate down the list
-  - Select the template **Define custom entity with parameters"
-  - Press **Finish**
+   - Use the scroll bar to navigate down the list
+   - Select the template **Define custom entity with parameters"
+   - Press **Finish**
 
-> Please note
+> **Please note**
 
-> There is only a template for a custom entity with parameters. But this doesn’t matter. We use this template and remove the statement “…”.
+> There is only a template for a custom entity with parameters. But this doesn’t matter. We use this template and remove the statement *with parameters parameter_name : parameter_type*.
 
 ![New data definition 2](images/1230.png)
 
 5. Edit the source code of the custom entity
 
-  - Remove the statement <pre>with parameters parameter_name : parameter_type</pre>
+   - Remove the statement <pre>with parameters parameter_name : parameter_type</pre>
 
 ![New data definition 2](images/1240.png)
 
-  - Copy the field list from the abstract entity
+   - Copy the field list from the abstract entity
   
   ![Copy field list from the abstract entity](images/1250.png)
   
@@ -371,7 +373,9 @@ This **if_rap_query_provider interface** only offers one method which is called 
 
   ![Copy field list into the custom entity](images/1260.png)
 
-6. You will notice the error message **Custom entity requires annotation @ObjectModel.Query.ImplementedBy defining a query provider class**.
+6. You will notice the error message
+
+*Custom entity requires annotation @ObjectModel.Query.ImplementedBy defining a query provider class*
 
   ![Error message annotation required](images/1270.png)
 
@@ -381,7 +385,9 @@ This **if_rap_query_provider interface** only offers one method which is called 
 
 8. Activate your changes
 
-When trying to activate the DDL source code we get the error message **Class ZCL_CE_RAP_PRODUCTS_#### must implement interface IF_RAP_QUERY_PROVIDER [SAP Cloud Platform ABAP Environment]**
+When trying to activate the DDL source code we get the error message 
+
+*Class ZCL_CE_RAP_PRODUCTS_#### must implement interface IF_RAP_QUERY_PROVIDER [SAP Cloud Platform ABAP Environment]*
 
  ![Error message class must implement IF_RAP_QUERY_PROVIDER](images/1290.png)
 
@@ -390,11 +396,14 @@ When trying to activate the DDL source code we get the error message **Class ZCL
 After having created the custom entity `ZRAP_CE_PRODUCTS_####` we now have to enhance the query implementation class `ZCL_CE_RAP_PRODUCTS_####`that we have created earlier in this exercise.
 
 
- !. Add interface **`IF_RAP_QUERY_PROVIDER`** to the query implementation class **ZCL_CE_RAP_PRODUCTS_####**
+1. Add interface **`IF_RAP_QUERY_PROVIDER`** to the query implementation class **ZCL_CE_RAP_PRODUCTS_####**
  
-   - You can use the quick fix **Ctrl+1** to add the implementation for the method **`if_rap_query_provider~select`**
+    - You can use the quick fix `Ctrl+1` to add the implementation for the method `if_rap_query_provider~select`
   
-    ![Add interface IF_RAP_QUERY_PROVIDER](images/1300.png)
+  
+  ![Add interface IF_RAP_QUERY_PROVIDER](images/1300.png)
+  
+   
   
 2. Implement the method  `if_rap_query_provider~select`  
   
@@ -439,38 +448,34 @@ It is mandatory that the response not only contains the retrieved data via the m
 
 ## Add the custom entity to your service definition
 
-1. Open the Service Definition **ZRAP_UI_Inventory_M_####** and add the statement 
+1. Open the Service Definition `ZRAP_UI_Inventory_M_####` 
 
-  <pre>expose ZCE_RAP_PRODUCTS_#### as Products;</pre>
-
-  so that the custom entity is added to the OData service.
- 
- 
-2. and activate your changes 
+   - add the statement 
+     <pre>expose ZCE_RAP_PRODUCTS_#### as Products;</pre>
+     so that the custom entity is added to the OData service.
+   - Activate your changes 
  
   ![Add custom entity to service definition](images/1320.png)
 
 ## Add the custom entity as a value help
 
-1. Open the projection view for your inventory data ZC_RAP_INVENTORY_#### 
+1. Open the projection view for your inventory data `ZC_RAP_INVENTORY_####` 
 
-  -  Add the annotation `@Consumption.valueHelpDefinition` to the field ProductID
+  -  Add the annotation `@Consumption.valueHelpDefinition` to the field `ProductID`
   
   <pre>
   @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCE_RAP_PRODUCTS_1234', element: 'Product'  } }]
   ProductID,
   </pre>
 
-This will add the custom entity **ZRAP_CE_PRODUCTS_####** as a value help for the field **ProductId**.
+This will add the custom entity `ZRAP_CE_PRODUCTS_####` as a value help for the field `ProductId`.
 
-
- ![Error message class must implement IF_RAP_QUERY_PROVIDER](images/1290.png)
 
 ## Test the service 
 
-1. Open the service binding **ZUI_RAP_INVENTORY_####_02** 
+1. Open the service binding `ZUI_RAP_INVENTORY_####_02` 
 
-   - You will notice that now two entities are visible. **Products** and **Inventory**
+   - You will notice that now two entities are visible. `Products` and `Inventory`
    
      ![Service binding with custom entity](images/1340.png)
  
