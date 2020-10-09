@@ -12,7 +12,7 @@ In this session we will show you how you can use SAP Cloud Platform, ABAP enviro
 
 Our scenario is an inventory application that runs on SAP Cloud Platform, ABAP environment. This application will use product master data from an on premise S/4 HANA system that will be retrieved via calling an OData service and via calling a SOAP web service. 
 
-To speed up the development we will use a tool called the RAP Generator that generates the complete stack of a RAP application based on a table that has to be created beforehand. This allows us to skip writing lots of boiler plate coding that you otherwise would have to write yourself. And we can start much faster with the implementation of our side-by-side integration scenario.
+To speed up the development we will use a tool called the RAP Generator that generates the complete stack of a RAP business object based on a table that has to be created beforehand. This allows us to skip writing lots of boiler plate coding that you otherwise would have to write yourself. And we can start much faster with the implementation of our side-by-side integration scenario.
 
 ## Requirements
 
@@ -31,36 +31,26 @@ For a detailed step-by-step description check out our [Onboarding Tutorial](http
 
 ## Exercises
 
-Provide the exercise content here directly in README.md using [markdown](https://guides.github.com/features/mastering-markdown/) and linking to the specific exercise pages, below is an example.
+These are the steps of our hands-ons session:
 
 - [Getting Started](exercises/ex0/)
 - [Exercise 1 - Geenrate a starter application](exercises/ex1#exercise-1)
-    - [Connect to the system](exercises/ex1#Connect-to-the-system)
-    - [Create a package](exercises/ex1#Create-a-package)
-    - [Create a table](exercises/ex1#Create-a-table)
-    - [Run the RAP Generator](exercises/ex1#Run-the-RAP-Generator)
-    - [Behavior Definition](exercises/ex1#Behavior-Definition)
-    - [Behavior Implementation](exercises/ex1#Behavior-Implementation)
+    - [Connect to the system](exercises/ex1#connect-to-the-system)
+    - [Create a package](exercises/ex1#create-a-package)
+    - [Create a table](exercises/ex1#create-a-table)
+    - [Run the RAP Generator](exercises/ex1#generate-a-starter-application)
+    - [Check the generated repository objects](exercises/ex1#check-the-generated-repository-objects)
+    - [Behavior Implementation](exercises/ex1#behavior-implementation)
+    - [Summary](exercises/ex1#summary)
     
 - [Exercise 2 - Consume an OData service](exercises/ex2/exercise-2)
-    - [Create the service consumption model](exercises/ex2#Create-the-service-consumption-model)
-    - [Create a custom entity](exercises/ex2#Create-a-custom-entity)
+    - [Create the service consumption model](exercises/ex2#create-the-service-consumption-model)
+    - [Create a custom entity](exercises/ex2#create-a-custom-entity)
 
 - [Exercise 3 - Consume a SOAP Web service](exercises/ex2/)
     - [Exercise 2.1 - Exercise 2 Sub Exercise 1 Description](exercises/ex2#exercise-21-sub-exercise-1-description)
     - [Exercise 2.2 - Exercise 2 Sub Exercise 2 Description](exercises/ex2#exercise-22-sub-exercise-2-description)
 
-**OR** Link to the PDF document stored in your github repo for example...
-
-Start the exercises [here](exercises/myPDFDoc.pdf).
-    
-**OR** Link to the Tutorial Navigator for example...
-
-Start the exercises [here](https://developers.sap.com/tutorials/abap-environment-trial-onboarding.html).
-
-**IMPORTANT**
-
-Your repo must contain the .reuse and LICENSES folder and the License section below. DO NOT REMOVE the section or folders/files. Also, remove all unused template assets(images, folders, etc) from the exercises folder. 
 
 ## How to obtain support
 
