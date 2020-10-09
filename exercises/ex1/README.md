@@ -230,14 +230,14 @@ To speed up the process we will use the RAP Generator that will generate a start
 }
 </pre>
 
-1. Add the package ZRAP_GENERATOR to your favorites packages
+1. Add the package **ZRAP_GENERATOR** to your favorites packages
 
    - Click on **Favorite Packages** with the right mouse button.
    - Click **Add Package ...**  
 
    ![Add package to Favorites_1](images/0350.png)
 
-2. Start to type ZRAP_GENERATOR and double-click on it. 
+2. Start to type **`ZRAP_GENERATOR`** and double-click on it. 
 
     ![Add package to Favorites_2](images/0360.png)
 
@@ -268,28 +268,32 @@ To speed up the process we will use the RAP Generator that will generate a start
 
 8. Success message
 
+   You should receive a success message telling you 
+   
+   *RAP BO ZI_RAP_Inventory_#### generated successfully*
+
    ![RAP BO generated](images/0420.png)
 
 9. When you check the content of your package you will notice that it now contains 12 repository objects.
 
-    [RAP BO generated](images/0430.png)
+    ![RAP BO generated](images/0430.png)
 
 10. The RAP Genertor has generated the following repository objects for your convenience
 
-Business Services
-- ZUI_RAP_INVENTORY_####_02 - Service Binding
-- ZUI_RAP_INVENTORY_#### - Service Definition
+    Business Services
+    - ZUI_RAP_INVENTORY_####_02 - Service Binding
+    - ZUI_RAP_INVENTORY_#### - Service Definition
 
-CDS views
-- ZC_RAP_INVENTORY_#### - Projection view
-- ZI_RAP_INVENTORY_#### - Interface view
+    CDS views
+    - ZC_RAP_INVENTORY_#### - Projection view
+    - ZI_RAP_INVENTORY_#### - Interface view
 
-Metadata Extension
-- ZC_RAP_INVENTORY_#### - MDE for the projection view
+    Metadata Extension
+    - ZC_RAP_INVENTORY_#### - MDE for the projection view
 
-Behavior Defintion
-- ZC_RAP_INVENTORY_#### - for the projection view
-- ZI_RAP_INVENTORY_#### - for the interface view
+    Behavior Defintion
+    - ZC_RAP_INVENTORY_#### - for the projection view
+    - ZI_RAP_INVENTORY_#### - for the interface view
  
 
 > What is now left is to publish the service binding since this can not be automated (yet).
@@ -297,11 +301,11 @@ Behavior Defintion
 
 11. Open the service binding and double click on **ZUI_RAP_INVENTORY_####_02**
 
-   ![Open Service Binding](images/0435.png)
+    ![Open Service Binding](images/0435.png)
 
 12. Click on **Activate** to activate the Service Binding. 
 
-   ![Activate Service Binding](images/0440.png)
+    ![Activate Service Binding](images/0440.png)
 
 13. Select the entity **Inventory** and press the **Preview** button to start the *Fiori Elements Preview*.
 
@@ -414,7 +418,7 @@ Last not least you will find it handy that also a Metadata Extension View has be
 
 Feel free to check out more of the generated code.
 
-## Behavior Impelmentation
+## Behavior Implementation
 
 1. In the **Project Explorer** navigate to **Core Data Services > Behavior Definitions** and double click on  **ZI_RAP_INVENTORY_####**
 
@@ -448,7 +452,7 @@ The quick fix offers you to create a global behavior implementation class **`zbp
   
 The code of the behavior implementation contains already an (empty) implementation for the determiniation that shall calculate the semantic key InventoryID. 
 
-The implementation of the behavior defintion must (for technical reasons) take place in local classes that follow the naming convention lhc_<EntityName> (here lhc_Inventory).
+The implementation of the behavior defintion must (for technical reasons) take place in local classes that follow the naming convention **lhc_\<EntityName\>** (here **lhc_Inventory**).
 We suggest to use the source code shown below to implement the calculation of the semantic key of our managed business object for inventory data. In a productive application you would rather use a number range.
 To keep our implementation simple we will use the approach to simply count the number of objects that are available. 
 By a simple increment of this number we get a semantic key which is readable by the users of our application.
@@ -488,15 +492,15 @@ ENDMETHOD.
  
 </pre>
    
- 7. Replace the placeholders **####** with your group number and activate your changes **(Ctrl+F3)**
+ 7. Replace the placeholders <b>####</b> with your group number and activate your changes **(Ctrl+F3)**
 
  ![Replace the placeholders](images/0540.png)
 
 8. Test the implementation. 
 
-  - Start the Fiori Elements preview and press the Create button.
+  - Start the Fiori Elements preview and press the **Create** button.
   - Enter an arbritray product name
-  - Press Save
+  - Press **Save**
   
    ![Open behavior defintion class](images/0550.png)
   
@@ -508,8 +512,6 @@ ENDMETHOD.
 
 
 ## Summary
-
-You've now ...
 
 You have completed the exercise!
  
