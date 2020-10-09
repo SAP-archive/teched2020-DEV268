@@ -51,57 +51,57 @@ For this we will use the RAP Generator.
  
    ![CF connection options](images/0070.png)
 
-  Click **Next**.
+    Click **Next**.
 
 > The API endpoint will be selected according to the region you have chosen.
    
 7. Select service instance details
 
- - Organization: Select your organization e.g. **xxxxxxtrial**
- - Space: Select the space in your CF sub account e.g. **dev**
- - Service instance: Click on the name of your ABAP trial instance e.g. **default_abap-trial**.
+   - Organization: Select your organization e.g. **xxxxxxtrial**
+   - Space: Select the space in your CF sub account e.g. **dev**
+   - Service instance: Click on the name of your ABAP trial instance e.g. **default_abap-trial**.
  
  Click **Next**.
 
-![CF connection settings](images/0080.png)
+   ![CF connection settings](images/0080.png)
 
 8. Check service connection settings and press **Next**.
 
-![Service instance connection](images/0090.png)
+   ![Service instance connection](images/0090.png)
 
 8. You can keep the default project name, e.g. **TRL_EN** unchanged and click **Finish**
 
-![Project name](images/0100.png)
+    ![Project name](images/0100.png)
 
 
 ## Create a package
 
 1. Richt-click on **`ZLOCAL`** and from the context menu choose **New > ABAP Package**.
 
-![New package_1](images/0200.png)
+  ![New package_1](images/0200.png)
 
 2. In the Create new ABAP package dialogue enter the following values
 
-   - Name: Enter **`ZRAP_INVENTORY_####`** in the field Name.
+   - Name: Enter **`ZRAP_INVENTORY_####`**.
    - Description: Enter a meaningful description for your package, e.g. **Inventory demo ####**. 
 
-![New package_2](images/0210.png)
+   ![New package_2](images/0210.png)
 
 3. Select or create a new transport request and click **Finish**.
 
-![New transport request](images/0220.png)
+   ![New transport request](images/0220.png)
 
 6. Add your package to your **Favorites Packages** folder.
 
-  - Right click on the folder **Favorites Packages**
+   - Right click on the folder **Favorites Packages**
 
-![New transport request](images/0105.png)
+   ![New transport request](images/0105.png)
 
-  - and start to type **`ZRAP`**
-  - choose your package **`ZRAP_INVENTORY_####`** from the list of machting items
+   - and start to type **`ZRAP`**
+   - choose your package **`ZRAP_INVENTORY_####`** from the list of machting items
   - Press **Ok**
 
-![New transport request](images/0110.png)
+    ![New transport request](images/0110.png)
 
 5. Result
 
@@ -110,6 +110,7 @@ You have created a package in the super package ZLOCAL. The package ZLOCAL has a
 You can see now an entry in the **Transport Organizer** view
  
 > **Caution:**
+
 > If you start developing in a non-trial system you should use sub-packages in ZLOCAL **ONLY** for tests but **NOT** for real development.
 > For real development you have to create your own software components and own development packages.
 
@@ -123,30 +124,30 @@ Now after you have created a package we can start developing an application. We 
  
 This application will then be enhanced such that it leverages OData service calls and SOAP calls to retrieve data from a SAP S/4HANA backend. These services are either called as a value help or to perform a determination for the price of a product whenthe inventory data is created or updated.
 
-1. Right click on your package. Click **New > Other ABAP Repository Object**.
+1. Right click on your package **ZRAP_INVENTORY_####**. Click **New > Other ABAP Repository Object**.
 
-![New Database Table](images/0270.png)
+   ![New Database Table](images/0270.png)
 
 2. Click **Database Table > Next**.
 
-![New Database Table](images/0280.png)
+   ![New Database Table](images/0280.png)
 
 3. In the Createa a database table dialgue enter the following values:
 
-   - Name: Enter **`zrap_inven_####`** .
-   - Description: Enter **`Inventory data`**.
+   - Name: **`zrap_inven_####`** .
+   - Description: **`Inventory data`**.
    
-   Press **Next**.
+    Press **Next**.
    
-   ![New Database Table](images/0290.png)
+    ![New Database Table](images/0290.png)
    
 4. Select a transport request and click **Finish**.
 
-![Select transport request](images/0300.png)
+    ![Select transport request](images/0300.png)
 
 6. Check the code template.
 
-![Code template Inventory Table](images/0310.png)
+    ![Code template Inventory Table](images/0310.png)
 
 6. Copy and paste the following coding .
 
@@ -164,6 +165,9 @@ define table zrap_inven_#### {
   @Semantics.quantity.unitOfMeasure : 'zrap_inven_####.quantity_unit'
   quantity        : abap.quan(13,3);
   quantity_unit   : abap.unit(3);
+  @Semantics.amount.currencyCode : 'zrap_inven_####.currency_code'
+  price           : abap.curr(16,2);
+  currency_code   : abap.cuky;
   remark          : abap.char(256);
   not_available   : abap_boolean;
   created_by      : syuname;
@@ -175,7 +179,7 @@ define table zrap_inven_#### {
 
 7. and replace the placeholder **`####`** with your group number.
 
-![Inventory Table](images/0320.png)
+   ![Inventory Table](images/0320.png)
 
 8. Click here to activate your changes.
 
@@ -187,24 +191,24 @@ This mandatory for a managed scenario where early numbering is used. That means 
  
 The last four fields
  
-**`created_by`**   
-**`created_at`**
-**`last_changed_by`**
-**`last_changed_at`**
+- **`created_by`**   
+- **`created_at`**
+- **`last_changed_by`**
+- **`last_changed_at`**
  
 are also mandatory in a managed scenario. The framework expects these type of fields so that it is able to check when data has been created and changed.
  
-The usual process of development would be that you as a developer would now start to manually create the following repository objects
+The usual process of development would be that you as a developer would now start to manually create the following repository objects for each entity
  
-·	CDS interface view
-·	CDS projection view
-·	Metadata Extension view
-·	Behavior definition(s)
-·	Behavior implementation(s)
+-	CDS interface view
+-	CDS projection view
+-	Metadata Extension view
+-	Behavior definition
+-	Behavior implementation
  
 before you can start with the implementation of the business logic.
  
-To speed up the process we will use the RAP Generator that will generate a starter project for us containing all these objects. This way you can concentrate on developing the business logic of this extension scenario without the need to type lots of boilerplate coding beforehand.
+To speed up the process we will use the RAP Generator that will generate a starter project for us containing all these objects. This way you can concentrate on developing the business logic of this extension scenario without the need to type lots of boiler plate coding beforehand.
 
 ## Generate a starter application
 
@@ -227,44 +231,48 @@ To speed up the process we will use the RAP Generator that will generate a start
 </pre>
 
 1. Add the package ZRAP_GENERATOR to your favorites packages
+
    - Click on **Favorite Packages** with the right mouse button.
    - Click **Add Package ...**  
 
-![Add package to Favorites_1](images/0350.png)
+   ![Add package to Favorites_1](images/0350.png)
 
 2. Start to type ZRAP_GENERATOR and double-click on it. 
 
-![Add package to Favorites_2](images/0360.png)
+    ![Add package to Favorites_2](images/0360.png)
 
 3. Expand the folders **Connectivity > HTTP Services** and double-click on **Z_RAP_GENERATOR**.
 
-![Open RAP Generator](images/0370.png)
+    ![Open RAP Generator](images/0370.png)
 
 4. Click on **URL**
 
-![Open UI of the RAP Generator](images/0380.png)
+    The UI of the RAP Generator will open now in a browser window
+
+    ![Open UI of the RAP Generator](images/0380.png)
 
 5. Enter your credentials
 
-![Authenticate at ABAP Environment](images/0390.png)
+    ![Authenticate at ABAP Environment](images/0390.png)
 
 6. Start the generation of the RAP business object.
+
    - Browse for your JSON File **Inventory.json** and then
    - Press the button **Upload File and generate BO**
 
-![Start generation](images/0400.png)
+   ![Start generation](images/0400.png)
 
 7. Wait a short time
 
-![Start generation](images/0410.png)
+   ![Start generation](images/0410.png)
 
 8. Success message
 
-![RAP BO generated](images/0420.png)
+   ![RAP BO generated](images/0420.png)
 
 9. When you check the content of your package you will notice that it now contains 12 repository objects.
 
-![RAP BO generated](images/0430.png)
+    [RAP BO generated](images/0430.png)
 
 10. The RAP Genertor has generated the following repository objects for your convenience
 
@@ -284,26 +292,26 @@ Behavior Defintion
 - ZI_RAP_INVENTORY_#### - for the interface view
  
 
-> What is now left is to publish the service binding since this cannot be automated (yet).
+> What is now left is to publish the service binding since this can not be automated (yet).
 
 
-11. Open the service binding and double click on **´ZUI_RAP_INVENTORY_####_02´**
+11. Open the service binding and double click on **ZUI_RAP_INVENTORY_####_02**
 
-![Open Service Binding](images/0435.png)
+   ![Open Service Binding](images/0435.png)
 
 12. Click on **Activate** to activate the Service Binding. 
 
-![Activate Service Binding](images/0440.png)
+   ![Activate Service Binding](images/0440.png)
 
 13. Select the entity **Inventory** and press the **Preview** button to start the *Fiori Elements Preview*.
 
-![Start Fiori Elements Preview](images/0460.png)
+   ![Start Fiori Elements Preview](images/0460.png)
 
 14. Check the Fiori Elements Preview App. You will notice that we got a nearly full fledged UI with capabilities for 
 
-   - Searching
-   - Filtering
-   - Create, Update and Delete inventory data
+    - Searching
+    - Filtering
+    - Create, Update and Delete inventory data
    
 This is because all possible behaviors (create, update and delete) have been enabled by default in our generated code.
 You will see that all CRUD operations are working out of the box (beside the calculation of the inventory id which will do in a second).
@@ -312,8 +320,9 @@ If you do not want to see all columns (either on the list- or the object page) y
 This is however much simpler than having to write all these annotations from scratch.
 
 15. You can try and start entering values for your first inventory item.
-However not checks have been implemented yet. 
-Especially not for the determination of the semantic key "InventoryId".
+However no checks nor any value help have been implemented yet. 
+Especially not for the determination of the semantic key **InventoryId**.
+
 This we will do in the next step.
 
    
@@ -333,9 +342,11 @@ define root view entity ZI_RAP_INVENTORY_1234
   @Semantics.quantity.unitOfMeasure: 'QuantityUnit'
   QUANTITY as Quantity,  
   QUANTITY_UNIT as QuantityUnit,
+  ...
+ }
 </pre>
 
-The behavior impelemenation was generated such that the object id which acts as a semantic key was marked as readonly.
+The behavior impelemenation was generated such that the field **InventoryID** which acts as a semantic key was marked as readonly.
 
 <pre>
 field ( readonly ) InventoryID;
@@ -362,11 +373,13 @@ also a mapping was added that maps the ABAP field names to the field names of th
 
 And we find a determination that was generated for the semantic key field (that has to be implemented though).
 
+Please make sure that the determination for the InventoryID acts on field level.
+
 <pre>
-determination CalculateInventoryID on modify { create; }
+determination CalculateInventoryID on modify  { field uuid; }
 </pre> 
  
-Last not least you will find it handy that also a Metdata Extension View has been generated that automatically publishes all field on the list page as well as on the object page by setting appropriate @UI annotations. Also the administrative fields such as the UUID based key and fields like created_at are hidden by setting @UI.hidden to true.
+Last not least you will find it handy that also a Metadata Extension View has been generated that automatically publishes all field on the list page as well as on the object page by setting appropriate **@UI** annotations. Also the administrative fields like created_at as well as the UUID based key field are hidden by setting **@UI.hidden** to true.
  
  <pre>
    @UI.hidden: true
@@ -396,6 +409,7 @@ Last not least you will find it handy that also a Metdata Extension View has bee
     label: 'ProductID'
   } ]
   ProductID;
+  ...
 </pre> 
 
 Feel free to check out more of the generated code.
@@ -406,41 +420,44 @@ Feel free to check out more of the generated code.
 
  ![Open Behavior Definition](images/0500.png)
 
-2. In the source code you will see the warning *Class "ZBP_I_RAP_INVENTORY_1234" does not exist.*. 
-  - Click on the name of the behavior implementation class **`ZBP_I_RAP_Inventory_####`**
-  - Press **Ctrl+1** to open the *quick fix / quick assist* dialog which offers to pen quick fix / quick assist dialog
+2. In the source code you will see the warning 
+
+   *Class "ZBP_I_RAP_INVENTORY_1234" does not exist.* 
+   
+   - Click on the name of the behavior implementation class **`ZBP_I_RAP_Inventory_####`**
+   - Press **Ctrl+1** to open the *quick fix / quick assist* dialog
   
-  The quick fix offers you to create a global behavior implementation class **`zbp_i_rap_inventory_####`** for the behavior definition **`zi_rap_inventory_####`**.
+The quick fix offers you to create a global behavior implementation class **`zbp_i_rap_inventory_####`** for the behavior definition **`zi_rap_inventory_####`**.
   
    ![Quick Fix Behavior Implemenation](images/0510.png)
   
-  - Double click on **`Create behavior implementation class zbp_i_rap_inventory_####`**
+   - Double click on **`Create behavior implementation class zbp_i_rap_inventory_####`**
   
 
   
   4. The **New Behavior Definition** dialogue opens
     - Leave the default settings and press **Next**
 
-  ![Open behavior defintion class](images/0520.png)
+     ![Open behavior defintion class](images/0520.png)
 
   5. Select a transport request
   
-  ![Select Transport request](images/0530.png)
+     ![Select Transport request](images/0530.png)
   
-  6. Implement the determination for the field InventoryID
+  6. Implement the determination for the field **InventoryID**
   
 The code of the behavior implementation contains already an (empty) implementation for the determiniation that shall calculate the semantic key InventoryID. 
 
 The implementation of the behavior defintion must (for technical reasons) take place in local classes that follow the naming convention lhc_<EntityName> (here lhc_Inventory).
 We suggest to use the source code shown below to implement the calculation of the semantic key of our managed business object for inventory data. In a productive application you would rather use a number range.
-But since there is (yet) no SAP Fiori UI available in Steampunk to easily maintain number ranges we will use the approach to simply count the number of objects that are available. 
+To keep our implementation simple we will use the approach to simply count the number of objects that are available. 
 By a simple increment of this number we get a semantic key which is readable by the users of our application.
 
 
 
  <pre> 
  
-   METHOD CalculateInventoryID.
+METHOD CalculateInventoryID.
 
   "Ensure idempotence
     READ ENTITIES OF zi_rap_inventory_#### IN LOCAL MODE
@@ -467,12 +484,11 @@ By a simple increment of this number we get a semantic key which is readable by 
     "fill reported
     reported = CORRESPONDING #( DEEP lt_reported ).
 
-  ENDMETHOD.
-
+ENDMETHOD.
  
- </pre>
+</pre>
    
- 7. Replace the placeholders #### with your group number and activate your changes (Ctrl+F3)
+ 7. Replace the placeholders **####** with your group number and activate your changes **(Ctrl+F3)**
 
  ![Replace the placeholders](images/0540.png)
 
