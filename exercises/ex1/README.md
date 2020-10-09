@@ -46,10 +46,10 @@ For this we will use the RAP Generator.
    In this dialogue select the following values
 
    - Region: Select the region e.g. **Europe (Frankfurt)** or **US East (VA)**.
-   - Username: Enter **<your email adress>**
-   - Password: Enter **<your password>** you use to log on to SAP Cloud platform
+   - Username: Enter your **email adress**
+   - Password: Enter your **password** you use to log on to SAP Cloud platform
  
-  ![CF connection options](images/0070.png)
+   ![CF connection options](images/0070.png)
 
   Click **Next**.
 
