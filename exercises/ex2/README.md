@@ -1,11 +1,24 @@
+# TOC
+[Home - RAPCJE](../../README.md#exercises)
 # Exercise 2
+
+- [Create the service consumption model](#create-the-service-consumption-model)
+- [Create a console application to test the OData service](#create-a-console-application-to-test-the-odata-service)
+- [Create a custom entity and implement the query implementation class](#create-a-custom-entity-and-implement-the-query-implementation-class)
+  - [Create a custom entity](#create-a-custom-entity)
+  - [Implement the query implemenation class](#implement-the-query-implemenation-class)     
+- [Add the custom entity as a value help](#add-the-custom-entity-as-a-value-help)
+- [Test the service](#test-the-service)
+- [Summary](#summary) 
+- [Solution](sources)
+
 
 When creating a new entry with your inventory application you see that there is no value help for the field ProductId. 
 Since this information resides in a SAP S/4 HANA backend we will it retrieve via OData.
 
  ![No value help](images/1010.png)
 
-In this exercise you will thus learn how to consume an OData Service of your on premise system in order to fetch business partner data. You will then learn how to expose this data as a value help for the Inventory entity.
+In this exercise you will thus learn how to consume an OData Service from an on premise system in order to fetch business partner data. You will then learn how to expose this data as a value help for the Inventory entity.
 
 In this exercise, we will ...
 
@@ -26,8 +39,8 @@ In this exercise, we will ...
 
 In this step we will generate a so called Service Consumption Model.
 This type of object takes an external interface description as its input. 
-Currently *OData* and *SOAP* are supported. With the upcoming release 2011 it is planned to support Service Consumption Modells for RFC based communication  as well.
-Based on the information found in the $metadata file or the wsdl file appropriate repository objects are generated (OData Client proxy or SOAP proxy objects).
+Currently *OData* and *SOAP* are supported. With the upcoming release 2011 it is planned to support Service Consumption Models for RFC based communication  as well.
+Based on the information found in the *$metadata* file or the *wsdl* file appropriate repository objects are generated (OData Client proxy or SOAP proxy objects).
 Using these objects you will be able to write ABAP code that lets you consume remote OData or SOAP services.
  
 We start by creating a service consumption model for an OData service that provides demo product data. This service resides on the public SAP Gateway System ES5 and does not require any authentication
@@ -44,7 +57,7 @@ We start by creating a service consumption model for an OData service that provi
 2. In the New ABAP Repository Object dialogue do the following
 
    -  Start to type **`Service`**
-   -  In the list of objects select **Service Conumption Model**
+   -  In the list of objects select **Service Consumption Model**
    -  Click **Next**
  
   ![New ABAP Repository Object 2](images/1030.png)
@@ -69,20 +82,20 @@ We start by creating a service consumption model for an OData service that provi
 
 > **Please note**
 
-> The prefix that you have entered will be added to the names of the repository objects that are generated, namely the **Service Consumption Model** and the **abstract entity**. 
-> If you don't select a prefix and if the wizard finds out that there would be name clashes the wizard will propse unique names by adding arbritrary characters to the repository object names. In any case you will be able to change the values that will be proposed by this wizard.
+> The prefix that you have entered will be added to the names of the repository objects that are generated, namely the **abstract entity(ies)**. 
+> If you don't select a prefix and if the wizard finds out that there would be name clashes the wizard will propse unique names by adding arbitrary characters to the repository object names. In any case you will be able to change the values that will be proposed by this wizard.
 
  ![OData consumption proxy](images/1050.png)
 
 6. Check the **ABAP Artifact Name** and click **Next**.
 
-   You will notice that the name of the ABAP artifact has been set to **`ZRAP_####_SEPMRA_I_PRODUCT_E`** since we have provided the prefix **`RAP_#### _`** 
+   You will notice that the name of the ABAP artifact has been set to `ZRAP_####_SEPMRA_I_PRODUCT_E` since we have provided the prefix `RAP_####_`. 
 
    Press **Next**.
 
 > Additional Information
 
-> If you have not provided a prefix the ABAP Artifact Name might contain several arbritray characters that have been added to the name **ZSEPMRA_I_PRODUCT**. This can happen if other users in the same system have already imported the same $metadata file. In order to avoid name clashes the wizard then adds arbritrary characters so that a unique name for the ABAP artifact is ensured.
+> If you have not provided a prefix the ABAP Artifact Name might contain several arbritray characters that have been added to the name **ZSEPMRA_I_PRODUCT**. This can happen if other users in the same system have already imported the same $metadata file. In order to avoid name clashes the wizard then adds arbitrary characters so that a unique name for the ABAP artifact is ensured.
 
 ![Define Entity Set](images/1060.png)
 
@@ -101,7 +114,7 @@ Click **Next**.
 
 ![ABAP Artifact Genertion List](images/1080.png)
 
-9. Let us shortly investigate the service consumption model. 
+9. Let us briefly investigate the service consumption model. 
 
    For each operation (**Read List**, **Read**, **Create**, **Update** and **Delete**) some sample code has been created that you can use when you want to call the OData Service with one of these operations. Since we want to retrieve a list of Product-IDs, we will select the operation **Read List** and click on the button **Copy to Clipboard**. We will use this code in the following step where we create a console application to test the call to the remote OData service. 
   
@@ -145,25 +158,28 @@ This is a useful additional step since this way it is easier to check whether th
    - Click **Finish**
 
 ![Selection of transport request](images/1130.png)
-
+ZRAP_CE
    
 5. Add an implementation for the method main
 
-  You will see the warning **Implementation missing for method IF_OO_ADT_CLASSRUN~MAIN IF_OO_ADT_CLASSRUN~MAIN**. 
+  You will see the warning **Implementation missing for method IF_OO_ADT_CLASSRUN~MAIN**. 
 
 ![Selection of transport request](images/1135.png)
 
 6. Implementation
 
-    Navigating back to the service consumption model we use the *Copy to clipboard* button to copy the sample code for the **ReadList** operation into the main method of our newly created class.
-Since it is not possible to leverage the destination service in the trial systems, we will use the method **create_by_http_destination** which allows to create a http client object based on the target URL.
-Here we take the root URL https://sapes5.sapdevcenter.com of the ES5 system since the relative URL will be added when creating the OData client proxy.
+    Navigating back to the service consumption model we can use the *Copy to clipboard* button to copy the sample code for the **ReadList** operation to use it in our newly created class.
+
 
 ## CLASS zcl_ce_rap_products_#### DEFINITION
 
-Let's have a look at the implementation of our test class. In the public section we find to **TYPES** definitions. **t_product_range** is used to provide filter conditions for ProductIDs in form of SELECT-OPTIONS to the method **get_products( )**. The second type **t_business_data** is used to retrieve the business data returned by our remote OData service.
+Let's start with the implementation of our test class. 
+
+In the public section we add two **TYPES** definitions. **t_product_range** is used to provide filter conditions for ProductIDs in form of SELECT-OPTIONS to the method **get_products( )**. The second type **t_business_data** is used to retrieve the business data returned by our remote OData service.
 
 The  **get_products( )** method takes filter conditions in form of SELECT-OPTIONS via the importing parameter **it_filter_cond**. In addition it is possible to provide values for **top** and **skip** to leverage client side paging.
+
+So the DEFINITION section of your class should now look like follows:
 
 <pre>
 CLASS zcl_ce_rap_products_#### DEFINITION
@@ -201,7 +217,6 @@ ENDCLASS.
 
 The main method creates a simple filter for products with a name greater or equal **HT-1200**. At the same time we use client side paging to skip the first result and limit the response to 3 products.
 
-
 <pre>
   METHOD if_oo_adt_classrun~main.
 
@@ -230,7 +245,7 @@ The main method creates a simple filter for products with a name greater or equa
 
 8. and finally add an implementation for the method **get_products**. 
 
-The public method **get_products( )** is used to retrieve the data from the remote OData service. Since it is not possible to leverage the destination service in the trial systems, we will use the method **cl_http_destination_provider=>create_by_url** which allows to create a http destination object based on the target URL. As the target URL we choose the root URL https://sapes5.sapdevcenter.com of the ES5 system since the relative URL that points to the OData service will be added when creating the OData client proxy.
+The public method **get_products( )** is used to retrieve the data from the remote OData service. Since it is not possible to leverage the destination service in the trial systems, we will use the method **cl_http_destination_provider=>create_by_url** which allows us to create a http destination object based on the target URL. As the target URL we choose the root URL https://sapes5.sapdevcenter.com of the ES5 system since the relative URL that points to the OData service will be added when creating the OData client proxy.
 
 > Please note
 
@@ -291,7 +306,7 @@ METHOD get_products.
 
 9. The code should now look as follows
 
-[Source code zcl_ce_rap_products_####](sources/zcl_ce_rap_products_%23%23%23%23)
+[Source code zcl_ce_rap_products_####](sources/ex2_CLAS_zcl_ce_rap_products_%23%23%23%23_step_1.txt)
 
 10. You can now run the console application by pressing F9.
 
@@ -327,7 +342,7 @@ The interface **if_rap_query_provider interface** only offers one method which i
 1. Let’s start with creating a new data definition zce_rap_agency_#### using the template for a custom entity. 
 
 2. The **New Data Defintion** dialogue opens
-   - Name: ZRAP_CE_PRODUCTS_#### 
+   - Name: ZCE_RAP_PRODUCTS_#### 
    - Description: Custom entity for products from ES5
    
    Press **Next**
@@ -335,14 +350,14 @@ The interface **if_rap_query_provider interface** only offers one method which i
    ![New data definition 2](images/1210.png)
    
 3. Selection of a transport request
-   - Select or create a transport request00
+   - Select or create a transport request.
    - **!!! ONLY!!!** Press *Next*. Do **NOT** press *Finish*.
 
 > Caution
 
-> If you would press **Finish** instead of **Next** the wizard will use the template that was used the last time when this wizard was used by the developer. 
+> If you were to press **Finish** instead of **Next**, the wizard would use the template that was used the last time when this wizard was used by the developer. 
 
-> In order to be sure which template will be selected we **MUST** press **Next** and not **Finish** which would skip the step of template selection.
+> In order to be sure that the correct template is selected, we **MUST** press **Next** and not **Finish** which would skip the step of template selection.
 
 ![New data definition 2](images/1220.png)
 
@@ -354,7 +369,7 @@ The interface **if_rap_query_provider interface** only offers one method which i
 
 > **Please note**
 
-> There is only a template for a custom entity with parameters. But this doesn’t matter. We use this template and remove the statement *with parameters parameter_name : parameter_type*.
+> There is only a template for a custom entity with parameters. But this doesn’t matter. We use this template and remove the statement `with parameters parameter_name : parameter_type`.
 
 ![New data definition 2](images/1230.png)
 
@@ -364,7 +379,7 @@ The interface **if_rap_query_provider interface** only offers one method which i
 
 ![New data definition 2](images/1240.png)
 
-   - Copy the field list from the abstract entity
+   - Copy the field list from the abstract entity `ZRAP_####_SEPMRA_I_PRODUCT_E`
   
   ![Copy field list from the abstract entity](images/1250.png)
   
@@ -390,6 +405,10 @@ When trying to activate the DDL source code we get the error message
 *Class ZCL_CE_RAP_PRODUCTS_#### must implement interface IF_RAP_QUERY_PROVIDER [SAP Cloud Platform ABAP Environment]*
 
  ![Error message class must implement IF_RAP_QUERY_PROVIDER](images/1290.png)
+
+9. The DDL source code should now look like follows
+[Source code ZCE_RAP_PRODUCTS_####](sources/x2_DDLS_ZCE_RAP_PRODUCTS_%23%23%23%23.txt)
+
 
 ### Implement the query implemenation class
 
@@ -446,6 +465,10 @@ It is mandatory that the response not only contains the retrieved data via the m
 
 3. Activate your changes 
 
+4. Your ABAP source code should now look like follows
+
+[Source code ZCL_CE_RAP_PRODUCTS_####](sources/ex2_CLAS_zcl_ce_rap_products_%23%23%23%23_final.txt)
+
 ## Add the custom entity to your service definition
 
 1. Open the Service Definition `ZRAP_UI_Inventory_M_####` 
@@ -468,7 +491,7 @@ It is mandatory that the response not only contains the retrieved data via the m
   ProductID,
   </pre>
 
-This will add the custom entity `ZRAP_CE_PRODUCTS_####` as a value help for the field `ProductId`.
+This will add the custom entity `ZCE_RAP_PRODUCTS_####` as a value help for the field `ProductId`.
 
 
 ## Test the service 
