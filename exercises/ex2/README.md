@@ -1,5 +1,5 @@
 # TOC
-[Home - RAPCJE](../../README.md#exercises)
+[Home - DEV268](../../README.md#exercises)
 # Exercise 2
 
 - [Create the service consumption model](#create-the-service-consumption-model)
