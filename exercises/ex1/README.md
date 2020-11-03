@@ -1,77 +1,26 @@
+
+[Home - RAPCJE](../../README.md#exercises)
+
 # Exercise 1
+
+ 
+- [Create a package](#create-a-package)
+- [Create a table](#create-a-table)
+- [Run the RAP Generator](#generate-a-starter-application)
+- [Check the generated repository objects](#check-the-generated-repository-objects)
+- [Behavior Implementation](#behavior-implementation)
+- [Summary](#summary)
+- [Solution](sources)
 
 In this exercise, we will create a starter application to collect inventory data. Since we want to concentrate on developing an extension scenario we will try to speed up the process to build the basic inventory application.
  
 For this we will use the RAP Generator.
 
+Before using the RAP Generator you have to do the following:
 
-## Connect to the system
+- Create a table to store the inventory data
+- Create a JSON file locally on your desktop that holds the information about RAP BO that will be generted based on the table that you will create beforehand.
 
-1. Start the ABAP Development Tools (aka ABAP in Eclipse)
-
-2. Select a directory as workspace. Click **Launch**
-
- ![Select directory](images/0010.png)
-
-3. Close the Welcome screen
-
- ![Close Welcome screen](images/0020.png)
-
-4. Check the perspective. If the perspective is still the *Java perspective*, then ...
-
- ![Java perspective](images/0030.png)
-
-5. Open ABAP perspective (if needed)
-
-  - Click on the **Open perspective** button
-  - Select **ABAP**
-  - Click **Open**
-
- ![OpenABAP perspective](images/0040.png)
-
-5. Click **File > New > ABAP Cloud Project** to open a new ABAP Cloud project.
-
- ![OpenABAP perspective](images/0050.png)
-
-5. Choose the option **SAP Cloud Platform Cloud Foundry Environment** and then click **Next** .
-
- ![System connection options](images/0060.png)
-
->**Please note**
-
-> You have two options how to connect to your SAP Cloud Platform ABAP environment system. We suggest to use the first option. Logon to the **SAP Cloud Platform Cloud Foundry Environment** and navigate to your ABAP instance. The other option would be to connect directly to the ABAP environment. For this you however would have to provide the service key that you have downloaded when setting up your ABAP instance. 
-
-6. Provide the SAP Cloud Foundry connection settings. 
-
-   In this dialogue select the following values
-
-   - Region: Select the region e.g. **Europe (Frankfurt)** or **US East (VA)**.
-   - Username: Enter your **email adress**
-   - Password: Enter your **password** you use to log on to SAP Cloud platform
- 
-   ![CF connection options](images/0070.png)
-
-    Click **Next**.
-
-> The API endpoint will be selected according to the region you have chosen.
-   
-7. Select service instance details
-
-   - Organization: Select your organization e.g. **xxxxxxtrial**
-   - Space: Select the space in your CF sub account e.g. **dev**
-   - Service instance: Click on the name of your ABAP trial instance e.g. **default_abap-trial**.
- 
- Click **Next**.
-
-   ![CF connection settings](images/0080.png)
-
-8. Check service connection settings and press **Next**.
-
-   ![Service instance connection](images/0090.png)
-
-8. You can keep the default project name, e.g. **TRL_EN** unchanged and click **Finish**
-
-    ![Project name](images/0100.png)
 
 
 ## Create a package
@@ -187,7 +136,7 @@ The table that will be used by our inventory application has the following struc
 
 The key field **`uuid`** is a *Universally Unique Identifier (UUID)*. 
 
-This mandatory for a managed scenario where early numbering is used. That means where the ABAP framework automatically generates values for the key field when creating the data.
+This is mandatory for a managed scenario where early numbering is used. That means where the ABAP framework automatically generates values for the key field when creating the data.
  
 The last four fields
  
@@ -218,13 +167,13 @@ To speed up the process we will use the RAP Generator that will generate a start
 {
   "implementationType": "managed_uuid",
   "namespace": "Z",
-  "suffix": "_1234",
+  "suffix": "_####",
   "prefix": "RAP_",
-  "package": "ZRAP_INVENTORY_1234",
+  "package": "ZRAP_INVENTORY_####",
   "datasourcetype": "table",
   "hierarchy": {
     "entityName": "Inventory",
-    "dataSource": "zrap_inven_1234",
+    "dataSource": "zrap_inven_####",
     "objectId": "inventory_id"    
     }
 }
@@ -318,7 +267,7 @@ To speed up the process we will use the RAP Generator that will generate a start
     - Create, Update and Delete inventory data
    
 This is because all possible behaviors (create, update and delete) have been enabled by default in our generated code.
-You will see that all CRUD operations are working out of the box (beside the calculation of the inventory id which will do in a second).
+You will see that all CRUD operations are working out of the box (apart from calculating the inventory id, which we will do in a second).
 In addition all columns of the table are displayed by default as well since we have generated appropriate UI annoations. 
 If you do not want to see all columns (either on the list- or the object page) you can comment out these annotations.
 This is however much simpler than having to write all these annotations from scratch.
@@ -350,7 +299,7 @@ define root view entity ZI_RAP_INVENTORY_1234
  }
 </pre>
 
-The behavior impelemenation was generated such that the field **InventoryID** which acts as a semantic key was marked as readonly.
+The behavior implementation was generated such that the field **InventoryID** which acts as a semantic key was marked as readonly.
 
 <pre>
 field ( readonly ) InventoryID;
@@ -383,7 +332,7 @@ Please make sure that the determination for the InventoryID acts on field level.
 determination CalculateInventoryID on modify  { field uuid; }
 </pre> 
  
-Last not least you will find it handy that also a Metadata Extension View has been generated that automatically publishes all field on the list page as well as on the object page by setting appropriate **@UI** annotations. Also the administrative fields like created_at as well as the UUID based key field are hidden by setting **@UI.hidden** to true.
+Last but not least, you will find it handy that a Metadata Extension View has also been generated that automatically publishes all field on the list page as well as on the object page by setting appropriate **@UI** annotations. Also the administrative fields like created_at as well as the UUID based key field are hidden by setting **@UI.hidden** to true.
  
  <pre>
    @UI.hidden: true
@@ -520,5 +469,5 @@ You are now able to:
 -	Use the Fiori Elements preview to test your service
 
 
-Continue to - [Exercise 2 - Exercise 2 Description](../ex2/README.md)
+Continue with - [Exercise 2](../ex2/README.md)
 
