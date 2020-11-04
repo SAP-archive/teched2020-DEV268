@@ -29,7 +29,7 @@ For a detailed step-by-step description check out our [Onboarding Tutorial](http
 
 ## Download and Installation
 
-You have to download and install the ABAP Development Tools (ADT) as described in section [Prerequisites](#requirements)
+You have to download and install the ABAP Development Tools (ADT) as described in section [Requirements](#requirements)
 
 ## Known Issues
 
