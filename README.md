@@ -12,7 +12,11 @@ In this session we will show you how you can use SAP Cloud Platform, ABAP enviro
 
 Our scenario is an inventory application that runs on SAP Cloud Platform, ABAP environment. This application will use product master data from an on premise S/4 HANA system that will be retrieved via calling an OData service and via calling a SOAP web service. 
 
-To speed up the development we will use a tool called the RAP Generator that generates the complete stack of a RAP business object based on a table that has to be created beforehand. This allows us to skip writing lots of boiler plate coding that you otherwise would have to write yourself. And we can start much faster with the implementation of our side-by-side integration scenario.
+To speed up the development we will use a tool called the RAP Generator that generates the complete stack of a RAP business object based on one or more tables that have to be created beforehand. 
+
+For this workshop we even prepared a class that also creates the table for the inventory data and then calls the RAP Generator to generate the RAP business object on top. This allows us to skip writing lots of boiler plate coding that you otherwise would have to write yourself. 
+
+And we can start much faster with the implementation of our side-by-side integration scenario, so that it fits into the schedule of a 2-hour hands-on session.
 
 ## Requirements
 
