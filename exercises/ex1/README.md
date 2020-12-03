@@ -23,9 +23,7 @@ The usual process of development would be that you as a developer would now star
  
 before you can start with the implementation of the business logic.
  
-To speed up the process we will use the RAP Generator that will generate a starter project for us containing all these objects. This way you can concentrate on developing the business logic of this extension scenario without the need to type lots of boiler plate coding beforehand.
- 
-For this we will use the **RAP Generator**.
+To speed up the process we will use the **RAP Generator** that will generate a starter project for us containing all these objects. This way you can concentrate on developing the business logic of this extension scenario without the need to type lots of boiler plate coding beforehand.
 
 Before using the RAP Generator you have to do the following:
 
