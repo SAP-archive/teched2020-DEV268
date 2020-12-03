@@ -278,6 +278,8 @@ ENDCLASS.
 
 7. Replace the placeholder **`####`** with your group number.
 
+   Press **Ctrl+F** to start the dialogue to search and replace the placeholder **`####`** with your group number.
+
    ![Inventory Table](images/1040.png)
 
 8. Activate your changes.
