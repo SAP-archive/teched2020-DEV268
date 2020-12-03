@@ -15,7 +15,8 @@ In this exercise, we will create a starter application to collect inventory data
 
 The usual process of development would be that you as a developer would now start to manually create the following repository objects for each entity
  
--	CDS interface view
+-	Table
+- CDS interface view
 -	CDS projection view
 -	Metadata Extension view
 -	Behavior definition
