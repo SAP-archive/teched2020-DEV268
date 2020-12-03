@@ -404,10 +404,11 @@ also a mapping was added that maps the ABAP field names to the field names of th
 
 And we find a determination that was generated for the semantic key field (that has to be implemented though).
 
-Please make sure that the determination for the InventoryID acts on field level.
+Please make sure that the determination that is performed during the **'save*** sequence for the InventoryID is triggered by **'create'** operation.
+*(in older versions the RAP Generator created a determination that acts on the modify operation)*  
 
 <pre>
-determination CalculateInventoryID on modify  { field uuid; }
+determination CalculateInventoryID on save { create; }
 </pre> 
  
 Last but not least, you will find it handy that a Metadata Extension View has also been generated that automatically publishes all field on the list page as well as on the object page by setting appropriate **@UI** annotations. Also the administrative fields like created_at as well as the UUID based key field are hidden by setting **@UI.hidden** to true.
