@@ -37,11 +37,9 @@ In this exercise, we will ...
 
 ## Create the Service Consumption Model
 
-In this step we will generate a so called Service Consumption Model.
-This type of object takes an external interface description as its input. 
-Currently *OData* and *SOAP* are supported. With the upcoming release 2011 it is planned to support Service Consumption Models for RFC based communication  as well.
-Based on the information found in the *$metadata* file or the *wsdl* file appropriate repository objects are generated (OData Client proxy or SOAP proxy objects).
-Using these objects you will be able to write ABAP code that lets you consume remote OData or SOAP services.
+In this step we will generate a so called **Service Consumption Model**. This type of object takes an external interface description as its input. Currently *OData*, *SOAP* and *RFC* are supported.   
+Based on the information found in the *$metadata* file or the *wsdl* file appropriate repository objects are generated (OData Client proxy or SOAP proxy objects). For RFC function modules the metadata file is created in the backend using the transaction *ACO_PROXY*.  
+Using these objects you will be able to write ABAP code that lets you consume remote OData services, SOAP services or RFC function modules.
  
 We start by creating a service consumption model for an OData service that provides demo product data. This service resides on the public SAP Gateway System ES5 and does not require any authentication
 
