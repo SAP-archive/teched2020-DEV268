@@ -472,7 +472,7 @@ The quick fix offers you to create a global behavior implementation class **`zbp
 
      ![Open behavior defintion class](images/0520.png)
 
-  5. Select a transport request
+  5. Select a transport request and press **Finish**
   
      ![Select Transport request](images/0530.png)
   
