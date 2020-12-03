@@ -105,7 +105,7 @@ Now after you have created a package we can start developing a class.
 
     ![Code template Inventory Table](images/1030.png)
 
-    <pre>
+<pre>
 CLASS zcl_generate_dev268_#### DEFINITION
  PUBLIC
   INHERITING FROM cl_xco_cp_adt_simple_classrun
@@ -276,7 +276,7 @@ CLASS zcl_generate_dev268_#### IMPLEMENTATION.
   ENDMETHOD.
 
 ENDCLASS.
-    </pre>
+</pre>
 
 7. Replace the placeholder **`####`** with your group number.
 
@@ -288,13 +288,13 @@ ENDCLASS.
  
 10. Wait a short time and check the console tab for a success message
 
-   You should receive a success message in the *Console Tab* telling you 
+    You should receive a success message in the *Console Tab* telling you 
    
-   *RAP BO ZI_RAP_Inventory_#### generated successfully*
+    **RAP BO ZI_RAP_Inventory_#### generated successfully**
 
-   ... and when you check the content of your package you will notice that it now contains 12 repository objects.
+    ... and when you check the content of your package you will notice that it now contains **13 repository objects**.
 
-   ![RAP BO generated](images/1050.png)
+    ![RAP BO generated](images/1050.png)
 
 11. The coding of the class that you have created has done the following:
  
