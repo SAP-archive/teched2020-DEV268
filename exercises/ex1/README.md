@@ -325,13 +325,14 @@ ENDCLASS.
 > What is now left is to publish the service binding since this can not be automated (yet).
 
 
-12. Open the service binding and double click on **ZUI_RAP_INVENTORY_####_O2**  (in older versions of the RAP Generator it reads _02 instead of _O2)
+12. Open the service binding and double click on **ZUI_RAP_INVENTORY_####_O2**  
+    (in older versions of the RAP Generator it reads _02 instead of _O2)
 
     ![Open Service Binding](images/0435.png)
 
-13. Click on **Activate** to activate the Service Binding. 
+13. Click on **Publish** to publish the Service Binding. 
 
-    ![Activate Service Binding](images/0440.png)
+    ![Publish Service Binding](images/0440.png)
 
 14. Select the entity **Inventory** and press the **Preview** button to start the *Fiori Elements Preview*.
 
