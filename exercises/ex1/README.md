@@ -5,7 +5,6 @@
 
  
 - [Create a package](#create-a-package)
-- [Create a table](#create-a-table)
 - [Run the RAP Generator](#generate-a-starter-application)
 - [Check the generated repository objects](#check-the-generated-repository-objects)
 - [Behavior Implementation](#behavior-implementation)
@@ -81,7 +80,7 @@ You can see now an entry in the **Transport Organizer** view
 ![New transport request](images/0230.png)
 
 
-## Create a class
+## Generate a starter application
 
 Now after you have created a package we can start developing a class. 
 
