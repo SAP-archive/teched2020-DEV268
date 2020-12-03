@@ -283,7 +283,7 @@ ENDCLASS.
 
    ![Inventory Table](images/1040.png)
 
-8. Activate your changes.
+8. Activate your changes  ![Activate class](/images/activate.png).
 
 9. Run the console application by pressing **F9** or right-click on your class in the *Project Explorer* and choose **Run as --> ABAP Application (Console)**
 
