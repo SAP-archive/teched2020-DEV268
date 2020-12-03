@@ -13,7 +13,7 @@
 - [Solution](sources)
 
 
-When creating a new entry with your inventory application you see that there is no value help for the field ProductId. 
+When creating a new entry with your inventory application you see that there is no value help for the field **ProductId**. 
 Since this information resides in a SAP S/4 HANA backend we will it retrieve via OData.
 
  ![No value help](images/1010.png)
