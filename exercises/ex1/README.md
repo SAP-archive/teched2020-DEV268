@@ -284,7 +284,9 @@ ENDCLASS.
 
 8. Activate your changes.
 
-9. Run the console application by pressing **F9**
+9. Run the console application by pressing **F9** or right-click on your class in the *Project Explorer* and choose **Run as --> ABAP Application (Console)**
+
+   ![Run console application](images/1045.png)
  
 10. Wait a short time and check the console tab for a success message
 
