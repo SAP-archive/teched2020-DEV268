@@ -49,16 +49,16 @@ We start by creating a service consumption model for an OData service that provi
 
    When you are asked to select a certificate or to authenticate, simply press the **Cancel** button, since this URL does not require any authentication.
 
-   ![No authentication required](images/1022.png)
+   ![No authentication required](images/1022.png)  
    
- - Download the $metadata file to your computer, you will need it later in this exercise.
+ - Download the $metadata file to your computer, you will need it later in this exercise.  
 
-   ![Download $metadata 1](images/1024.png)
-   ![Download $metadata 2](images/1026.png) 
+   ![Download $metadata 1](images/1024.png)  
+   ![Download $metadata 2](images/1026.png)  
 
-2. Switch to ADT and right click on your package **ZRAP_INVENTORY_####**. Select **New > Other ABAP Repository Object**.
+2. Switch to ADT and right click on your package **ZRAP_INVENTORY_####**. Select **New > Other ABAP Repository Object**.  
 
- ![New ABAP Repository Object 1](images/1020.png)
+ ![New ABAP Repository Object 1](images/1020.png)  
 
 2. In the New ABAP Repository Object dialogue do the following
 
