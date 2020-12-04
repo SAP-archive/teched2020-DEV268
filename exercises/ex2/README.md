@@ -419,8 +419,11 @@ After having created the custom entity `ZRAP_CE_PRODUCTS_####` we now have to en
 
 1. Add interface **`IF_RAP_QUERY_PROVIDER`** to the query implementation class **ZCL_CE_RAP_PRODUCTS_####**
  
-    - You can use the quick fix `Ctrl+1` to add the implementation for the method `if_rap_query_provider~select`
+   - You can use the quick fix `Ctrl+1` to add the implementation for the method `if_rap_query_provider~select`
   
+  <pre>
+  INTERFACES if_rap_query_provider.
+  </pre>
   
   ![Add interface IF_RAP_QUERY_PROVIDER](images/1300.png)
   
