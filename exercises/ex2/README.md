@@ -172,15 +172,15 @@ ZRAP_CE
 
 ![Selection of transport request](images/1135.png)
 
-## CLASS zcl_ce_rap_products_#### DEFINITION
+## CLASS zcl_ce_rap_products_#### - Implementation
 
-Let's start with the implementation of our test class. 
+1. Let's start with the implementation of our test class. 
 
-In the public section we add two **TYPES** definitions. **t_product_range** is used to provide filter conditions for ProductIDs in form of SELECT-OPTIONS to the method **get_products( )**.  
-The second type **t_business_data** is used to retrieve the business data returned by our remote OData service.  
-The  **get_products( )** method takes filter conditions in form of SELECT-OPTIONS via the importing parameter **it_filter_cond**. In addition it is possible to provide values for **top** and **skip** to leverage client side paging.  
+   In the public section we add two **TYPES** definitions. **t_product_range** is used to provide filter conditions for ProductIDs in form of SELECT-OPTIONS to the method **get_products( )**.  
+   The second type **t_business_data** is used to retrieve the business data returned by our remote OData service.  
+   The  **get_products( )** method takes filter conditions in form of SELECT-OPTIONS via the importing parameter **it_filter_cond**. In addition it is possible to provide values for **top** and **skip** to leverage client side paging.  
 
-So the **DEFINITION** section of your class should now look like follows:
+   So the **DEFINITION** section of your class should now look like follows:
 
 <pre>
 CLASS zcl_ce_rap_products_#### DEFINITION
@@ -218,16 +218,16 @@ ENDCLASS.
 
    ![Add implementation](images/1137.png)
 
-6. and finally add an implementation for the method **get_products**. 
+6. Now we will add code in the **IMPLEMENTATION** section of the method **get_products( )**. 
 
    The public method **get_products( )** is used to retrieve the data from the remote OData service. Since it is not possible to leverage the destination service in the trial systems, we will use the method **cl_http_destination_provider=>create_by_url** which allows us to create a http destination object based on the target URL. As the target URL we choose the root URL https://sapes5.sapdevcenter.com of the ES5 system since the relative URL that points to the OData service will be added when creating the OData client proxy.
 
->   **Caution:**  
->   Do not forget to replace the placeholder **'####'** with your unique number.  
+   > **Caution:**  
+   > Do not forget to replace the placeholder **'####'** with your unique number.  
 
-> Please note
+   > Please note
 
-> In a normal SAP Cloud Platform, ABAP Environment system one would leverage the destination service of the underlying Cloud Foundry Environment and one would use the statement **cl_http_destination_provider=>create_by_cloud_destination** to generate a http destination in the ABAP Environment system based on these settings.
+   > In a normal SAP Cloud Platform, ABAP Environment system one would leverage the destination service of the underlying Cloud Foundry Environment and one would use the statement **cl_http_destination_provider=>create_by_cloud_destination** to generate a http destination in the ABAP Environment system based on these settings.
 
  ![Add implementation2](images/1139.png)
 
@@ -284,7 +284,7 @@ METHOD get_products.
   ENDMETHOD.
 </pre>
 
-8. Add the following code into the **IMPLEMENTATION** section of your main method
+8. Finally we add the following code into the **IMPLEMENTATION** section of your **main** method
 
   The main method creates a simple filter for products with a name greater or equal **HT-1200**. At the same time we use client side paging to skip the first result and limit the response to 3 products.
 
@@ -319,7 +319,7 @@ METHOD get_products.
 
    [Source code zcl_ce_rap_products_####](sources/ex2_CLAS_zcl_ce_rap_products_%23%23%23%23_step_1.txt)
 
-10. You can now run the console application by pressing F9.
+10. You can now run the console application by pressing **F9**.
 
 
     ![Selection of transport request](images/1170.png)
