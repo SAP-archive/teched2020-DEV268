@@ -1,5 +1,5 @@
 # TOC
-[Home - DEV268](../../README.md#exercises)
+[Home](../../README.md#exercises)
 # Exercise 2
 
 - [Create the service consumption model](#create-the-service-consumption-model)
