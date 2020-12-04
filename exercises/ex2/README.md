@@ -345,16 +345,16 @@ In order to be able to retrieve the data from the remote OData service we have t
 
 The interface **if_rap_query_provider interface** only offers one method which is called **select**. Within this select method we will call the public **get_products( )** method. The select method also expects that the incoming requests provide certain OData specific query parameters. These we will set in our coding as well.
 
-1. Right-click on the folder **Data Definition** and select **New Data Definition.**
+1. Right-click on the folder **Data Definition** and select **New Data Definition.**   
 
-![New data definition 1](images/1200.png)
+   ![New data definition 1](images/1200.png)
 
 
-1. Let’s start with creating a new data definition zce_rap_agency_#### using the template for a custom entity. 
+1. Let’s start with creating a new data definition `zce_rap_agency_####` using the template for a custom entity. 
 
 2. The **New Data Defintion** dialogue opens
-   - Name: ZCE_RAP_PRODUCTS_#### 
-   - Description: Custom entity for products from ES5
+   - Name: **`ZCE_RAP_PRODUCTS_####`** 
+   - Description: **`Custom entity for products from ES5`**
    
    Press **Next**
    
@@ -362,15 +362,15 @@ The interface **if_rap_query_provider interface** only offers one method which i
    
 3. Selection of a transport request
    - Select or create a transport request.
-   - **!!! ONLY!!!** Press *Next*. Do **NOT** press *Finish*.
+   - **!!! ONLY !!!** Press *Next*. Do **NOT** press *Finish*.
 
-> Caution
+   > Caution
 
-> If you were to press **Finish** instead of **Next**, the wizard would use the template that was used the last time when this wizard was used by the developer. 
+   > If you were to press **Finish** instead of **Next**, the wizard would use the template that was used the last time when this wizard was used by the developer.  
 
-> In order to be sure that the correct template is selected, we **MUST** press **Next** and not **Finish** which would skip the step of template selection.
+   > In order to be sure that the correct template is selected, we **MUST** press **Next** and not **Finish** which would skip the step of template selection.
 
-![New data definition 2](images/1220.png)
+   ![New data definition 2](images/1220.png)
 
 4. Select Template
 
