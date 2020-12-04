@@ -166,26 +166,21 @@ This is a useful additional step since this way it is easier to check whether th
 ![Selection of transport request](images/1130.png)
 ZRAP_CE
    
-5. Add an implementation for the method main
+5. Check the source code template
 
-  You will see the warning **Implementation missing for method IF_OO_ADT_CLASSRUN~MAIN**. 
+  You will notice that the wizard has automatically added an implementation for the method **IF_OO_ADT_CLASSRUN~MAIN**. 
 
 ![Selection of transport request](images/1135.png)
-
-6. Implementation
-
-    Navigating back to the service consumption model we can use the *Copy to clipboard* button to copy the sample code for the **ReadList** operation to use it in our newly created class.
-
 
 ## CLASS zcl_ce_rap_products_#### DEFINITION
 
 Let's start with the implementation of our test class. 
 
-In the public section we add two **TYPES** definitions. **t_product_range** is used to provide filter conditions for ProductIDs in form of SELECT-OPTIONS to the method **get_products( )**. The second type **t_business_data** is used to retrieve the business data returned by our remote OData service.
+In the public section we add two **TYPES** definitions. **t_product_range** is used to provide filter conditions for ProductIDs in form of SELECT-OPTIONS to the method **get_products( )**.  
+The second type **t_business_data** is used to retrieve the business data returned by our remote OData service.  
+The  **get_products( )** method takes filter conditions in form of SELECT-OPTIONS via the importing parameter **it_filter_cond**. In addition it is possible to provide values for **top** and **skip** to leverage client side paging.  
 
-The  **get_products( )** method takes filter conditions in form of SELECT-OPTIONS via the importing parameter **it_filter_cond**. In addition it is possible to provide values for **top** and **skip** to leverage client side paging.
-
-So the DEFINITION section of your class should now look like follows:
+So the **DEFINITION** section of your class should now look like follows:
 
 <pre>
 CLASS zcl_ce_rap_products_#### DEFINITION
@@ -219,43 +214,22 @@ CLASS zcl_ce_rap_products_#### DEFINITION
 ENDCLASS.
 </pre>
 
-7. Add the following code into the implementation of your main method
+   You will get a warning that the method **get_products( )** has not been implemented yet. Press **Ctrl+1** to start the quick fix to add an implementation for **get_products( )**.
 
-The main method creates a simple filter for products with a name greater or equal **HT-1200**. At the same time we use client side paging to skip the first result and limit the response to 3 products.
+   ![Add implementation](images/1137.png)
 
-<pre>
-  METHOD if_oo_adt_classrun~main.
+6. and finally add an implementation for the method **get_products**. 
 
-    DATA business_data TYPE TABLE OF zrap_####_sepmra_i_product_e.
-    DATA filter_conditions  TYPE if_rap_query_filter=>tt_name_range_pairs .
-    DATA ranges_table TYPE if_rap_query_filter=>tt_range_option .
-    ranges_table = VALUE #( (  sign = 'I' option = 'GE' low = 'HT-1200' ) ).
-    filter_conditions = VALUE #( ( name = 'PRODUCT'  range = ranges_table ) ).
+   The public method **get_products( )** is used to retrieve the data from the remote OData service. Since it is not possible to leverage the destination service in the trial systems, we will use the method **cl_http_destination_provider=>create_by_url** which allows us to create a http destination object based on the target URL. As the target URL we choose the root URL https://sapes5.sapdevcenter.com of the ES5 system since the relative URL that points to the OData service will be added when creating the OData client proxy.
 
-    TRY.
-        get_products(
-          EXPORTING
-            it_filter_cond    = filter_conditions
-            top               =  3
-            skip              =  1
-          IMPORTING
-            et_business_data  = business_data
-          ) .
-        out->write( business_data ).
-      CATCH cx_root INTO DATA(exception).
-        out->write( cl_message_helper=>get_latest_t100_exception( exception )->if_message~get_longtext( ) ).
-    ENDTRY.
-
-  ENDMETHOD.
-</pre>
-
-8. and finally add an implementation for the method **get_products**. 
-
-The public method **get_products( )** is used to retrieve the data from the remote OData service. Since it is not possible to leverage the destination service in the trial systems, we will use the method **cl_http_destination_provider=>create_by_url** which allows us to create a http destination object based on the target URL. As the target URL we choose the root URL https://sapes5.sapdevcenter.com of the ES5 system since the relative URL that points to the OData service will be added when creating the OData client proxy.
+>   **Caution:**  
+>   Do not forget to replace the placeholder **'####'** with your unique number.  
 
 > Please note
 
 > In a normal SAP Cloud Platform, ABAP Environment system one would leverage the destination service of the underlying Cloud Foundry Environment and one would use the statement **cl_http_destination_provider=>create_by_cloud_destination** to generate a http destination in the ABAP Environment system based on these settings.
+
+ ![Add implementation2](images/1139.png)
 
 <pre>
 METHOD get_products.
@@ -274,7 +248,7 @@ METHOD get_products.
 
     odata_client_proxy = cl_web_odata_client_factory=>create_v2_remote_proxy(
       EXPORTING
-        iv_service_definition_name = 'ZSC_RAP_PRODUCTS_####'
+        iv_service_definition_name = 'ZSC_RAP_PRODUCTS_<b>####</b>'
         io_http_client             = http_client
         iv_relative_service_root   = '/sap/opu/odata/sap/ZPDCDS_SRV/' ).
 
@@ -310,14 +284,45 @@ METHOD get_products.
   ENDMETHOD.
 </pre>
 
+8. Add the following code into the **IMPLEMENTATION** section of your main method
+
+  The main method creates a simple filter for products with a name greater or equal **HT-1200**. At the same time we use client side paging to skip the first result and limit the response to 3 products.
+
+<pre>
+  METHOD if_oo_adt_classrun~main.
+
+    DATA business_data TYPE TABLE OF zrap_####_sepmra_i_product_e.
+    DATA filter_conditions  TYPE if_rap_query_filter=>tt_name_range_pairs .
+    DATA ranges_table TYPE if_rap_query_filter=>tt_range_option .
+    ranges_table = VALUE #( (  sign = 'I' option = 'GE' low = 'HT-1200' ) ).
+    filter_conditions = VALUE #( ( name = 'PRODUCT'  range = ranges_table ) ).
+
+    TRY.
+        get_products(
+          EXPORTING
+            it_filter_cond    = filter_conditions
+            top               =  3
+            skip              =  1
+          IMPORTING
+            et_business_data  = business_data
+          ) .
+        out->write( business_data ).
+      CATCH cx_root INTO DATA(exception).
+        out->write( cl_message_helper=>get_latest_t100_exception( exception )->if_message~get_longtext( ) ).
+    ENDTRY.
+
+  ENDMETHOD.
+</pre>
+
+
 9. The code should now look as follows
 
-[Source code zcl_ce_rap_products_####](sources/ex2_CLAS_zcl_ce_rap_products_%23%23%23%23_step_1.txt)
+   [Source code zcl_ce_rap_products_####](sources/ex2_CLAS_zcl_ce_rap_products_%23%23%23%23_step_1.txt)
 
 10. You can now run the console application by pressing F9.
 
 
-![Selection of transport request](images/1170.png)
+    ![Selection of transport request](images/1170.png)
 
 
 ## Create a custom entity and implement the query implementation class
