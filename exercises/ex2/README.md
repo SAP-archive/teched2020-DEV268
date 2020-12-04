@@ -403,7 +403,7 @@ The interface **if_rap_query_provider interface** only offers one method which i
 
   ![Error message annotation required](images/1280.png)
 
-7. Activate your changes
+7. Activate your changes ![Activate](images/activate.png)
 
    ![Error message class must implement IF_RAP_QUERY_PROVIDER](images/1290.png)
 
