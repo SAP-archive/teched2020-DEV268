@@ -492,7 +492,7 @@ It is mandatory that the response not only contains the retrieved data via the m
   -  Add the annotation `@Consumption.valueHelpDefinition` to the field `ProductID`
   
   <pre>
-  @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCE_RAP_PRODUCTS_1234', element: 'Product'  } }]
+  @Consumption.valueHelpDefinition: [{ entity : {name: 'ZCE_RAP_PRODUCTS_####', element: 'Product'  } }]
   ProductID,
   </pre>
 
