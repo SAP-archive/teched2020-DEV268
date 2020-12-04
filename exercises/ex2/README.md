@@ -46,7 +46,15 @@ We start by creating a service consumption model for an OData service that provi
 1. The *$metadata* file of the OData service that we want to consume must be uploaded in file format. You have hence to download it first.
  
  - Click on the following URL https://sapes5.sapdevcenter.com/sap/opu/odata/sap/ZPDCDS_SRV/$metadata
+
+   When you are asked to select a certificate or to authenticate, simply press the **Cancel** button, since this URL does not require any authentication.
+
+   ![No authentication required](images/1022.png)
+   
  - Download the $metadata file to your computer, you will need it later in this exercise.
+
+   ![Download $metadata 1](images/1024.png)
+   ![Download $metadata 2](images/1026.png) 
 
 2. Switch to ADT and right click on your package **ZRAP_INVENTORY_####**. Select **New > Other ABAP Repository Object**.
 
