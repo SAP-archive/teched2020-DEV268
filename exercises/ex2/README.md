@@ -84,7 +84,7 @@ We start by creating a service consumption model for an OData service that provi
 5. The $metadata file of the OData service that we want to consume must be uploaded in file format. If you have not yet downloaded the $metadata file you have to do this now.
 
    - Click **Browse** to select the $metadata file that you have downloaded earlier in this exercise
-   - Prefix: **`RAP_#### _`** 
+   - Prefix: **`RAP_####_`** 
 
 > **Please note**
 
