@@ -399,17 +399,11 @@ The interface **if_rap_query_provider interface** only offers one method which i
 
   ![Copy field list into the custom entity](images/1260.png)
 
-6. You will notice the error message
-
-*Custom entity requires annotation @ObjectModel.Query.ImplementedBy defining a query provider class*
-
-  ![Error message annotation required](images/1270.png)
-
-7. So we now add the annoation `@ObjectModel.query.implementedBy: 'ABAP:ZCL_CE_RAP_PRODUCTS_####'`
+6. Now add the annoation `@ObjectModel.query.implementedBy: 'ABAP:ZCL_CE_RAP_PRODUCTS_####'`
 
   ![Error message annotation required](images/1280.png)
 
-8. Activate your changes
+7. Activate your changes
 
 When trying to activate the DDL source code we get the error message 
 
