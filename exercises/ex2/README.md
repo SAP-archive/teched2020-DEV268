@@ -476,14 +476,14 @@ It is mandatory that the response not only contains the retrieved data via the m
 
 ## Add the custom entity to your service definition
 
-1. Open the Service Definition `ZRAP_UI_Inventory_M_####` 
+1. Open the Service Definition `ZUI_RAP_INVENTORY_####` 
 
-   - add the statement 
-     <pre>expose ZCE_RAP_PRODUCTS_#### as Products;</pre>
-     so that the custom entity is added to the OData service.
-   - Activate your changes 
+   - add the statement  
+     <pre>expose ZCE_RAP_PRODUCTS_#### as Products;</pre>  
+     so that the custom entity is added to the OData service.  
+   - Activate your changes ![Activate](images/activate.png)
  
-  ![Add custom entity to service definition](images/1320.png)
+  ![Add custom entity to service definition](images/1320.png)  
 
 ## Add the custom entity as a value help
 
