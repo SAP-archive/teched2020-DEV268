@@ -375,7 +375,7 @@ The interface **if_rap_query_provider interface** only offers one method which i
 4. Select Template
 
    - Use the scroll bar to navigate down the list
-   - Select the template **Define custom entity with parameters"
+   - Select the template **Define custom entity with parameters**
    - Press **Finish**
 
 > **Please note**
