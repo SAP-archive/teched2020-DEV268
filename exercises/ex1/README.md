@@ -1,5 +1,5 @@
 
-[Home - DEV268](../../README.md#exercises)
+[Home](../../README.md#exercises)
 
 # Exercise 1
 
