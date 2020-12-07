@@ -6,7 +6,8 @@
 - [Create the Service Consumption Model](#create-the-service-consumption-model)
 - [Add and implement a determination](#add-and-implement-a-determination)
 - [Test the service](#test-the-service)
-- [Solution](sources)
+- [Summary](#summary)
+- [Solution](#solution)
 
 In the following exercise you will learn how to call a SOAP web service and how to embed this into your inventory application by using it as part of a determination. The SOAP web service that we are going to use is a demo web service available on the SAP Gateway Demo system ES5.
 
@@ -24,28 +25,28 @@ In this step we will create a service consumption model based on the WSDL file t
 
 2. Right-click on the folder **Service Consumption Models**  and choose **New Service Consumption Model**
 
-  ![New Service Consumption Model](images/2010.png)
+   ![New Service Consumption Model](images/2010.png)
   
 3. The New Service Consumption Model dialogue opens. Here enter the following data:
 
-Name: `ZSC_RAP_GETPRICE_####` <br/>
-Description: `Product price from ES5` <br/>
-Remote Consumption Model: `Web Service` (to be selected from the drop down box)
+   Name: `ZSC_RAP_GETPRICE_####` <br/>
+   Description: `Product price from ES5` <br/>
+   Remote Consumption Model: `Web Service` (to be selected from the drop down box)
 
-  ![Service Consumption Model](images/2020.png)
+   ![Service Consumption Model](images/2020.png)
 
 4. The WSDL file of the SOAP web service that you want to consume must be uploaded in file format. If you have not yet downloaded the WSDL file you have to do this now.
 
    - Click **Browse** to select the WSDL file that you have downloaded earlier in this exercise
-   - Prefix: `ZRAP_####_`
+   - Prefix: **`ZRAP_####_`**
 
-  ![Web Service Consumption Proxy](images/2030.png)
+   ![Web Service Consumption Proxy](images/2030.png)
 
-> ** Caution **
-
-> Opposed to the prefix that we have chosen for **OData Service Consumption Proxy** we have to choose a leading *Z*. If not we get an error message that states: 
-   *Package ZRAP_INVENTORY_1234 is a customer package, object RAP_1234_ is in SAP namespace.  Use a valid combination of object name*
->   ![Web Service Consumption Proxy](images/2025.png)
+   > **Caution**  
+   > Opposed to the prefix that we have chosen for **OData Service Consumption Proxy** we have to choose a leading **Z**.   
+   > If not, we get an error message that states:  
+   > *Package ZRAP_INVENTORY_#### is a customer package, object RAP_####_ is in SAP namespace.  Use a valid combination of object name*  
+   > ![Web Service Consumption Proxy](images/2025.png)
    
 
 
@@ -55,20 +56,26 @@ Remote Consumption Model: `Web Service` (to be selected from the drop down box)
    - Select a transport request
    - Press **Finish**
 
-  ![Selection of transport request](images/2040.png)
+   ![Selection of transport request](images/2040.png)
 
 6. Service Consumption Model
 
-The Web Service does only have one service operation `get_price`. Use the **Copy to clipboard** button to copy the code sample for this service operation to the clipboard. We will use it in the following step.
+   The Web Service does only have one service operation `get_price`. Use the **Copy to clipboard** button to copy the code sample for this service operation to the clipboard. We will use it in the following step.
 
 
-![Web Service Consumption Proxy](images/2050.png)
+   ![Web Service Consumption Proxy](images/2050.png)
 
-7. Check generated objects
+7. Activate your changes
 
-When checking the *Project Explorer* you will notice that several objects have been generated. For those that are used to the generation of SOAP Web Service proxies in on premise systems they will look familiar.
+   Press the ![Activate your changes](images/activate.png) button to generate the service consumption model alongside with all dependend objects.
 
-![Web Service Consumption Proxy](images/2060.png)
+8. Check generated objects
+
+   When refreshing your package in the *Project Explorer* you will notice that several objects have been generated. For those that are used to the generation of SOAP Web Service proxies in on premise systems they will look familiar.
+
+   ![Web Service Consumption Proxy](images/2060.png)
+
+
 
 ## Add and implement a determination 
 
@@ -77,26 +84,26 @@ When checking the *Project Explorer* you will notice that several objects have b
   - Open your behavior definition `ZI_RAP_INVENTORY_####`
   - Add the following code snippet to add a determination for the field `Price`
   
-  <pre>
-  determination GetPrice on modify { field ProductID; }
-  </pre>
+   <pre>
+   determination GetPrice on modify { field ProductID; }
+   </pre>
 
 ![Web Service Consumption Proxy](images/2065.png)
 
-  - Select the determination name `GetPrice` and press **CTRL+1** for a quick fix
-  - Double click on the quick fix **Add missing method for determination GetPrice in local handler class ...**
+   - Select the determination name `GetPrice` and press **CTRL+1** for a quick fix
+   - Double click on the quick fix **Add missing method for determination GetPrice in local handler class ...**
 
-![Web Service Consumption Proxy](images/2070.png)
+   ![Web Service Consumption Proxy](images/2070.png)
 
 2. Add the following code in the implementation of the method `GetPrice`.
 
-> **Coding explained**
+   > **Coding explained**
 
-> The following code is using large parts of the code snippets provided by the service consumption model.
-> It has however been adjusted to fit our needs.
-> 1. The destination is not retrieved by calling the method `cl_soap_destination_provider=>create_by_cloud_destination( )` but by using the method `cl_soap_destination_provider=>create_by_url( )`. This is because the destination service is not available in the ABAP trial systems in SAP Cloud Platform.
-> 2. Instead of using an inline declaration for `destination`and `proxy` these variables are defined beforehand. This way we can avoid that the destination and proxy object are created several times in case multiple inventories are to be created.
-> 3. The data retrieved from the SOAP call is used to update the inventory data via EML.
+   > The following code is using large parts of the code snippets provided by the service consumption model.
+   > It has however been adjusted to fit our needs.
+   > 1. The destination is not retrieved by calling the method `cl_soap_destination_provider=>create_by_cloud_destination( )` but by using the method `cl_soap_destination_provider=>create_by_url( )`. This is because the destination service is not available in the ABAP trial systems in SAP Cloud Platform.
+   > 2. Instead of using an inline declaration for `destination`and `proxy` these variables are defined beforehand. This way we can avoid that the destination and proxy object are created several times in case multiple inventories are to be created.
+   > 3. The data retrieved from the SOAP call is used to update the inventory data via EML.
 
 <pre>
   
@@ -196,32 +203,49 @@ When checking the *Project Explorer* you will notice that several objects have b
 
 ## Test the service
 
-1. Test service with Fiori Elements preview.
-    - Open the service binding ZUI_RAP_INVENTORY_####_02 (either via Ctrl+Shift+A or via navigation in the Project Explorer)
-    - Select the entity `Ìnventory`.
-    - Press the **Preview** button
+1. Test service with Fiori Elements preview.  
+
+   - Open the service binding ZUI_RAP_INVENTORY_####_02 (either via Ctrl+Shift+A or via navigation in the Project Explorer)
+   - Select the entity `Ìnventory`.
+   - Press the **Preview** button
     
-    ![Open the Fiori Elements preview](images/2080.png)
+   ![Open the Fiori Elements preview](images/2080.png)
 2. Create a new inventory entry and select a valid product id using the value help
 
-    - Select a valid ProductID via the value help (e.g. HT-1000)
+   - Select a valid ProductID via the value help (e.g. HT-1000)
     
-![Create inventory with valid product name](images/2110.png)
+     ![Create inventory with valid product name](images/2110.png)
  
-3. Press the **Create** button
-    - When pressing the **Create** button the determination for the price will call the SOAP service
-    - The inventory will be created with the price and the currency retrieved from the backend
+3. Press the **Create** button  
 
-![Inventory with product price](images/2120.png)
+   - When pressing the **Create** button the determination for the price will call the SOAP service
+   - The inventory will be created with the price and the currency retrieved from the backend
 
-4. Create an inventory entry with an invalid ProductID (e.g. www).
-    - Enter an invalid ProductID, e.g. `www`
-![Inventory with invalid product price](images/2130.png)
+     ![Inventory with product price](images/2120.png)
+
+4. Create an inventory entry with an invalid ProductID (e.g. www).  
+
+   - Enter an invalid ProductID, e.g. `www`  
+   
+     ![Inventory with invalid product price](images/2130.png)
 
    - The SOAP call will not be able to find the ProductId in the backend and will hence respond with the error message `Product not found. Try e.g. HT-1000 :)`.
    
-![Error message from SOAP call](images/2140.png)
+     ![Error message from SOAP call](images/2140.png)
 
+## Summary
+
+In this session you have learned how you can use SAP Cloud Platform, ABAP environment to implement a side-by-side extension scenarios for an SAP S/4 HANA system using the ABAP RESTful Application Programming Model.
+
+You have retrieved data from the SAP S/4HANA system using OData and SOAP based communication to implement
+
+- a value help to select a product for an inventory entry
+- a determination for the price of a product
+
+  ![Extension scenarios](images/2500.png)
+
+In a licensed SAP Cloud Platform, ABAP Environment system you would also be able to create a service consumption model for RFC function modules.
 
 ## Solution
-![Source code used in this exercise](sources)
+
+[Source code used in this exercise](sources)
