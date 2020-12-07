@@ -1,9 +1,8 @@
-# RAPCJE - SAP Cloud Platform, ABAP Environment Connectivity and Integration
+# DEV268 - SAP Cloud Platform, ABAP Environment Connectivity and Integration
 
 ## Description
 
-This repository contains the material for the ABAP RESTful Application Programming Model workshop:
-RAPCJE - SAP Cloud Platform, ABAP Environment Connectivity and Integration. 
+This repository contains the material for the SAP TechEd 2020 session called DEV268 - SAP Cloud Platform, ABAP Environment Connectivity and Integration. 
 
 ## Overview
 
@@ -72,3 +71,12 @@ These are the steps of our hands-ons session:
     - [Add and implement a determination](exercises/ex3/README.md#add-and-implement-a-determination)
     - [Test the service](exercises/ex3/README.md#test-the-service)
     - [Solution](exercises/ex3/sources)
+    
+    
+## How to obtain support
+
+Support for the content in this repository is available during the actual time of the online session for which this content has been designed. Otherwise, you may request support via the [Issues](../../issues) tab.
+
+## License
+Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) file.
+   
