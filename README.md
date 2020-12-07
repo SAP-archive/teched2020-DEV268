@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository contains the material for the SAP TechEd 2020 session called DEV268 - SAP Cloud Platform, ABAP Environment Connectivity and Integration. 
+This repository contains the material for the SAP TechEd 2020 session called *DEV268 - SAP Cloud Platform, ABAP Environment Connectivity and Integration.*   
 
 ## Overview
 
