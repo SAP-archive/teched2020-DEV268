@@ -62,7 +62,7 @@ In this step we will create a service consumption model based on the WSDL file t
 
    The Web Service does only have one service operation `get_price`. 
 
-   > **Please note**
+   > **Please note**  
    > The wizard provides code samples for each service operation. The code can be copied using the the *Copy to clipboard* button.
    > We will not do this since in this exercise since we have provided a detailed code sample (see below) which is however based on the code snippet mentioned above.
 
@@ -101,13 +101,13 @@ In this step we will create a service consumption model based on the WSDL file t
 
 2. Add the following code in the implementation of the method `GetPrice`.
 
-   > **Coding explained**
-
+   > **Coding explained**  
    > The following code is using large parts of the code snippets provided by the service consumption model.
    > It has however been adjusted to fit our needs.
    > 1. The destination is not retrieved by calling the method `cl_soap_destination_provider=>create_by_cloud_destination( )` but by using the method `cl_soap_destination_provider=>create_by_url( )`. This is because the destination service is not available in the ABAP trial systems in SAP Cloud Platform.
    > 2. Instead of using an inline declaration for `destination`and `proxy` these variables are defined beforehand. This way we can avoid that the destination and proxy object are created several times in case multiple inventories are to be created.
-   > 3. The data retrieved from the SOAP call is used to update the inventory data via EML.
+   > 3. The data retrieved from the SOAP call is used to update the inventory data via EML.  
+   > **Do not forget to search and replace the placeholder `####`**
 
 <pre>
   
