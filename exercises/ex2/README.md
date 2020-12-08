@@ -120,7 +120,17 @@ Click **Next**.
 
 ![ABAP Artifact Genertion List](images/1080.png)
 
-9. Remove dimensions from the abstract entity  
+9. Let us briefly investigate the service consumption model.  
+
+   For each operation (**Read List**, **Read**, **Create**, **Update** and **Delete**) some sample code has been created that you can use when you want to call the OData Service with one of these operations. Since we want to retrieve a list of Product-IDs, we will select the operation **Read List** and click on the button **Copy to Clipboard**. We will use this code in the following step where we create a console application to test the call to the remote OData service. 
+  
+ ![Code sample for entity access](images/1090.png) 
+
+## Remove dimension fields from abstract entity
+
+In order to avoid an error when the custom entity is used as a value help we have to remove the dimension fields from the abstract entity. Otherwise a convesion error occurs that will lead to a dump. The root cause is being analyzed but was not solved before our session took place.
+
+1. Remove dimensions from the abstract entity  
 
    Please open the entity **`ZRAP_####_SEPMRA_I_PRODUCT_E`** (Press **Ctrl+Shift+A**) and paste the name (of course with your number `####`) and comment out following part:  
   
@@ -141,13 +151,7 @@ Click **Next**.
 
 ![Comment out dimensions](images/1085.png)
 
-10. Afterwards please activate ![Activate](activate/1085.png) your changes.  
-
-11. Let us briefly investigate the service consumption model.  
-
-   For each operation (**Read List**, **Read**, **Create**, **Update** and **Delete**) some sample code has been created that you can use when you want to call the OData Service with one of these operations. Since we want to retrieve a list of Product-IDs, we will select the operation **Read List** and click on the button **Copy to Clipboard**. We will use this code in the following step where we create a console application to test the call to the remote OData service. 
-  
- ![Code sample for entity access](images/1090.png) 
+2. Afterwards please activate ![Activate](images/activate.png) your changes. 
 
 ## Create a console application to test the OData service
 
