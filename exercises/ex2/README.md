@@ -120,28 +120,30 @@ Click **Next**.
 
 ![ABAP Artifact Genertion List](images/1080.png)
 
-9. **Last Minute Change we need to do**  
-   Please open the entity **`ZRAP_####_SEPMRA_I_PRODUCT_E`** (Press **Ctrl+Shift+A**) and paste the name (of course with your number `####`) and delete following part:
+9. Remove dimensions from the abstract entity  
+
+   Please open the entity **`ZRAP_####_SEPMRA_I_PRODUCT_E`** (Press **Ctrl+Shift+A**) and paste the name (of course with your number `####`) and comment out following part:  
+  
 <pre>
- @Odata.property.valueControl: 'Height_vc' 
- @Semantics.quantity.unitOfMeasure: 'DimensionUnit' 
- Height : abap.dec( 13, 3 ) ; 
- Height_vc : RAP_CP_ODATA_VALUE_CONTROL ; 
- @Odata.property.valueControl: 'Width_vc' 
- @Semantics.quantity.unitOfMeasure: 'DimensionUnit' 
- Width : abap.dec( 13, 3 ) ; 
- Width_vc : RAP_CP_ODATA_VALUE_CONTROL ; 
- @Odata.property.valueControl: 'Depth_vc' 
- @Semantics.quantity.unitOfMeasure: 'DimensionUnit' 
- Depth : abap.dec( 13, 3 ) ; 
- Depth_vc : RAP_CP_ODATA_VALUE_CONTROL ; 
+// @OData.property.valueControl: 'Height_vc' 
+// @Semantics.quantity.unitOfMeasure: 'DimensionUnit' 
+// Height : abap.dec( 13, 3 ) ; 
+// Height_vc : rap_cp_odata_value_control ; 
+// @OData.property.valueControl: 'Width_vc' 
+// @Semantics.quantity.unitOfMeasure: 'DimensionUnit' 
+// Width : abap.dec( 13, 3 ) ; 
+// Width_vc : rap_cp_odata_value_control ; 
+// @OData.property.valueControl: 'Depth_vc' 
+// @Semantics.quantity.unitOfMeasure: 'DimensionUnit' 
+// Depth : abap.dec( 13, 3 ) ; 
+// Depth_vc : rap_cp_odata_value_control ; 
 </pre>
 
 ![Comment out dimensions](images/1085.png)
- Afterwards please activate the entity. 
 
+10. Afterwards please activate ![Activate](activate/1085.png) your changes.  
 
-10. Let us briefly investigate the service consumption model. 
+11. Let us briefly investigate the service consumption model.  
 
    For each operation (**Read List**, **Read**, **Create**, **Update** and **Delete**) some sample code has been created that you can use when you want to call the OData Service with one of these operations. Since we want to retrieve a list of Product-IDs, we will select the operation **Read List** and click on the button **Copy to Clipboard**. We will use this code in the following step where we create a console application to test the call to the remote OData service. 
   
