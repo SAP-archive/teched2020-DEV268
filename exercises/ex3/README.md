@@ -92,7 +92,7 @@ In this step we will create a service consumption model based on the WSDL file t
    determination GetPrice on modify { field ProductID; }
    </pre>
 
-![Web Service Consumption Proxy](images/2065.png)
+   ![Web Service Consumption Proxy](images/2065.png)
 
    - Select the determination name `GetPrice` and press **CTRL+1** for a quick fix
    - Double click on the quick fix **Add missing method for determination GetPrice in local handler class ...**
@@ -107,6 +107,7 @@ In this step we will create a service consumption model based on the WSDL file t
    > 1. The destination is not retrieved by calling the method `cl_soap_destination_provider=>create_by_cloud_destination( )` but by using the method `cl_soap_destination_provider=>create_by_url( )`. This is because the destination service is not available in the ABAP trial systems in SAP Cloud Platform.
    > 2. Instead of using an inline declaration for `destination`and `proxy` these variables are defined beforehand. This way we can avoid that the destination and proxy object are created several times in case multiple inventories are to be created.
    > 3. The data retrieved from the SOAP call is used to update the inventory data via EML.  
+   
    > **Do not forget to search and replace the placeholder `####`**
 
 <pre>
