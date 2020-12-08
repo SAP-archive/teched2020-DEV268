@@ -120,8 +120,9 @@ Click **Next**.
 
 ![ABAP Artifact Genertion List](images/1080.png)
 
-8.1. **Last Minute Change we need to do**
-Please open the entity ZRAP_####_SEPMRA_I_PRODUCT_E (Press Ctrl+Shift+A) and paste the name (of course with your number) and delete following part:
+9. **Last Minute Change we need to do**  
+   Please open the entity **`ZRAP_####_SEPMRA_I_PRODUCT_E`** (Press **Ctrl+Shift+A**) and paste the name (of course with your number `####`) and delete following part:
+<pre>
  @Odata.property.valueControl: 'Height_vc' 
  @Semantics.quantity.unitOfMeasure: 'DimensionUnit' 
  Height : abap.dec( 13, 3 ) ; 
@@ -134,11 +135,13 @@ Please open the entity ZRAP_####_SEPMRA_I_PRODUCT_E (Press Ctrl+Shift+A) and pas
  @Semantics.quantity.unitOfMeasure: 'DimensionUnit' 
  Depth : abap.dec( 13, 3 ) ; 
  Depth_vc : RAP_CP_ODATA_VALUE_CONTROL ; 
- 
+</pre>
+
+![Comment out dimensions](images/1085.png)
  Afterwards please activate the entity. 
 
 
-9. Let us briefly investigate the service consumption model. 
+10. Let us briefly investigate the service consumption model. 
 
    For each operation (**Read List**, **Read**, **Create**, **Update** and **Delete**) some sample code has been created that you can use when you want to call the OData Service with one of these operations. Since we want to retrieve a list of Product-IDs, we will select the operation **Read List** and click on the button **Copy to Clipboard**. We will use this code in the following step where we create a console application to test the call to the remote OData service. 
   
