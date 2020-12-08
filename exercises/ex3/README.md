@@ -108,7 +108,7 @@ In this step we will create a service consumption model based on the WSDL file t
    > 2. Instead of using an inline declaration for `destination`and `proxy` these variables are defined beforehand. This way we can avoid that the destination and proxy object are created several times in case multiple inventories are to be created.
    > 3. The data retrieved from the SOAP call is used to update the inventory data via EML.  
    
-   > **Do not forget to search and replace the placeholder `####`**
+   > **Do not forget to search and replace the placeholder `####` with the unique number that you have chosen beforehand.**
 
 <pre>
   
