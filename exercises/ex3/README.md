@@ -60,7 +60,11 @@ In this step we will create a service consumption model based on the WSDL file t
 
 6. Service Consumption Model
 
-   The Web Service does only have one service operation `get_price`. Use the **Copy to clipboard** button to copy the code sample for this service operation to the clipboard. We will use it in the following step.
+   The Web Service does only have one service operation `get_price`. 
+
+   > **Please note**
+   > The wizard provides code samples for each service operation. The code can be copied using the the *Copy to clipboard* button.
+   > We will not do this since in this exercise since we have provided a detailed code sample (see below) which is however based on the code snippet mentioned above.
 
 
    ![Web Service Consumption Proxy](images/2050.png)
