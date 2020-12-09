@@ -28,52 +28,57 @@ CLASS zcl_generate_dev268_#### IMPLEMENTATION.
   METHOD main.
 
     package_name = to_upper( package_name ).
-
     DATA(lo_package) = xco_cp_abap_repository=>object->devc->for( package_name ).
-    DATA(lv_package_software_component) = lo_package->read( )-property-software_component->name.
-    DATA(lo_transport_layer) = lo_package->read(  )-property-transport_layer.
-    DATA(lo_transport_target) = lo_transport_layer->get_transport_target( ).
-    DATA(lv_transport_target) = lo_transport_target->value.
-    DATA(lo_transport_request) = xco_cp_cts=>transports->workbench( lo_transport_target->value  )->create_request( | create tables |  ).
-    DATA(lv_transport) = lo_transport_request->value.
-    transport = lv_transport.
-    dev_system_environment = xco_cp_generation=>environment->dev_system( lv_transport ).
 
     IF NOT lo_package->exists( ).
-
       RAISE EXCEPTION TYPE zcx_rap_generator
         EXPORTING
           textid   = zcx_rap_generator=>package_does_not_exist
           mv_value = CONV #( package_name ).
-
     ENDIF.
-
-    DATA(lo_objects_put_operation) = dev_system_environment->create_put_operation( ).
 
     table_name_inventory = |ZRAP_INVEN_{ unique_number }|.
+    DATA(lo_table) = xco_cp_abap_repository=>object->tabl->for( CONV #( table_name_inventory ) ).
 
-    DATA(json_string) = get_json_string(  ).
+    IF lo_table->exists(  ) = abap_false.
 
-    generate_table(
-      EXPORTING
-        io_put_operation        = lo_objects_put_operation
-        table_name              = table_name_inventory
-        table_short_description = | Inventory data group { unique_number }|
-    ).
+      DATA(lv_package_software_component) = lo_package->read( )-property-software_component->name.
+      DATA(lo_transport_layer) = lo_package->read(  )-property-transport_layer.
+      DATA(lo_transport_target) = lo_transport_layer->get_transport_target( ).
+      DATA(lv_transport_target) = lo_transport_target->value.
+      DATA(lo_transport_request) = xco_cp_cts=>transports->workbench( lo_transport_target->value  )->create_request( | create tables |  ).
+      DATA(lv_transport) = lo_transport_request->value.
+      transport = lv_transport.
+      dev_system_environment = xco_cp_generation=>environment->dev_system( lv_transport ).
 
-    DATA(lo_result) = lo_objects_put_operation->execute( ).
+      DATA(lo_objects_put_operation) = dev_system_environment->create_put_operation( ).
 
-    out->write( 'tables created' ).
+      generate_table(
+        EXPORTING
+          io_put_operation        = lo_objects_put_operation
+          table_name              = table_name_inventory
+          table_short_description = | Inventory data group { unique_number }|
+      ).
 
-    DATA(lo_findings) = lo_result->findings.
-    DATA(lt_findings) = lo_findings->get( ).
+      DATA(lo_result) = lo_objects_put_operation->execute( ).
 
-    IF lt_findings IS NOT INITIAL.
-      out->write( lt_findings ).
+      out->write( | table { table_name_inventory } created| ).
+
+      DATA(lo_findings) = lo_result->findings.
+      DATA(lt_findings) = lo_findings->get( ).
+
+      IF lt_findings IS NOT INITIAL.
+        out->write( lt_findings ).
+      ENDIF.
+
+    ELSE.
+      out->write( | table { table_name_inventory } already exists| ).
     ENDIF.
 
-    "create RAP BO
 
+
+    "create RAP BO
+    DATA(json_string) = get_json_string(  ).
     DATA(xco_api) = NEW zcl_rap_xco_cloud_lib( ).
     DATA(root_node) = NEW zcl_rap_node(  ).
     root_node->set_is_root_node( ).
