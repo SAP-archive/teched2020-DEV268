@@ -377,7 +377,7 @@ The interface **if_rap_query_provider interface** only offers one method which i
    ![New data definition 1](images/1200.png)
 
 
-1. Let’s start with creating a new data definition `zce_rap_agency_####` using the template for a custom entity. 
+1. Let’s start with creating a new data definition `ZCE_RAP_PRODUCTS_####` using the template for a custom entity. 
 
 2. The **New Data Defintion** dialogue opens
    - Name: **`ZCE_RAP_PRODUCTS_####`** 
