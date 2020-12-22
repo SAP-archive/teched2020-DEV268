@@ -1,5 +1,7 @@
 # DEV268 - SAP Cloud Platform, ABAP Environment Connectivity and Integration
 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/teched2020-DEV268)](https://api.reuse.software/info/github.com/SAP-samples/teched2020-DEV268)
+
 ## Description
 
 This repository contains the material for the SAP TechEd 2020 session called *DEV268 - SAP Cloud Platform, ABAP Environment Connectivity and Integration.*   
