@@ -104,6 +104,11 @@ Now after you have created a package we can start developing a class.
 
     [zcl_generate_dev268_####](sources/zcl_generate_dev268.txt)   
     
+    if there is an error message 
+    
+    [zcl_generate_dev268_### (dmo namespace)](sources/zcl_generate_dev268_dmo.txt)  
+    
+    
     thereby replacing the placeholder **`####`** in the template coding as shown in the following screen shot.    
 
     ![Code template Inventory Table](images/1030.png)  
