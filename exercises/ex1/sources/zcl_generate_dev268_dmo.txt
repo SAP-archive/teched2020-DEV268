@@ -1,4 +1,4 @@
-CLASS zcl_generate_dev268 _####  DEFINITION
+CLASS zcl_generate_dev268_####  DEFINITION
  PUBLIC
   INHERITING FROM cl_xco_cp_adt_simple_classrun
   FINAL
@@ -25,7 +25,7 @@ CLASS zcl_generate_dev268 _####  DEFINITION
 
 ENDCLASS.
 
-CLASS zcl_generate_dev268 _####  IMPLEMENTATION.
+CLASS zcl_generate_dev268_####  IMPLEMENTATION.
   METHOD main.
     DATA json_string TYPE string.
     json_string = get_json_string(  ).
