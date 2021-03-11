@@ -1,4 +1,4 @@
-CLASS zcl_generate_dev268_#### DEFINITION
+CLASS zcl_generate_dev268 _####  DEFINITION
  PUBLIC
   INHERITING FROM cl_xco_cp_adt_simple_classrun
   FINAL
@@ -16,6 +16,7 @@ CLASS zcl_generate_dev268_#### DEFINITION
     DATA dev_system_environment TYPE REF TO if_xco_cp_gen_env_dev_system.
     DATA transport TYPE sxco_transport .
 
+
     METHODS generate_table  IMPORTING io_put_operation        TYPE REF TO if_xco_cp_gen_d_o_put
                                       table_name              TYPE sxco_dbt_object_name
                                       table_short_description TYPE if_xco_cp_gen_tabl_dbt_s_form=>tv_short_description .
@@ -24,8 +25,10 @@ CLASS zcl_generate_dev268_#### DEFINITION
 
 ENDCLASS.
 
-CLASS zcl_generate_dev268_#### IMPLEMENTATION.
+CLASS zcl_generate_dev268 _####  IMPLEMENTATION.
   METHOD main.
+    DATA json_string TYPE string.
+    json_string = get_json_string(  ).
 
     package_name = to_upper( package_name ).
     DATA(lo_package) = xco_cp_abap_repository=>object->devc->for( package_name ).
@@ -88,7 +91,7 @@ CLASS zcl_generate_dev268_#### IMPLEMENTATION.
       out->write( todo ).
     ENDLOOP.
 
-   
+
   ENDMETHOD.
 
 
@@ -162,6 +165,7 @@ CLASS zcl_generate_dev268_#### IMPLEMENTATION.
                  |  "package": "{ package_name }",| && |\r\n|  &&
                  '  "datasourcetype": "table",' && |\r\n|  &&
                  '  "bindingtype": "odata_v2_ui",' && |\r\n|  &&
+                 |  "transportrequest": "{ transport }",| && |\r\n|  &&
                  '  "hierarchy": {' && |\r\n|  &&
                  '    "entityName": "Inventory",' && |\r\n|  &&
                  |    "dataSource": "zrap_inven_{ unique_number }",| && |\r\n|  &&
