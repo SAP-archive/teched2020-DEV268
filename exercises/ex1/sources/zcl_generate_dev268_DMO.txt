@@ -1,4 +1,4 @@
-CLASS zcl_rap_gen_data_model _####  DEFINITION
+CLASS zcl_rap_gen_data_model_####  DEFINITION
 
 PUBLIC
   INHERITING FROM cl_xco_cp_adt_simple_classrun
@@ -46,19 +46,20 @@ PUBLIC
 
     METHODS get_json_string        RETURNING VALUE(json_string) TYPE string.
 
-    METHODS generate_cds_mde         IMPORTING VALUE(io_rap_bo_node) TYPE REF TO /dmo/cl_rap_node.
+    METHODS generate_cds_mde         IMPORTING VALUE(io_rap_bo_node)   TYPE REF TO /dmo/cl_rap_node
+                                               VALUE(iv_del_transport) TYPE sxco_transport.
 
 ENDCLASS.
 
 
-CLASS zcl_rap_gen_data_model _####  IMPLEMENTATION.
+CLASS zcl_rap_gen_data_model_####  IMPLEMENTATION.
 
   METHOD constructor.
     super->constructor( ).
 
 **********************************************************************
 **  ACTION NEEDED                                                   **
-**  Replace 5500 with your group ID which is used as suffix.        **
+**  Replace #### with your group ID which is used as suffix.        **
 **   a combination of max 4 numbers and/or characters               **
 **********************************************************************
     unique_group_id        = '####'.   " your group-ID
@@ -79,9 +80,9 @@ CLASS zcl_rap_gen_data_model _####  IMPLEMENTATION.
     "create transport request
     DATA(lo_package) = xco_cp_abap_repository=>object->devc->for( package_name ).
     IF NOT lo_package->exists( ).
-      RAISE EXCEPTION TYPE zcx_rap_generator
+      RAISE EXCEPTION TYPE /dmo/cx_rap_generator
         EXPORTING
-          textid   = zcx_rap_generator=>package_does_not_exist
+          textid   = /dmo/cx_rap_generator=>package_does_not_exist
           mv_value = CONV #( package_name ).
     ENDIF.
 
@@ -157,13 +158,34 @@ CLASS zcl_rap_gen_data_model _####  IMPLEMENTATION.
     DATA: mo_environment   TYPE REF TO if_xco_cp_gen_env_dev_system,
           lv_del_transport TYPE sxco_transport.
     lv_del_transport = rap_generator->root_node->transport_request.
+
+    IF lv_del_transport IS INITIAL.
+
+      DATA(cts_obj) = xco_cp_abap_repository=>object->for(
+        EXPORTING
+          iv_type   = 'DDLX'
+          iv_name   = to_upper( rap_generator->root_node->rap_node_objects-meta_data_extension )
+
+      )->if_xco_cts_changeable~get_object(  ).
+
+      lv_del_transport = cts_obj->get_lock(  )->get_transport(  ).
+
+      lv_del_transport = xco_cp_cts=>transport->for( lv_del_transport )->get_request(  )->value.
+
+    ENDIF.
+
+
     mo_environment = xco_cp_generation=>environment->dev_system( lv_del_transport ).
     DATA(lo_delete_operation) = mo_environment->for-ddlx->create_delete_operation( ).
     lo_delete_operation->add_object( rap_generator->root_node->rap_node_objects-meta_data_extension ).
     lo_delete_operation->execute( ).
 
-    generate_cds_mde( conv #( rap_generator->root_node ) ).
-
+    "generate_cds_mde( CONV #( rap_generator->root_node ) ).
+    generate_cds_mde(
+      EXPORTING
+        io_rap_bo_node   = CONV #( rap_generator->root_node )
+        iv_del_transport = lv_del_transport
+    ).
     out->write( '...END OF GENERATION.' ).
 
   ENDMETHOD.
@@ -278,12 +300,12 @@ CLASS zcl_rap_gen_data_model _####  IMPLEMENTATION.
     ENDLOOP.
   ENDMETHOD.
 
-METHOD get_json_string.
+  METHOD get_json_string.
     " build the json document for DEV260 (ex1-ex4)
     json_string ='{' && |\r\n|  &&
                  '  "implementationType": "managed_uuid",' && |\r\n|  &&
                  '  "transactionalbehavior" : false,' && |\r\n|  &&
-                 '  "publishservice" : false ,' && |\r\n|  &&
+                 '  "publishservice" : true ,' && |\r\n|  &&
                  '  "namespace": "Z",' && |\r\n|  &&
                  |  "suffix": "_{ unique_group_id }",| && |\r\n|  &&
                  '  "prefix": "RAP_",' && |\r\n|  &&
@@ -635,13 +657,13 @@ METHOD get_json_string.
     COMMIT WORK.
   ENDMETHOD.
 
-METHOD generate_cds_mde.
+  METHOD generate_cds_mde.
 
     DATA: pos              TYPE i VALUE 0,
           lo_field         TYPE REF TO if_xco_gen_ddlx_s_fo_field,
           lv_del_transport TYPE sxco_transport.
-
-    lv_del_transport       = io_rap_bo_node->root_node->transport_request.
+    lv_del_transport = iv_del_transport.
+    "lv_del_transport       = io_rap_bo_node->root_node->transport_request.
     DATA(mo_environment)   = xco_cp_generation=>environment->dev_system( lv_del_transport ).
     DATA(mo_put_operation) = mo_environment->create_put_operation( ).
     DATA(lv_package)       = io_rap_bo_node->root_node->package.
