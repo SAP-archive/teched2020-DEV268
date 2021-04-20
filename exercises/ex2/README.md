@@ -503,7 +503,7 @@ It is mandatory that the response not only contains the retrieved data via the m
 
 ## Add the custom entity to your service definition
 
-1. Open the Service Definition `ZUI_RAP_INVENTORY_####` 
+1. Open the Service Definition `ZRAP_INVENTORY_####` 
 
    - add the statement  
      <pre>expose ZCE_RAP_PRODUCTS_#### as Products;</pre>  
