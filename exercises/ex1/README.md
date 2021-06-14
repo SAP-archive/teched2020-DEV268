@@ -34,21 +34,21 @@ This application will then be enhanced such that it leverages OData service call
   
 1. Select the **Open ABAP Development Object** icon or press **Ctrl+Shift+A**. 
 
-   ![Open ABAP Development Object](images/helperclass_00_new.png)
+   ![Open ABAP Development Object](images/00_001_DEV268.png)
 
 2. In the *Open ABAP Development Object* dialogue enter **/dmo/cl_gen_dev268_artifacts** as search string and press **OK**.      
 
-   ![Generate Data Model](images/helperclass_01_new.png)
+   ![Generate Data Model](images/00_002_DEV268.png)
 
 2. The class **/dmo/cl_gen_dev268_artifacts** is displayed in a new tab.
 
-    ![Generate Data Model](images/helperclass_02_new.png)
+    ![Generate Data Model](images/00_003_DEV268.png)
   
 3. Press **F9** to run the ABAP class as a console application. As a result, you will see a success message in the Console.     
 
-    ![Generate Data Model](images/helperclass_03_new.png)  
+    ![Generate Data Model](images/00_004_DEV268.png)  
 
-4. Please note down your group ID **`####`** and copy the name of the newly created package **ZRAP_TRAVEL_####**
+4. Please note down your group ID **`####`** and copy the name of the newly created package **ZRAP_INVENTORY_####**
     <pre>
      BEGIN OF GENERATION (20210614 081539 UTC) ... 
      - Package: ZRAP_INVENTORY_#### 
@@ -57,9 +57,9 @@ This application will then be enhanced such that it leverages OData service call
    
 5. Right click on the folder **Favorite Packages** and select **Add Package...**.
 
-   ![Open ABAP Development Object](images/helperclass_04_new.png)
+   ![Open ABAP Development Object](images/00_005_DEV268.png)
 
-6. Enter the name of your package **ZRAP_TRAVEL_####** and press **OK**.    
+6. Enter the name of your package **ZRAP_INVENTORY_####** and press **OK**.    
  
  
 ## Result
