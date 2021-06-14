@@ -50,10 +50,9 @@ This application will then be enhanced such that it leverages OData service call
 
 4. Please note down your group ID **`####`** and copy the name of the newly created package **ZRAP_TRAVEL_####**
     <pre>
-     BEGIN OF GENERATION (20210607 153713 UTC) ... 
-      - Package: ZRAP_TRAVEL_#### 
-      - Group ID: #### 
-      ...
+     BEGIN OF GENERATION (20210614 081539 UTC) ... 
+     - Package: ZRAP_INVENTORY_#### 
+     - Group ID: ####
      </pre>
    
 5. Right click on the folder **Favorite Packages** and select **Add Package...**.
