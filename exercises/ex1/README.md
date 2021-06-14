@@ -4,8 +4,8 @@
 # Exercise 1
 
  
-- [Create a package](#create-a-package)
-- [Run the RAP Generator](#generate-a-starter-application)
+- [Generate the data model](#generate-the-data-model)
+- [Publish service](#publish-service)
 - [Check the generated repository objects](#check-the-generated-repository-objects)
 - [Behavior Implementation](#behavior-implementation)
 - [Summary](#summary)
@@ -62,7 +62,7 @@ This application will then be enhanced such that it leverages OData service call
 6. Enter the name of your package **ZRAP_INVENTORY_####** and press **OK**.    
  
  
-## Result
+## Publish service
 
 1. The helper class **/dmo/cl_gen_dev268_artifacts** has done the following:
  
