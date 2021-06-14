@@ -24,116 +24,48 @@ The usual process of development would be that you as a developer would now star
  
 before you can start with the implementation of the business logic.
  
-To speed up the process we will use the **RAP Generator** that will generate a starter project for us containing all these objects. This way you can concentrate on developing the business logic of this extension scenario without the need to type lots of boiler plate coding beforehand.
-
-Before using the RAP Generator you have to do the following:
-
-- Create a package for the repository objects of your RAP business object. 
-- Create a class that will generate the RAP BO alongside with a table that to store the inventory data.
+In the ABAP trial systems we have thus prepared a helper class **/dmo/cl_gen_dev268_artifacts** to generate the database table to store the inventory data and different CDS artefacts needed for the next exercises.  
 
 Since this is a green field scenario the application will be implemented using a **managed business object** that is based on the **ABAP RESTful Application Programming Model (RAP)**.
  
 This application will then be enhanced such that it leverages OData service calls and SOAP calls to retrieve data from a SAP S/4HANA backend. These services are either called as a value help or to perform a determination for the price of a product whenthe inventory data is created or updated.
 
-## Create a package
-
-1. Richt-click on **`ZLOCAL`** and from the context menu choose **New > ABAP Package**.
-
-  ![New package_1](images/0200.png)
-
-2. In the Create new ABAP package dialogue enter the following values
-
-   - Name: Enter **`ZRAP_INVENTORY_####`**.
-   - Description: Enter a meaningful description for your package, e.g. **Inventory demo ####**. 
-
-   ![New package_2](images/0210.png)
-
-3. Select or create a new transport request and click **Finish**.
-
-   ![New transport request](images/0220.png)
-
-6. Add your package to your **Favorites Packages** folder.
-
-   - Right click on the folder **Favorites Packages**
-
-   ![New transport request](images/0105.png)
-
-   - and start to type **`ZRAP`**
-   - choose your package **`ZRAP_INVENTORY_####`** from the list of machting items
-  - Press **Ok**
-
-    ![New transport request](images/0110.png)
-
-5. Result
-
-You have created a package in the super package ZLOCAL. The package ZLOCAL has a similar role as the package $TMP has in on premise systems.
-
-You can see now an entry in the **Transport Organizer** view
- 
-> **Caution:**
-
-> If you start developing in a non-trial system you should use sub-packages in ZLOCAL **ONLY** for tests but **NOT** for real development.
-> For real development you have to create your own software components and own development packages.
-
-
-![New transport request](images/0230.png)
-
-
-## Generate a starter application
-
-Now after you have created a package we can start developing a class. 
-
-1. Right click on your package **ZRAP_INVENTORY_####**. Click **New > ABAP Class**.
-
-   ![New ABAP Class](images/1000.png)
-
-3. In the *New ABAP class* dialgue enter the following values:
-
-   - Name: **`zcl_generate_dev268_####`** .
-   - Description: **`Generate RAP BO for DEV268 - group ####`**.
-   
-    Press **Next**.
-   
-    ![New ABAP Class](images/1010.png)
-   
-4. Select a transport request and click **Finish**.
-
-    ![Select transport request](images/1020.png)
-
-5. Copy and paste the code from the **sources** sub folder 
+## Generate the data model
   
-    [zcl_generate_dev268_###](sources/zcl_generate_dev268.txt)    
+1. Select the **Open ABAP Development Object** icon or press **Ctrl+Shift+A**. 
+
+   ![Open ABAP Development Object](images/helperclass_00_new.png)
+
+2. In the *Open ABAP Development Object* dialogue enter **/dmo/cl_gen_dev268_artifacts** as search string and press **OK**.      
+
+   ![Generate Data Model](images/helperclass_01_new.png)
+
+2. The class **/dmo/cl_gen_dev268_artifacts** is displayed in a new tab.
+
+    ![Generate Data Model](images/helperclass_02_new.png)
   
-    thereby replacing the placeholder **`####`** in the template coding as shown in the following screen shot.    
+3. Press **F9** to run the ABAP class as a console application. As a result, you will see a success message in the Console.     
 
-    ![Code template Inventory Table](images/1030.png)  
+    ![Generate Data Model](images/helperclass_03_new.png)  
 
-
-7. Replace the placeholder **`####`** with your group number.
-
-   Press **Ctrl+F** to start the dialogue to search and replace the placeholder **`####`** with your group number.
-
-   ![Inventory Table](images/1040.png)
-
-8. Activate your changes  
+4. Please note down your group ID **`####`** and copy the name of the newly created package **ZRAP_TRAVEL_####**
+    <pre>
+     BEGIN OF GENERATION (20210607 153713 UTC) ... 
+      - Package: ZRAP_TRAVEL_#### 
+      - Group ID: #### 
+      ...
+     </pre>
    
-   Press ![Activate class](images/activate.png).
+5. Right click on the folder **Favorite Packages** and select **Add Package...**.
 
-9. Run the console application by pressing **F9** or right-click on your class in the *Project Explorer* and choose **Run as --> ABAP Application (Console)**
+   ![Open ABAP Development Object](images/helperclass_04_new.png)
 
-   ![Run console application](images/1045.png)
+6. Enter the name of your package **ZRAP_TRAVEL_####** and press **OK**.    
  
-10. Wait a short time and check the console tab for a success message
+ 
+## Result
 
-    You should receive a success message in the *Console Tab* telling you 
-   
-    **RAP BO ZI_RAP_Inventory_#### generated successfully**
-
-    ... and when you check the content of your package you will notice that it now contains **13 repository objects**.
-
-    ![RAP BO generated](images/1050.png)
-
-11. The coding of the class that you have created has done the following:
+1. The helper class **/dmo/cl_gen_dev268_artifacts** has done the following:
  
     - Using the XCO framework it has created a table to store the inventory data  
     - It then has called the RAP Genertor which has generated the following repository objects for your convenience based on the table that has been generated beforehand
@@ -157,22 +89,22 @@ Now after you have created a package we can start developing a class.
 > What is now left is to publish the service binding since this can not be automated (yet).
 
 
-12. Open the service binding and double click on **ZUI_RAP_INVENTORY_####_O2**  
+2. Open the service binding and double click on **ZUI_RAP_INVENTORY_####_O2**  
     (in older versions of the RAP Generator it reads _02 instead of _O2)
 
     ![Open Service Binding](images/0435.png)
 
-13. Click on **Publish** to publish the Service Binding. 
+3. Click on **Publish** to publish the Service Binding. 
 
     ![Publish Service Binding](images/0440.png)
 
-14. Select the entity **Inventory** and press the **Preview** button to start the *Fiori Elements Preview*.
+4. Select the entity **Inventory** and press the **Preview** button to start the *Fiori Elements Preview*.
 
     (The service also contains an entity I_Currency since the RAP Generator has added a value help for Currencies to the projection view.) 
 
    ![Start Fiori Elements Preview](images/0460.png)
 
-15. Check the Fiori Elements Preview App. You will notice that we got a nearly full fledged UI with capabilities for 
+5. Check the Fiori Elements Preview App. You will notice that we got a nearly full fledged UI with capabilities for 
 
     - Searching
     - Filtering
