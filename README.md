@@ -1,10 +1,14 @@
-# DEV268 - SAP Cloud Platform, ABAP Environment Connectivity and Integration
+# DEV268 - SAP BTP ABAP Environment Connectivity and Integration
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/teched2020-DEV268)](https://api.reuse.software/info/github.com/SAP-samples/teched2020-DEV268)
 
 ## Description
 
 This repository contains the material for the SAP TechEd 2020 session called *DEV268 - SAP Cloud Platform, ABAP Environment Connectivity and Integration.*   
+
+## Disclaimer
+
+> Note that this workshop was first offered in 2020; consequently, all its assets were created before the branding changes related to SAP technology were announced in January 2021. For example, SAP Cloud Platform, ABAP environment has been renamed to SAP Business Technology Platform (BTP), ABAP environment.
 
 ## Overview
 
