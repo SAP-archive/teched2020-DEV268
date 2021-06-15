@@ -107,7 +107,8 @@ This application will then be enhanced such that it leverages OData service call
 
     - Searching
     - Filtering
-    - Create, Update and Delete inventory data
+    - Create and Delete inventory data
+    - Update, visible when having created data
    
 This is because all possible behaviors (create, update and delete) have been enabled by default in our generated code.
 You will see that all CRUD operations are working out of the box (apart from calculating the inventory id, which we will do in a second).
