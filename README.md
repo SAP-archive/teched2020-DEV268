@@ -50,8 +50,7 @@ There are no known issues.
 These are the steps of our hands-ons session:
 
 - [Getting Started](exercises/ex0/)
-    - [Connect to the system](exercises/ex0#connect-to-the-system)
-    - [How do I find out if the suffix of my choice is already used in an ABAP trial system?](exercises/ex0#choose-unique-number-for-the-suffix)
+    - [Connect to the system](exercises/ex0#connect-to-the-system)  
 - [Exercise 1 - Generate a starter application](exercises/ex1/README.md)    
     - [Generate the data model](exercises/ex1/README.md#generate-the-data-model)   
     - [Publish service](exercises/ex1#publish-service)
