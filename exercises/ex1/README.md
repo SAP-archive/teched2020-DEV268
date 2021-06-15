@@ -223,13 +223,13 @@ Please change the code such that you remove the annotation **@UI.hidden** for Qu
   @UI.lineItem: [ {
   position: 50 ,
   importance: #HIGH,
-  label: 'Price'
+  label: 'Unit'
   } ]
   @UI.identification: [ {
     position: 50 ,
-    label: 'Price'
+    label: 'Unit'
   } ]
-  QuantityUnit;  
+  QuantityUnit;
   </pre> 
 
 - CurrencyCode
@@ -238,11 +238,11 @@ Please change the code such that you remove the annotation **@UI.hidden** for Qu
   @UI.lineItem: [ {
   position: 70 ,
   importance: #HIGH,
-  label: 'Price'
+  label: 'Currency'
   } ]
   @UI.identification: [ {
     position: 70 ,
-    label: 'Price'
+    label: 'Currency'
   } ] 
   CurrencyCode;
   </pre>
