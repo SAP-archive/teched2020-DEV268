@@ -247,7 +247,7 @@ Please change the code such that you remove the annotation **@UI.hidden** for Qu
   CurrencyCode;
   </pre>
 
-Feel free to check out more of the generated code.
+- Do not forget to **Activate** your changes.
 
 ## Behavior Implementation
 
