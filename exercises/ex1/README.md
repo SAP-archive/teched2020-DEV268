@@ -207,38 +207,45 @@ Please make sure that the determination that is performed during the **'save*** 
 determination CalculateInventoryID on save { create; }
 </pre> 
  
-Last but not least, you will find it handy that a **Metadata Extension View ZC_RAP_Inventory_####** has also been generated that automatically publishes all field on the list page as well as on the object page by setting appropriate **@UI** annotations. Also the administrative fields like created_at as well as the UUID based key field are hidden by setting **@UI.hidden** to true.
- 
- <pre>
-   @UI.hidden: true
-  UUID;
-  
+## Change the generated Metadata Extension File
+
+Last but not least, you will find it handy that a **Metadata Extension View ZC_RAP_Inventory_####** has also been generated that automatically publishes all field on the list page as well as on the object page by setting appropriate **@UI** annotations. 
+
+Also the administrative fields like created_at as well as the UUID based key field are hidden by setting **@UI.hidden** to true.
+
+In this version also the fields **CurrencyCode** and ** QuantityUnit** have been marked as @UI.hidden. 
+
+Please change the code such that it now reads.
+
+- QuantityUnit 
+
+  <pre>
   @UI.lineItem: [ {
-    position: 20 , 
-    importance: #HIGH, 
-    label: 'InventoryID'
+  position: 50 ,
+  importance: #HIGH,
+  label: 'Price'
   } ]
   @UI.identification: [ {
-    position: 20 , 
-    label: 'InventoryID'
+    position: 50 ,
+    label: 'Price'
   } ]
-  @UI.selectionField: [ {
-    position: 20 
-  } ]
-  InventoryID;
-  
+  QuantityUnit;  
+  </pre> 
+
+- CurrencyCode
+
+  <pre>
   @UI.lineItem: [ {
-    position: 30 , 
-    importance: #HIGH, 
-    label: 'ProductID'
+  position: 70 ,
+  importance: #HIGH,
+  label: 'Price'
   } ]
   @UI.identification: [ {
-    position: 30 , 
-    label: 'ProductID'
-  } ]
-  ProductID;
-  ...
-</pre> 
+    position: 70 ,
+    label: 'Price'
+  } ] 
+  CurrencyCode;
+  </pre>
 
 Feel free to check out more of the generated code.
 
