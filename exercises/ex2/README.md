@@ -439,6 +439,11 @@ The interface **if_rap_query_provider interface** only offers one method which i
    [Source code ZCE_RAP_PRODUCTS_####](sources/ex2_DDLS_ZCE_RAP_PRODUCTS_%23%23%23%23.txt)
 
 
+10. Change the number of decimals for the property `Price`.
+
+    Change the number of decimals for the property `Price` from **3** to **2**, so that it now reads as follows:  
+    <pre> Price                   : abap.curr( 16, 2 ); </pre>
+
 ### Implement the query implemenation class
 
 After having created the custom entity `ZRAP_CE_PRODUCTS_####` we now have to enhance the query implementation class `ZCL_CE_RAP_PRODUCTS_####`that we have created earlier in this exercise.
@@ -533,6 +538,16 @@ This will add the custom entity `ZCE_RAP_PRODUCTS_####` as a value help for the 
    - You will notice that now two entities are visible. `Products` and `Inventory`
    
      ![Service binding with custom entity](images/1340.png)
+ 
+     > Caution:  
+     > At this point you might receive an error message such as   
+     > **Amount field PRICE with currency decimals not equal to two is not supported.**  
+     > If this is the case go back to your custom entity **ZCE_RAP_PRODUCTS_####**  
+     > And change the number of decimals for the property price from 3 to 2, so that it now reads as follows:  
+     > <pre> Price                   : abap.curr( 16, 2 ); </pre>
+
+     ![Error message number of decimals](images/1355.png)
+ 
  
 2. Start the Fiori Elements preview
 
