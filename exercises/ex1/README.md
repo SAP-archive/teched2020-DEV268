@@ -49,9 +49,8 @@ This application will then be enhanced such that it leverages OData service call
     ![Generate Data Model](images/00_004_DEV268.png)  
 
 4. Please note down your group ID **`####`** and copy the name of the newly created package **ZRAP_INVENTORY_####**
-    <pre>
-    DEV268 exercise generator 
-    ... 
+    <pre>    
+     ... 
      - Package: ZRAP_INVENTORY_#### 
      - Group ID: ####
      ...
