@@ -252,35 +252,15 @@ Please change the code such that you remove the annotation **@UI.hidden** for Qu
 
 ## Behavior Implementation
 
-1. In the **Project Explorer** navigate to **Core Data Services > Behavior Definitions** and double click on  **ZI_RAP_INVENTORY_####**
+1. In the **Project Explorer** navigate to **Source Code Library > Classes** and double click on  **ZBP_I_RAP_INVENTORY_####**
 
- ![Open Behavior Definition](images/0500.png)
+ ![Open Behavior Implementation](images/0500.png)
 
-2. In the source code you will see the warning 
+2. Navigate to the tab **Local Types** 
 
-   *Class "ZBP_I_RAP_INVENTORY_1234" does not exist.* 
-   
-   - Click on the name of the behavior implementation class **`ZBP_I_RAP_Inventory_####`**
-   - Press **Ctrl+1** to open the *quick fix / quick assist* dialog
-  
-The quick fix offers you to create a global behavior implementation class **`zbp_i_rap_inventory_####`** for the behavior definition **`zi_rap_inventory_####`**.
-  
-   ![Quick Fix Behavior Implemenation](images/0510.png)
-  
-   - Double click on **`Create behavior implementation class zbp_i_rap_inventory_####`**
-  
-
-  
-  4. The **New Behavior Definition** dialogue opens
-    - Leave the default settings and press **Next**
-
-     ![Open behavior defintion class](images/0520.png)
-
-  5. Select a transport request and press **Finish**
-  
-     ![Select Transport request](images/0530.png)
-  
-  6. Implement the determination for the field **InventoryID**
+   In the source code of the local class you will see that there is one method called **calculateinventoryid**.   
+ 
+3. Add the code shown below to implement the determination for the field **InventoryID**
   
 The code of the behavior implementation contains already an (empty) implementation for the determiniation that shall calculate the semantic key InventoryID. 
 
