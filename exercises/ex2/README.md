@@ -438,11 +438,14 @@ The interface **if_rap_query_provider interface** only offers one method which i
 
    [Source code ZCE_RAP_PRODUCTS_####](sources/ex2_DDLS_ZCE_RAP_PRODUCTS_%23%23%23%23.txt)
 
+**Please note: You have to adapt the number of decimals for the property Price**
 
 10. Change the number of decimals for the property `Price`.
 
     Change the number of decimals for the property `Price` from **3** to **2**, so that it now reads as follows:  
     <pre> Price                   : abap.curr( 16, 2 ); </pre>
+    
+    ![Change decimals for the property Price](images/1295.png)
 
 ### Implement the query implemenation class
 
