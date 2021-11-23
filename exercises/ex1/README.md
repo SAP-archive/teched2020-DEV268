@@ -214,7 +214,7 @@ Last but not least, you will find it handy that a **Metadata Extension View ZC_R
 
 Also the administrative fields like created_at as well as the UUID based key field are hidden by setting **@UI.hidden** to true.
 
-In the version of the RAP Generator which is currently deployed to SAP BTP ABAP evnironment trial ualso the fields **CurrencyCode** and **QuantityUnit** have been marked as **@UI.hidden**.  
+In the version of the RAP Generator which is currently deployed to SAP BTP ABAP evnironment trial, also the fields **CurrencyCode** and **QuantityUnit** have been marked as **@UI.hidden**.  
 
 Please change the code such that you remove the annotation **@UI.hidden** for QuantityUnit and CurrencyCode so that the code now reads:
 
