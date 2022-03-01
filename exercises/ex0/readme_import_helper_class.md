@@ -6,7 +6,7 @@ When you are running this mission in your own Steampunk system you have to
 1. import the helper class /dmo/cl_gen_dev268_artifacts and you have to 
 2. import the RAP Generator https://github.com/SAP-samples/cloud-abap-rap 
 
-# Create a package /DMO/DEV268
+### Create a package /DMO/DEV268
 
 1. Create a package with the name **/DMO/DEV268** and choose **ZLOCAL** as the super package.
 
@@ -16,7 +16,7 @@ and create a new transport request.
 
  ![Create transport request](images/0710.png)   
 
-# Link package to ABAP Git repository
+### Link package to ABAP Git repository
 
 1. Click on the tab **abapGit Repositories**
 2. Click on the **green plus sign** on right hand side
