@@ -51,7 +51,7 @@ These are the steps of our hands-ons session:
 
 - [Getting Started](exercises/ex0/)
     - [Connect to the system](exercises/ex0#connect-to-the-system) 
-    - [Import the helper class (required on non-trial systems)(exercises/ex0#connect-to-the-system)   
+    - [Import the helper class - required on non-trial systems](exercises/ex0#import-of-the-helper-class-dmocl_gen_dev268_artifacts)   
 - [Exercise 1 - Generate a starter application](exercises/ex1/README.md)    
     - [Generate the data model](exercises/ex1/README.md#generate-the-data-model)   
     - [Publish service](exercises/ex1#publish-service)
