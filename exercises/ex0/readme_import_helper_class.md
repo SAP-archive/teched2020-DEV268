@@ -1,3 +1,11 @@
+
+## Import of the helper class /dmo/cl_gen_dev268_artifacts
+
+When you are running this mission in your own Steampunk system you have to 
+
+1. import the helper class /dmo/cl_gen_dev268_artifacts and you have to 
+2. import the RAP Generator https://github.com/SAP-samples/cloud-abap-rap 
+
 # Create a package /DMO/DEV268
 
 1. Create a package with the name **/DMO/DEV268** and choose **ZLOCAL** as the super package.
@@ -29,7 +37,7 @@ In the screen **Pull from abapGit Repository** select **Finish**
 
  ![Pull](images/0750.png)   
  
-Navigate to the imported class **/dmo/cl_gen_dev268_artifacts.clas** and press **Activate**  
+Navigate to the imported class **/dmo/cl_gen_dev268_artifacts** and press **Activate**  
 
   ![Activate class](images/0770.png) 
   
