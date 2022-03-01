@@ -10,3 +10,16 @@
 
 < picture >
 
+1. In the next screen enter the name of the package that you have created in the first step **/DMO/DEV268**.
+2. Mark the check box **Pull after link**
+3. Press **Next**
+
+< picture >
+
+In the screen **Select Transport Request** press **Finish**   
+
+
+
+
+
+
